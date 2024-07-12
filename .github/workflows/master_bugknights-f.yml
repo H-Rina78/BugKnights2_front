@@ -4,8 +4,9 @@
 name: Build and deploy Node.js app to Azure Web App - bugKnights-f
 
 on:
-  schedule:
-    - cron: '0 12,17 * * *'
+  push:
+    branches:
+      - master
   workflow_dispatch:
 
 jobs:
@@ -58,4 +59,4 @@ jobs:
           app-name: 'bugKnights-f'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D9192E9C199B4034A9299348BF194753 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_449A59437BBF4F3083AC89A8805869E4 }}

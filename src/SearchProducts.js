@@ -29,16 +29,7 @@ const SearchProducts = (props) => {
         props.setMainContentsView(2);
     }
 
-    const useDelay = msec => {
-        const [waiting, setWaiting] = useState(true);
-        useEffect(()=>{
-          setTimeout(()=> setWaiting(false), msec);
-          console.log('実行されてます');
-        }, []);
-        return waiting
-    }
-
-    const waiting = useDelay(1000);
+    
 
     useEffect(() => {
         const fetchProduct = () => {
@@ -74,7 +65,7 @@ const SearchProducts = (props) => {
                             </Card>
                         </div>
                     ))}
-                    {!waiting && MainCards.length === 0 &&
+                    {MainCards.length === 0 &&
                         <h2>ご指定の条件に一致する商品は見つかりませんでした。</h2>}
                 </div>
                 <div className='detail-modal'></div>

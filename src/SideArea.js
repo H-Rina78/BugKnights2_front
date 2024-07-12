@@ -2,8 +2,6 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './sideArea.css';
-import { BiBorderBottom } from 'react-icons/bi';
-import { PiX } from 'react-icons/pi';
 
 const SideArea = (props) => {
     const changeCategory = (event) => {

@@ -54,7 +54,7 @@ const SearchProducts = (props) => {
                                 <Card.Body>
                                     <Card.Text>{product.name}</Card.Text>
                                     <Card.Text>{product.overview}</Card.Text>
-                                    <Card.Title>{product.price}</Card.Title>
+                                    <Card.Title>{product.price}円</Card.Title>
                                     <Card.Text>
                                     (税込 {product.price * 11 / 10}円)
                                     </Card.Text>

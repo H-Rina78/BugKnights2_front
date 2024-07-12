@@ -10,7 +10,7 @@ const MainContents = (props) =>{
     return(
         <>
             {(props.mainContentsView === 0) &&
-                <MainTop />
+                <MainTop setMainContentsView={props.setMainContentsView} setProduct={setProduct} />
             }
             {(props.mainContentsView === 1) &&
                 <>

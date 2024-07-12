@@ -23,7 +23,7 @@ const ProductDetail = (props) => {
                                 <div>{props.product.price}円</div>
                             </Col>
                             <Col className='col-10 fs-3'>
-                                <div>(税込 {props.product.price * 11 / 10}円)</div>
+                                <div>(税込 {props.product.price * 11 / 10})円</div>
                             </Col>
                         </Row>
                     </Col>

@@ -47,22 +47,25 @@ const SearchProducts = (props) => {
         return (
             <>
                 <div className='row'>
-                    {MainCards.map((product) => (
-                        <div className='col-3 my-2'>
-                            <Card style={{ width: '15rem' ,height: '25rem'}}>
-                                <Card.Img variant='top' src={`https://bugknights.blob.core.windows.net/products/${product.imageName}`} style={{width: '100%', height: '10rem'}} />
-                                <Card.Body>
-                                    <Card.Text>{product.name}</Card.Text>
-                                    <Card.Text>{product.overview}</Card.Text>
-                                    <Card.Title>{product.price}円</Card.Title>
-                                    <Card.Text>
-                                    (税込 {product.price * 11 / 10}円)
-                                    </Card.Text>
-                                    <Button variant='primary' value={product.id} onClick={handleClick}>詳細を見る</Button>
-                                </Card.Body>
-                            </Card>
-                        </div>
-                    ))}
+                    {MainCards.length === 0 ? 
+                        <h2>ご指定の条件に一致する商品は見つかりませんでした。</h2>
+                      : MainCards.map((product) => (
+                            <div className='col-3 my-2'>
+                                <Card style={{ width: '15rem' ,height: '25rem'}}>
+                                    <Card.Img variant='top' src={`https://bugknights.blob.core.windows.net/products/${product.imageName}`} style={{width: '100%', height: '10rem'}} />
+                                    <Card.Body>
+                                        <Card.Text>{product.name}</Card.Text>
+                                        <Card.Text>{product.overview}</Card.Text>
+                                        <Card.Title>{product.price}円</Card.Title>
+                                        <Card.Text>
+                                        (税込 {product.price * 11 / 10}円)
+                                        </Card.Text>
+                                        <Button variant='primary' value={product.id} onClick={handleClick}>詳細を見る</Button>
+                                    </Card.Body>
+                                </Card>
+                            </div>
+                        ))
+                    }
                 </div>
                 <div className='detail-modal'></div>
             </>

@@ -23,8 +23,10 @@ const SearchByPrice = (props) => {
         // フォームのデフォルトの動作を防止する
         event.preventDefault();
         // 入力値を使用して何かを行う（例：サーバーにデータを送信する）
-        props.setLowerPrice(minPrice);
-        props.setUpperPrice(maxPrice);
+        if(maxPrice && minPrice) {
+            props.setLowerPrice(minPrice);
+            props.setUpperPrice(maxPrice);
+        }
     }
 
     return (

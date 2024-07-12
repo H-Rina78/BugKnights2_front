@@ -26,6 +26,15 @@ const ProductDetail = (props) => {
                                 <div>(税込 {props.product.price * 11 / 10})円</div>
                             </Col>
                         </Row>
+                        <Row>
+                            <Col>
+                            ※写真はイメージです。
+                              <br />
+                              　予告なくパッケージ、商品名、産地等が変更になる場合がございます。予めご了承ください。
+                              <br />
+                            （実際にお届けする商品と掲載内容が異なる場合がございます）
+                            </Col>
+                        </Row>
                     </Col>
                 </Row>
             </Container>

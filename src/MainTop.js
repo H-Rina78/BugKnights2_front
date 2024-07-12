@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 const MainTop = (props) => {
-    const stringUrl = 'http://localhost:8080/search';
+    const stringUrl = 'https://bugknights-b.azurewebsites.net/search';
         
     const [MainCards, setMainCards] = useState([]);
 

@@ -33,6 +33,7 @@ const SearchProducts = (props) => {
         const [waiting, setWaiting] = useState(true);
         useEffect(()=>{
           setTimeout(()=> setWaiting(false), msec);
+          console.log('実行されてます');
         }, []);
         return waiting
     }

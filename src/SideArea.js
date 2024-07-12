@@ -31,31 +31,31 @@ const SideArea = (props) => {
                 </Row>
                 <Row>
                     
-                    <Col className="col-6 ms-4 ps-4 h5" style={props.inputCategoryId == 1 ? testStyle : testStyle2}>
+                    <Col className="col-6 ms-4 ps-4 h5">
                         <button onClick={changeCategory} value={1}>
                             野菜
                         </button>
                     </Col>
                     
-                    <Col className="col-6 ms-4 ps-4 h5" style={props.inputCategoryId == 2 ? testStyle : testStyle2}>
+                    <Col className="col-6 ms-4 ps-4 h5">
                         <button onClick={changeCategory} value={2}>
                             お肉
                         </button>
                     </Col>
                     
-                    <Col className="col-6 ms-4 ps-4 h5" style={props.inputCategoryId == 3 ? testStyle : testStyle2}>
+                    <Col className="col-6 ms-4 ps-4 h5">
                         <button onClick={changeCategory} value={3}>
                             魚介
                         </button>
                     </Col>
 
-                    <Col className="col-6 ms-4 ps-4 h5" style={props.inputCategoryId == 4 ? testStyle : testStyle2}>
+                    <Col className="col-6 ms-4 ps-4 h5">
                         <button onClick={changeCategory} value={4}>
                             スイーツ
                         </button>
                     </Col>
 
-                    <Col className="col-6 ms-4 ps-4 h5" style={props.inputCategoryId == 5 ? testStyle : testStyle2}>
+                    <Col className="col-6 ms-4 ps-4 h5">
                         <button onClick={changeCategory} value={5}>
                             飲み物
                         </button>

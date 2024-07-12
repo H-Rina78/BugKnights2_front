@@ -24,31 +24,31 @@ const SideArea = (props) => {
                     
                     <Col className="col-12 ms-4 ps-4 h5">
                         <button onClick={changeCategory} value={1}>
-                            <span>野菜</span>
+                            野菜
                         </button>
                     </Col>
                     
                     <Col className="col-12 ms-4 ps-4 h5">
                         <button onClick={changeCategory} value={2}>
-                            <span>お肉</span>
+                            お肉
                         </button>
                     </Col>
                     
                     <Col className="col-12 ms-4 ps-4 h5">
                         <button onClick={changeCategory} value={3}>
-                            <span>魚介</span>
+                            魚介
                         </button>
                     </Col>
 
                     <Col className="col-12 ms-4 ps-4 h5">
                         <button onClick={changeCategory} value={4}>
-                            <span>スイーツ</span>
+                            スイーツ
                         </button>
                     </Col>
 
                     <Col className="col-12 ms-4 ps-4 h5">
                         <button onClick={changeCategory} value={5}>
-                            <span>飲み物</span>
+                            飲み物
                         </button>
                     </Col>
                 </Row>

@@ -1,3 +1,8 @@
 .App {
   text-align: center;
 }
+
+Header{
+  position: 'sticky';
+  top: 0;
+}

@@ -4,6 +4,8 @@ import Col from 'react-bootstrap/Col';
 import './sideArea.css';
 
 const SideArea = (props) => {
+    //サイドエリアのどのボタンを押したかの情報を切り替え
+    //1～5で情報を設定
     const changeCategory = (event) => {
         props.setInputCategoryId(event.target.value);
         props.setMainContentsView(1);

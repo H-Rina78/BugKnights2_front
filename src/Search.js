@@ -6,12 +6,16 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 
 const Search = (props) =>{
+    //テキストボックスの中身
     const [search, setSearch] = useState("");
 
+    //css
     const SearchStyle = {
         backgroundColor:'#eaeaea'
     }
     
+    //ボタンを押したとき、他のカテゴリ値を初期化
+    //ボタンを押したときのテキストボックスの値をカテゴリ値にセット
     const handleButton = () => {
         props.setInputKeyword(search);
         props.setInputCategoryId("");
@@ -20,6 +24,7 @@ const Search = (props) =>{
         props.setLowerPrice(NaN);
     }
 
+    //テキストボックスの値が変わるたびに値を保存
     const handleChange = (event) => {setSearch(event.target.value)}
     return(
         <div className='container-fluid'>

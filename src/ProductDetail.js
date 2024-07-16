@@ -1,3 +1,4 @@
+import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -22,12 +23,15 @@ const ProductDetail = (props) => {
                             <Col className='col-2'>
                                 <div>{props.product.price}円</div>
                             </Col>
-                            <Col className='col-10 fs-3'>
-                                <div>(税込 {props.product.price * 11 / 10})円</div>
+                            <Col className='col-5 fs-3'>
+                                <div>(税込 {props.product.price * 11 / 10}円)</div>
+                            </Col>
+                            <Col className='col-5'>
+                                <Button variant='primary' >カートに入れる</Button>
                             </Col>
                         </Row>
                         <Row>
-                            <Col>
+                            <Col className='col-8'>
                             ※写真はイメージです。
                               <br />
                               　予告なくパッケージ、商品名、産地等が変更になる場合がございます。予めご了承ください。

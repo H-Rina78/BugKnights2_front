@@ -33,10 +33,10 @@ const SearchByPrice = (props) => {
         <>
             <Container fluid style={SearchStyle}>
                 <form onSubmit={handleSubmit}>
-                    <Row className='p-3'>    
+                    <Row className='p-3'>
                         <Col className="col-2 h5">
                             価格で絞る
-                        </Col>                    
+                        </Col>
                         <Col className='offset-1 col-3 text-center'>
                             <input
                                 className='input-price min'
@@ -52,8 +52,8 @@ const SearchByPrice = (props) => {
                             />円
                         </Col>
                         <Col>
-                            <button className='btn btn-primary' type="submit">送信</button>
-                        </Col>                      
+                            <button className='btn btn-primary' type="submit">絞り込み</button>
+                        </Col>
                     </Row>
                 </form>
             </Container>

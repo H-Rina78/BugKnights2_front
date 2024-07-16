@@ -29,7 +29,16 @@ const SearchProducts = (props) => {
         props.setMainContentsView(2);
     }
 
-    
+    const [showComponent, setShowComponent] = useState(false);
+    useEffect(() => {
+        // 2秒後にコンポーネントを表示する
+        const timer = setTimeout(() => {
+        setShowComponent(true);
+        }, 1000);
+
+        // コンポーネントがアンマウントされた場合、タイマーをクリアする
+        return () => clearTimeout(timer);
+    }, []);
 
     useEffect(() => {
         const fetchProduct = () => {
@@ -65,7 +74,7 @@ const SearchProducts = (props) => {
                             </Card>
                         </div>
                     ))}
-                    {MainCards.length === 0 &&
+                    {MainCards.length === 0 && showComponent &&
                         <h2>ご指定の条件に一致する商品は見つかりませんでした。</h2>}
                 </div>
                 <div className='detail-modal'></div>

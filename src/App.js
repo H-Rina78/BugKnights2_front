@@ -9,14 +9,19 @@ import Col from 'react-bootstrap/Col';
 import { useState } from 'react';
 
 const App = () =>{
+  //表示管理用のstate。
+  //カテゴリ管理用、1:野菜、2:お肉、3:魚介、4:スイーツ、5:飲み物
   const [inputCategoryId, setInputCategoryId] = useState("");
+  //キーワード管理用、ボタン押したときのキーワードを保存
   const [inputKeyword, setInputKeyword] = useState("");
+  //価格管理用、上限と下限の価格を保存
   const [upperPrice, setUpperPrice] = useState(NaN);
   const [lowerPrice, setLowerPrice] = useState(NaN);
+  //画面管理用、0:TOP画面、1:商品ページ、2:商品詳細ページ
   const [mainContentsView, setMainContentsView] = useState(0);
 
   return (
-
+    //表示管理用の値やセッターをそれぞれのコンポーネントに渡してる
     <>
       <Header />
       <Search setInputKeyword={setInputKeyword} setInputCategoryId={setInputCategoryId} setMainContentsView={setMainContentsView} setUpperPrice={setUpperPrice} setLowerPrice={setLowerPrice}/>

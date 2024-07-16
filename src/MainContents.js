@@ -5,6 +5,8 @@ import SearchByPrice from './SearchByPrice';
 import MainTop from "./MainTop";
 
 const MainContents = (props) =>{
+    //商品詳細用のデータ保存用
+    //SearchProductsでセッターを呼び出して登録してる
     const [product, setProduct] = useState({});
 
     return(

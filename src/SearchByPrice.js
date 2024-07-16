@@ -22,7 +22,7 @@ const SearchByPrice = (props) => {
     const handleSubmit = (event) => {
         // フォームのデフォルトの動作を防止する
         event.preventDefault();
-        // 入力値を使用して何かを行う（例：サーバーにデータを送信する）
+        //上限の金額が入力されてるかつ、下限の金額が入力されてる場合、金額をセット
         if(maxPrice && minPrice) {
             props.setLowerPrice(minPrice);
             props.setUpperPrice(maxPrice);

@@ -3,24 +3,34 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 const SearchProducts = (props) => {
+    //URL用の変数。これが変わると再レンダリングされる
     let stringUrl;
 
+    //カテゴリが選択されてる場合
     if(props.inputCategoryId !== "") {
+        //カテゴリかつ価格帯が選択されてる場合
         if(!Number.isNaN(props.upperPrice) && !Number.isNaN(props.lowerPrice)) {
             stringUrl = `https://bugknights-b.azurewebsites.net/search/categoryP?category_id=${props.inputCategoryId}&upper_price=${props.upperPrice}&lower_price=${props.lowerPrice}`;
+        //カテゴリのみ選択されてる場合
         } else {
             stringUrl = `https://bugknights-b.azurewebsites.net/search/category?category_id=${props.inputCategoryId}`;
         }
+    //キーワードが選択されてる場合
     } else if(props.inputKeyword !== "") {
+        //キーワードかつ価格帯が選択されてる場合
         if(!Number.isNaN(props.upperPrice) && !Number.isNaN(props.lowerPrice)) {
             stringUrl = `https://bugknights-b.azurewebsites.net/search/keywordP?keyword=${props.inputKeyword}&upper_price=${props.upperPrice}&lower_price=${props.lowerPrice}`;
+        //キーワードのみされてる場合
         } else {
             stringUrl = `https://bugknights-b.azurewebsites.net/search/keyword?keyword=${props.inputKeyword}`;
         }
     }
-        
+    
+    //表示内容のJSONを保存するstate
     const [MainCards, setMainCards] = useState([]);
 
+    //詳細ボタンを押したときの商品情報を保存
+    //その後商品詳細に移動
     const handleClick = (event) => {
         const selectProduct = MainCards.filter((product) =>  
             product.id === event.target.value
@@ -29,9 +39,10 @@ const SearchProducts = (props) => {
         props.setMainContentsView(2);
     }
 
+    //コンポーネント表示の際に一定の秒数遅らせるstate
     const [showComponent, setShowComponent] = useState(false);
     useEffect(() => {
-        // 2秒後にコンポーネントを表示する
+        // 1秒後にコンポーネントを表示する
         const timer = setTimeout(() => {
         setShowComponent(true);
         }, 1000);
@@ -40,6 +51,7 @@ const SearchProducts = (props) => {
         return () => clearTimeout(timer);
     }, []);
 
+    //stringURLが書き換わった際にJSONデータをフェッチする
     useEffect(() => {
         const fetchProduct = () => {
             fetch(stringUrl)
@@ -74,7 +86,8 @@ const SearchProducts = (props) => {
                             </Card>
                         </div>
                     ))}
-                    {MainCards.length === 0 && showComponent &&
+                    {/* JSONデータがない、かつ、1秒たったら表示 */
+                    MainCards.length === 0 && showComponent &&
                         <h2>ご指定の条件に一致する商品は見つかりませんでした。</h2>}
                 </div>
                 <div className='detail-modal'></div>

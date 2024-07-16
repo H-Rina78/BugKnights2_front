@@ -4,7 +4,7 @@ const Header = () =>{
       padding: 16,
       marginTop: 0,
       color: 'rgb(18, 122, 216)',
-      borderBottom: 'solid'
+      borderBottom: 'solid',
     }
     return(
       <div>

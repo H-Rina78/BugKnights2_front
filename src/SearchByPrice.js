@@ -54,6 +54,9 @@ const SearchByPrice = (props) => {
                         <Col>
                             <button className='btn btn-primary' type="submit">絞り込み</button>
                         </Col>
+                        <Col className="col h6">
+                            ※税抜き価格での絞り込みです
+                        </Col>
                     </Row>
                 </form>
             </Container>

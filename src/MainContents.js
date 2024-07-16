@@ -1,6 +1,6 @@
 import ProductDetail from "./ProductDetail";
 import SearchProducts from "./SearchProducts";
-import RecomendTop from "./RecomendTop";
+import RecommendTop from "./RecommendTop";
 import { useState } from 'react';
 import SearchByPrice from './SearchByPrice';
 import MainTop from "./MainTop";
@@ -14,7 +14,7 @@ const MainContents = (props) =>{
         <>
             {(props.mainContentsView === 0) &&
             <>
-                <RecomendTop />
+                <RecommendTop />
                 <MainTop setMainContentsView={props.setMainContentsView} setProduct={setProduct} />
             </>
             }

@@ -36,7 +36,7 @@ const Search = (props) =>{
                     aria-label="product"
                     aria-describedby="basic-addon2"
                     />
-                    <Button variant="outline-secondary" id="button-addon2" onClick={handleButton}>
+                    <Button variant="outline-secondary" id="button-addon2" disabled={!search} onClick={handleButton}>
                         <BsSearch />
                     </Button>
                 </InputGroup>

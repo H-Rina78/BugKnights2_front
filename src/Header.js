@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import Modal from 'react-bootstrap/Modal';
 
 const Header = () =>{
     const headerStyle = {
@@ -17,6 +18,15 @@ const Header = () =>{
       borderBottom: 'solid',
     }
 
+
+    const navigate = useNavigate();
+
+    const handleLoginClick = () => {
+      navigate("/login");
+    }
+
+    
+
     const Login = () => {
       return(
         <Button variant="outline-primary" id="button-login" onClick={handleLoginClick}>
@@ -25,25 +35,49 @@ const Header = () =>{
       );
      }
   
-     const User = () => {
+    function MyVerticallyCenteredModal(props) {
+      return (
+        <Modal
+          {...props}
+          size="sm"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+        >
+          <Modal.Header closeButton>
+            <Modal.Title id="contained-modal-title-vcenter">
+              ログアウトしますか？
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Row>
+              <Col className="text-center">
+                <Button variant="danger" className="me-3">Logout</Button>
+                <Button onClick={props.onHide}>Close</Button>
+              </Col>
+            </Row>
+          </Modal.Body>
+        </Modal>
+      );
+    }
+
+    const User = () => {
+      const [modalShow, setModalShow] = useState(false);
+
       return(
-        <Button variant="outline-primary" id="button-login" onClick={handleUserClick}>
-          <LuUserCircle2 />ログイン中
-        </Button>
+        <>
+          <Button variant="outline-primary" id="button-login" onClick={() => setModalShow(true)}>
+            <LuUserCircle2 />ログイン中
+          </Button>
+
+          <MyVerticallyCenteredModal
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          />
+        </>
       );
      }
 
-    const navigate = useNavigate();
-
-    const handleLoginClick = () => {
-        navigate("/login");
-    }
-
-    const handleUserClick = () => {
-      
-    }
-
-     const [loginStatus, setStatus] = useState('0');
+    const [loginStatus, setStatus] = useState('1');
 
     return(
       <Container fluid  style={headerStyle}>

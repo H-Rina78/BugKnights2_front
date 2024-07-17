@@ -77,7 +77,7 @@ const Header = () =>{
       );
      }
 
-    const [loginStatus, setStatus] = useState('1');
+    const [loginStatus, setStatus] = useState('0');
 
     return(
       <Container fluid  style={headerStyle}>

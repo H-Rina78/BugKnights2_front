@@ -41,6 +41,7 @@ const SearchByPrice = (props) => {
                             <input
                                 className='input-price min'
                                 type="number"
+                                min={0}
                                 value={minPrice} // 状態に格納された値を表示する
                                 onChange={changeMin} // 入力値が変更されたときにハンドラー関数を呼び出す
                             />円～

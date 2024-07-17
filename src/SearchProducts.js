@@ -31,11 +31,8 @@ const SearchProducts = (props) => {
 
     //詳細ボタンを押したときの商品情報を保存
     //その後商品詳細に移動
-    const handleClick = (event) => {
-        const selectProduct = MainCards.filter((product) =>  
-            product.id === event.target.value
-        )
-        props.setProduct(selectProduct[0]);
+    const handleCardClick = (product) => {
+        props.setProduct(product);
         props.setMainContentsView(2);
     }
 
@@ -71,17 +68,17 @@ const SearchProducts = (props) => {
             <>
                 <div className='row'>
                     {MainCards.map((product) => (
-                        <div className='col-3 my-2'>
-                            <Card style={{ width: '15rem' ,height: '25rem'}}>
-                                <Card.Img variant='top' src={`https://bugknights.blob.core.windows.net/products/${product.imageName}`} style={{width: '100%', height: '10rem'}} />
+                        <div key={product.id} className='col-3 my-2' onClick={() => handleCardClick(product)}>
+                            <Card style={{ width: '15rem', height: '25rem' }}>
+                                <Card.Img variant='top' src={`https://bugknights.blob.core.windows.net/products/${product.imageName}`} style={{ width: '100%', height: '10rem' }} />
                                 <Card.Body>
                                     <Card.Text>{product.name}</Card.Text>
                                     <Card.Text>{product.overview}</Card.Text>
                                     <Card.Title>{product.price}円</Card.Title>
                                     <Card.Text>
-                                    (税込 {product.price * 11 / 10}円)
+                                        (税込 {product.price * 11 / 10}円)
                                     </Card.Text>
-                                    <Button variant='primary' value={product.id} onClick={handleClick}>詳細を見る</Button>
+                                    <Card.Link href="#" onClick={(e) => { e.preventDefault(); handleCardClick(product); }}></Card.Link>
                                 </Card.Body>
                             </Card>
                         </div>

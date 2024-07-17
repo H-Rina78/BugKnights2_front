@@ -83,12 +83,14 @@ const MainTop = (props) => {
                 ))}
             </Row>
             {/* ページネーションUI */}
-            <Row className='justify-content-center mt-4'>
-                <Pagination>
-                    <Pagination.Prev onClick={() => paginate(currentPage - 1)} disabled={currentPage === 1} />
-                    {pageNumbers}
-                    <Pagination.Next onClick={() => paginate(currentPage + 1)} disabled={indexOfLastItem >= MainCards.length} />
-                </Pagination>
+            <Row className='mt-4'>
+                <Col className='col-6'>
+                    <Pagination>
+                        <Pagination.Prev onClick={() => paginate(currentPage - 1)} disabled={currentPage === 1} />
+                        {pageNumbers}
+                        <Pagination.Next onClick={() => paginate(currentPage + 1)} disabled={indexOfLastItem >= MainCards.length} />
+                    </Pagination>
+                </Col>
             </Row>
         </Container>
     );

@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useState } from 'react';
+import Header from '../Header';
 
 const MainInformation = () => {
     //表示管理用のstate。
@@ -21,6 +22,7 @@ const MainInformation = () => {
   return (
     //表示管理用の値やセッターをそれぞれのコンポーネントに渡してる
     <>
+      <Header />
       <Search setInputKeyword={setInputKeyword} setInputCategoryId={setInputCategoryId} setMainContentsView={setMainContentsView} setUpperPrice={setUpperPrice} setLowerPrice={setLowerPrice}/>
       <Container fluid>
         <Row className='mt-3'>

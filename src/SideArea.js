@@ -18,10 +18,21 @@ const SideArea = (props) => {
     const testStyle = {
         borderBottom: 'solid',
         color: "blue",
-    };
+    }
 
     const testStyle2 = {
         color: 'green'
+    }
+
+    const advertisement = {
+        backgroundColor:'#4169e1',
+        color:'#ffffff'
+    }
+    const advertisement2 = {
+        border: "solid 2px #afeeee",
+        borderRadius: "5px",
+        padding: "8px",
+        margin: "8px"
     }
 
     const slides = [
@@ -105,7 +116,10 @@ const SideArea = (props) => {
                         </button>
                     </Col>
                 </Row>
-                <Row className='row mt-4'>
+                <Row className='row px-1 mt-4 justify-content-center' style={advertisement}>
+                    <Row className='text-center' style={advertisement2}>
+                            <h5>相談予約受付中</h5>
+                    </Row>
                     <Carousel>
                         {slides.map((slide) => (
                             <Carousel.Item key={slide.id}>
@@ -115,6 +129,7 @@ const SideArea = (props) => {
                             </Carousel.Item>
                         ))}
                     </Carousel>
+                    <h8>あなたのお悩みを私たちが解決します！</h8>
                 </Row>
             </Container>
         </>        

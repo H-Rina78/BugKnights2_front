@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import SimpleHeader from "../SimpleHeader";
 
 const CartInformation = () => {
     const navigate = useNavigate();
@@ -7,6 +8,7 @@ const CartInformation = () => {
 
     return (
         <>
+        <SimpleHeader />
         <h1>カートです</h1>
         <button onClick={handleClick}>トップ</button>
         </>

@@ -48,6 +48,7 @@ const SearchByPrice = (props) => {
                             <input
                                 className='input-price max'
                                 type="number"
+                                min={0}
                                 value={maxPrice} // 状態に格納された値を表示する
                                 onChange={changeMax} // 入力値が変更されたときにハンドラー関数を呼び出す
                             />円

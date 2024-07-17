@@ -6,6 +6,7 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { BsCart4 } from 'react-icons/bs';
 import Badge from 'react-bootstrap/Badge';
+import { useNavigate } from 'react-router-dom';
 
 const Search = (props) => {
     const [search, setSearch] = useState("");
@@ -27,9 +28,12 @@ const Search = (props) => {
         setSearch(event.target.value);
     }
 
+    const navigate = useNavigate();
+
     const handleCartClick = () => {
         // カートアイコンをクリックした時の処理をここに追加する
         // 例えばカートの内容を表示するポップアップを開くなど
+        navigate("/cart");
     }
 
     return (

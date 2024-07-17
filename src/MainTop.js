@@ -1,19 +1,10 @@
 import { useEffect, useState } from 'react';
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 const MainTop = (props) => {
     const stringUrl = 'https://bugknights-b.azurewebsites.net/search/recommend';
         
     const [MainCards, setMainCards] = useState([]);
-
-    const handleClick = (event) => {
-        const selectProduct = MainCards.filter((product) =>  
-            product.id === event.target.value
-        )
-        props.setProduct(selectProduct[0]);
-        props.setMainContentsView(2);
-    }
 
     useEffect(() => {
         const fetchProduct = () => {
@@ -30,29 +21,31 @@ const MainTop = (props) => {
         fetchProduct();
     }, []);
 
-        return (
-            <>
-                <div className='row'>
-                    {MainCards.map((product) => (
-                        <div className='col-3 my-2'>
-                            <Card style={{ width: '15rem' ,height: '25rem'}}>
-                                <Card.Img variant='top' src={`https://bugknights.blob.core.windows.net/products/${product.imageName}`} style={{width: '100%', height: '10rem'}} />
-                                <Card.Body>
-                                    <Card.Text>{product.name}</Card.Text>
-                                    <Card.Text>{product.overview}</Card.Text>
-                                    <Card.Title>{product.price}円</Card.Title>
-                                    <Card.Text>
-                                    (税込 {product.price * 11 / 10}円)
-                                    </Card.Text>
-                                    <Button variant='primary' value={product.id} onClick={handleClick}>詳細を見る</Button>
-                                </Card.Body>
-                            </Card>
-                        </div>
-                    ))}
+    const handleCardClick = (product) => {
+        props.setProduct(product);
+        props.setMainContentsView(2);
+    }
+
+    return (
+        <div className='row'>
+            {MainCards.map((product) => (
+                <div key={product.id} className='col-3 my-2' onClick={() => handleCardClick(product)}>
+                    <Card style={{ width: '15rem', height: '25rem' }}>
+                        <Card.Img variant='top' src={`https://bugknights.blob.core.windows.net/products/${product.imageName}`} style={{ width: '100%', height: '10rem' }} />
+                        <Card.Body>
+                            <Card.Text>{product.name}</Card.Text>
+                            <Card.Text>{product.overview}</Card.Text>
+                            <Card.Title>{product.price}円</Card.Title>
+                            <Card.Text>
+                                (税込 {product.price * 11 / 10}円)
+                            </Card.Text>
+                            <Card.Link href="#" onClick={(e) => { e.preventDefault(); handleCardClick(product); }}></Card.Link>
+                        </Card.Body>
+                    </Card>
                 </div>
-                <div className='detail-modal'></div>
-            </>
-        );
+            ))}
+        </div>
+    );
 }
 
-export default MainTop
+export default MainTop;

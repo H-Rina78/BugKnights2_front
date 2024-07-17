@@ -1,21 +1,28 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from 'react-bootstrap/Card';
+import Pagination from 'react-bootstrap/Pagination';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const MainTop = (props) => {
-    const stringUrl = 'https://bugknights-b.azurewebsites.net/search/recommend';
-        
+    const stringUrl = 'https://bugknights-b.azurewebsites.net/search';
+    const itemsPerPage = 8; // 1ページあたりの商品数
+
     const [MainCards, setMainCards] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
 
     useEffect(() => {
         const fetchProduct = () => {
             fetch(stringUrl)
-            .then(response => response.json())
-            .then(data => {
-                setMainCards(data);
-            })
-            .catch(error => {
-                console.log(error);
-            });
+                .then(response => response.json())
+                .then(data => {
+                    setMainCards(data);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
         }
 
         fetchProduct();
@@ -35,27 +42,55 @@ const MainTop = (props) => {
         event.currentTarget.style.transform = 'scale(1)';
     }
 
+    // 現在のページに表示する商品リストを計算する
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = MainCards.slice(indexOfFirstItem, indexOfLastItem);
+
+    // ページネーションのボタンがクリックされたときの処理
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+    // ページ数のボタンを生成する
+    const pageNumbers = [];
+    for (let i = 1; i <= Math.ceil(MainCards.length / itemsPerPage); i++) {
+        pageNumbers.push(
+            <Pagination.Item key={i} active={i === currentPage} onClick={() => paginate(i)}>
+                {i}
+            </Pagination.Item>
+        );
+    }
+
     return (
-        <div className='row'>
-            {MainCards.map((product) => (
-                <div key={product.id} className='col-3 my-2' 
-                     onMouseEnter={handleMouseEnter} 
-                     onMouseLeave={handleMouseLeave}
-                     onClick={() => handleCardClick(product)}>
-                    <Card style={{ width: '15rem', height: '25rem' }}>
-                        <Card.Img variant='top' src={`https://bugknights.blob.core.windows.net/products/${product.imageName}`} style={{ width: '100%', height: '10rem' }} />
-                        <Card.Body>
-                            <Card.Text>{product.name}</Card.Text>
-                            <Card.Text>{product.overview}</Card.Text>
-                            <Card.Title>{product.price}円</Card.Title>
-                            <Card.Text>
-                                (税込 {Math.ceil(product.price * 11 / 10)}円)
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                </div>
-            ))}
-        </div>
+        <Container fluid>
+            <Row>
+                {currentItems.map((product) => (
+                    <Col key={product.id} xs={12} md={3} className='my-2'
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                        onClick={() => handleCardClick(product)}>
+                        <Card style={{ width: '15rem', height: '22rem' }}>
+                            <Card.Img variant='top' src={`https://bugknights.blob.core.windows.net/products/${product.imageName}`} style={{ width: '100%', height: '10rem' }} />
+                            <Card.Body>
+                                <Card.Text>{product.name}</Card.Text>
+                                <Card.Text>{product.overview}</Card.Text>
+                                <div style={{display:'flex'}}>
+                                <Card.Title>{product.price}円</Card.Title>
+                                <Card.Text className='ms-2'>(税込 {Math.round(product.price * 1.1)}円)</Card.Text>
+                                </div>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                ))}
+            </Row>
+            {/* ページネーションUI */}
+            <Row className='justify-content-center mt-4'>
+                <Pagination>
+                    <Pagination.Prev onClick={() => paginate(currentPage - 1)} disabled={currentPage === 1} />
+                    {pageNumbers}
+                    <Pagination.Next onClick={() => paginate(currentPage + 1)} disabled={indexOfLastItem >= MainCards.length} />
+                </Pagination>
+            </Row>
+        </Container>
     );
 }
 

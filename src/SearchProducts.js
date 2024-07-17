@@ -66,15 +66,15 @@ const SearchProducts = (props) => {
                          onMouseEnter={handleMouseEnter}
                          onMouseLeave={handleMouseLeave}
                          onClick={() => handleCardClick(product)}>
-                        <Card style={{ width: '15rem', height: '25rem' }}>
+                        <Card style={{ width: '15rem', height: '22rem' }}>
                             <Card.Img variant='top' src={`https://bugknights.blob.core.windows.net/products/${product.imageName}`} style={{ width: '100%', height: '10rem' }} />
                             <Card.Body>
                                 <Card.Text>{product.name}</Card.Text>
                                 <Card.Text>{product.overview}</Card.Text>
+                                <div style={{display:'flex'}}>
                                 <Card.Title>{product.price}円</Card.Title>
-                                <Card.Text>
-                                    (税込 {Math.ceil(product.price * 11 / 10)}円)
-                                </Card.Text>
+                                <Card.Text className='ms-2'>(税込 {Math.round(product.price * 1.1)}円)</Card.Text>
+                                </div>
                             </Card.Body>
                         </Card>
                     </div>

@@ -1,12 +1,15 @@
 import './App.css';
 import { RouterProvider } from 'react-router-dom';
 import routesConfig from './routesConfig';
+import { CookiesProvider } from 'react-cookie';
 
 const App = () =>{
 
   return (
     <>
-      <RouterProvider router={routesConfig} />
+      <CookiesProvider>
+        <RouterProvider router={routesConfig} />
+      </CookiesProvider>
     </>
   );
 }

@@ -49,7 +49,7 @@ const MainTop = (props) => {
                             <Card.Text>{product.overview}</Card.Text>
                             <Card.Title>{product.price}円</Card.Title>
                             <Card.Text>
-                                (税込 {product.price * 11 / 10}円)
+                                (税込 {Math.ceil(product.price * 11 / 10)}円)
                             </Card.Text>
                         </Card.Body>
                     </Card>

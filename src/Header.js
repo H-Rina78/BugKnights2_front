@@ -25,17 +25,15 @@ const Header = () =>{
       navigate("/login");
     }
 
-    
-
     const Login = () => {
       return(
         <Button variant="outline-primary" id="button-login" onClick={handleLoginClick}>
-          <CiLogin />ログイン
+          <CiLogin size={24} />ログイン
         </Button>
       );
      }
   
-    function MyVerticallyCenteredModal(props) {
+    const MyVerticallyCenteredModal = (props) => {
       return (
         <Modal
           {...props}
@@ -66,7 +64,7 @@ const Header = () =>{
       return(
         <>
           <Button variant="outline-primary" id="button-login" onClick={() => setModalShow(true)}>
-            <LuUserCircle2 />ログイン中
+            <LuUserCircle2 size={24} />ログイン中
           </Button>
 
           <MyVerticallyCenteredModal

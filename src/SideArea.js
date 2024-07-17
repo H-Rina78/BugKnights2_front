@@ -21,7 +21,7 @@ const SideArea = (props) => {
     }
 
     const testStyle2 = {
-        color: 'green'
+        color: 'black'
     }
 
     const advertisement = {
@@ -74,44 +74,44 @@ const SideArea = (props) => {
                 </Row>
                 <Row>
                     
-                    <Col className="col-6 ms-4 ps-4 h5" style={Number(props.inputCategoryId) === 1 ? testStyle : testStyle2}>
-                        <button onClick={changeCategory} value={1}>
+                    <Col className="col-6 ms-4 ps-4 h5">
+                        <button onClick={changeCategory} value={1} style={Number(props.inputCategoryId) === 1 ? testStyle : testStyle2}>
                             野菜
                         </button>
                     </Col>
                     
-                    <Col className="col-6 ms-4 ps-4 h5" style={Number(props.inputCategoryId) === 2 ? testStyle : testStyle2}>
-                        <button onClick={changeCategory} value={2}>
+                    <Col className="col-6 ms-4 ps-4 h5">
+                        <button onClick={changeCategory} value={2} style={Number(props.inputCategoryId) === 2 ? testStyle : testStyle2}>
                             お肉
                         </button>
                     </Col>
                     
-                    <Col className="col-6 ms-4 ps-4 h5" style={Number(props.inputCategoryId) === 3 ? testStyle : testStyle2}>
-                        <button onClick={changeCategory} value={3}>
+                    <Col className="col-6 ms-4 ps-4 h5">
+                        <button onClick={changeCategory} value={3} style={Number(props.inputCategoryId) === 3 ? testStyle : testStyle2}>
                             魚介
                         </button>
                     </Col>
 
-                    <Col className="col-6 ms-4 ps-4 h5" style={Number(props.inputCategoryId) === 4 ? testStyle : testStyle2}>
-                        <button onClick={changeCategory} value={4}>
+                    <Col className="col-6 ms-4 ps-4 h5">
+                        <button onClick={changeCategory} value={4} style={Number(props.inputCategoryId) === 4 ? testStyle : testStyle2}>
                             スイーツ
                         </button>
                     </Col>
 
-                    <Col className="col-6 ms-4 ps-4 h5" style={Number(props.inputCategoryId) === 5 ? testStyle : testStyle2}>
-                        <button onClick={changeCategory} value={5}>
+                    <Col className="col-6 ms-4 ps-4 h5">
+                        <button onClick={changeCategory} value={5} style={Number(props.inputCategoryId) === 5 ? testStyle : testStyle2}>
                             飲み物
                         </button>
                     </Col>
 
-                    <Col className="col-6 ms-4 ps-4 h5" style={Number(props.inputCategoryId) === 6 ? testStyle : testStyle2}>
-                        <button onClick={changeCategory} value={6}>
+                    <Col className="col-6 ms-4 ps-4 h5">
+                        <button onClick={changeCategory} value={6} style={Number(props.inputCategoryId) === 6 ? testStyle : testStyle2}>
                             果物
                         </button>
                     </Col>
 
-                    <Col className="col-6 ms-4 ps-4 h5" style={Number(props.inputCategoryId) === 7 ? testStyle : testStyle2}>
-                        <button onClick={changeCategory} value={7}>
+                    <Col className="col-6 ms-4 ps-4 h5">
+                        <button onClick={changeCategory} value={7} style={Number(props.inputCategoryId) === 7 ? testStyle : testStyle2}>
                             惣菜
                         </button>
                     </Col>

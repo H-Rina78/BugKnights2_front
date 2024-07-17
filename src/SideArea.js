@@ -110,7 +110,7 @@ const SideArea = (props) => {
                         {slides.map((slide) => (
                             <Carousel.Item key={slide.id}>
                             <a href='https://reservebugnights.azurewebsites.net/' target="_blank" rel="noopener noreferrer">
-                                <img className="d-block w-100" src={slide.imageUrl} />
+                                <img className="d-block w-100" src={slide.imageUrl} alt='advertisement' />
                             </a>
                             </Carousel.Item>
                         ))}

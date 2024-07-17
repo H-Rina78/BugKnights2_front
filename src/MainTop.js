@@ -26,10 +26,22 @@ const MainTop = (props) => {
         props.setMainContentsView(2);
     }
 
+    const handleMouseEnter = (event) => {
+        event.currentTarget.style.transform = 'scale(1.05)';
+        event.currentTarget.style.transition = 'transform 0.2s ease';
+    }
+
+    const handleMouseLeave = (event) => {
+        event.currentTarget.style.transform = 'scale(1)';
+    }
+
     return (
         <div className='row'>
             {MainCards.map((product) => (
-                <div key={product.id} className='col-3 my-2' onClick={() => handleCardClick(product)}>
+                <div key={product.id} className='col-3 my-2' 
+                     onMouseEnter={handleMouseEnter} 
+                     onMouseLeave={handleMouseLeave}
+                     onClick={() => handleCardClick(product)}>
                     <Card style={{ width: '15rem', height: '25rem' }}>
                         <Card.Img variant='top' src={`https://bugknights.blob.core.windows.net/products/${product.imageName}`} style={{ width: '100%', height: '10rem' }} />
                         <Card.Body>
@@ -39,7 +51,6 @@ const MainTop = (props) => {
                             <Card.Text>
                                 (税込 {product.price * 11 / 10}円)
                             </Card.Text>
-                            <Card.Link href="#" onClick={(e) => { e.preventDefault(); handleCardClick(product); }}></Card.Link>
                         </Card.Body>
                     </Card>
                 </div>

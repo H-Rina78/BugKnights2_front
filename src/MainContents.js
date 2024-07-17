@@ -14,7 +14,7 @@ const MainContents = (props) =>{
         <>
             {(props.mainContentsView === 0) &&
             <>
-                <RecommendTop />
+                {/* <RecommendTop /> */}
                 <MainTop setMainContentsView={props.setMainContentsView} setProduct={setProduct} />
             </>
             }

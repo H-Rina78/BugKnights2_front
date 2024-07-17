@@ -3,10 +3,11 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './sideArea.css';
 import Carousel from 'react-bootstrap/Carousel';
+import { useNavigate } from 'react-router-dom';
 
 const SideArea = (props) => {
     //サイドエリアのどのボタンを押したかの情報を切り替え
-    //1～5で情報を設定
+    //1～7で情報を設定
     const changeCategory = (event) => {
         props.setInputCategoryId(event.target.value);
         props.setMainContentsView(1);
@@ -62,6 +63,14 @@ const SideArea = (props) => {
           caption: 'Slide 5',
         },
       ];
+
+      const handleTopButton = () => {
+        props.setInputCategoryId("");
+        props.setMainContentsView(0);
+        props.setInputKeyword("");
+        props.setUpperPrice(NaN);
+        props.setLowerPrice(NaN);
+      }
     
 
     return(
@@ -73,7 +82,12 @@ const SideArea = (props) => {
                     </Col>
                 </Row>
                 <Row>
-                    
+                <Col className="col-6 ms-4 ps-4 h5">
+                        <button onClick={handleTopButton} value={0} style={Number(props.inputCategoryId) === 0 ? testStyle : testStyle2}>
+                            すべて
+                        </button>
+                    </Col>
+
                     <Col className="col-6 ms-4 ps-4 h5">
                         <button onClick={changeCategory} value={1} style={Number(props.inputCategoryId) === 1 ? testStyle : testStyle2}>
                             野菜

@@ -69,11 +69,6 @@ const SideArea = (props) => {
             <Container>
                 <Row>
                     <Col className="category col-12 ms-4 h4 border-start border-5">
-                        おすすめの商品
-                    </Col>
-                </Row>
-                <Row>
-                    <Col className="category col-12 ms-4 h4 border-start border-5">
                         カテゴリ
                     </Col>
                 </Row>

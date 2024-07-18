@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 
 const LoginInformation = () => {
-  const [cookies, setCookies] = useOutletContext();
+  const [, setCookies] = useOutletContext();
 
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');

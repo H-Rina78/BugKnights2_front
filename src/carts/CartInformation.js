@@ -8,7 +8,7 @@ const CartInformation = () => {
 
     const handleClick = () => navigate("/");
 
-    const [cookies, setCookies] = useOutletContext();
+    const [cookies] = useOutletContext();
 
     const products = cookies.cart;
 

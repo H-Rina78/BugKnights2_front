@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useState } from 'react';
 import Header from '../Header';
+import { useOutletContext } from 'react-router-dom';
 
 const MainInformation = () => {
     //表示管理用のstate。
@@ -18,11 +19,12 @@ const MainInformation = () => {
   const [lowerPrice, setLowerPrice] = useState(NaN);
   //画面管理用、0:TOP画面、1:商品ページ、2:商品詳細ページ
   const [mainContentsView, setMainContentsView] = useState(0);
+  const [cookies, setCookies] = useOutletContext();
 
   return (
     //表示管理用の値やセッターをそれぞれのコンポーネントに渡してる
     <>
-      <Header />
+      <Header loginInfo={cookies.loginInfo} setCookies={setCookies}/>
       <Search setInputKeyword={setInputKeyword} setInputCategoryId={setInputCategoryId} setMainContentsView={setMainContentsView} setUpperPrice={setUpperPrice} setLowerPrice={setLowerPrice}/>
       <Container fluid>
         <Row className='mt-3'>

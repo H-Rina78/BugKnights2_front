@@ -2,26 +2,42 @@ import React, { useState } from 'react';
 import { Container, Form, Button, Row, Col } from 'react-bootstrap';
 import SimpleHeader from '../SimpleHeader';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 
 const LoginInformation = () => {
-  
-  const [username, setUsername] = useState('');
+  const [cookies, setCookies] = useOutletContext();
+
+  const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
+
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('Username:', username);
+    console.log('userId:', userId);
     console.log('Password:', password);
-    setUsername('');
-    setPassword('');
+    const formData = new FormData();
+    formData.append('id', userId);
+    formData.append('password', password);
+    fetch('http://localhost:8080/login', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+      console.log(data);
+      if(data) {
+        setCookies('loginInfo', '1');
+        console.log(cookies.loginInfo);
+        navigate("/")
+      }
+    })
+    .catch(error => console.error(error));
   };
 
   const registerStyle = {
     color: 'blue'
   }
-
-  const navigate = useNavigate();
 
   const handleRegisterClick = () => {
     navigate("/register");
@@ -39,8 +55,8 @@ const LoginInformation = () => {
                 <Form.Control 
                   type="text" 
                   placeholder="UserID"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  value={userId}
+                  onChange={(e) => setUserId(e.target.value)}
                 />
               </Form.Group>
 

@@ -8,7 +8,7 @@ import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal';
 
-const Header = () =>{
+const Header = (props) =>{
     const headerStyle = {
       fontSize: 24,
       padding: 16,
@@ -34,6 +34,10 @@ const Header = () =>{
      }
   
     const MyVerticallyCenteredModal = (props) => {
+      const handleLogoutClick = () => {
+        props.setCookies('loginInfo', 0);
+      }
+
       return (
         <Modal
           {...props}
@@ -49,8 +53,8 @@ const Header = () =>{
           <Modal.Body>
             <Row>
               <Col className="text-center">
-                <Button variant="danger" className="me-3">Logout</Button>
-                <Button onClick={props.onHide}>Close</Button>
+                <Button variant="danger" className="me-3" onClick={handleLogoutClick}>ログアウト</Button>
+                <Button onClick={props.onHide}>キャンセル</Button>
               </Col>
             </Row>
           </Modal.Body>
@@ -70,13 +74,13 @@ const Header = () =>{
           <MyVerticallyCenteredModal
           show={modalShow}
           onHide={() => setModalShow(false)}
+          setCookies={props.setCookies}
           />
         </>
       );
      }
 
-    const [loginStatus, setStatus] = useState('0');
-
+    console.log(props.loginInfo);
     return(
       <Container fluid  style={headerStyle}>
         <Row >
@@ -84,10 +88,10 @@ const Header = () =>{
             Aceネットスーパー
           </Col>
           <Col className="text-end fs-5">
-            {(loginStatus === '0') &&
+            {(props.loginInfo === 0) &&
               <Login />
             }
-            {(loginStatus === '1') &&
+            {(props.loginInfo === 1) &&
               <User />
             }
           </Col>

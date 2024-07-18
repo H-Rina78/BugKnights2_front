@@ -1,5 +1,4 @@
 import { CiLogin } from "react-icons/ci";
-import { LuUserCircle2 } from "react-icons/lu";
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -7,6 +6,7 @@ import Col from 'react-bootstrap/Col';
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal';
+import { PiUserCircleLight } from "react-icons/pi";
 
 const Header = (props) =>{
     const headerStyle = {
@@ -51,13 +51,16 @@ const Header = (props) =>{
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
+            <Button variant="danger" className="me-3">マイページ</Button>
+          </Modal.Body>
+          <Modal.Footer>
             <Row>
               <Col className="text-center">
                 <Button variant="danger" className="me-3" onClick={handleLogoutClick}>ログアウト</Button>
                 <Button onClick={props.onHide}>キャンセル</Button>
               </Col>
             </Row>
-          </Modal.Body>
+          </Modal.Footer>
         </Modal>
       );
     }
@@ -68,7 +71,7 @@ const Header = (props) =>{
       return(
         <>
           <Button variant="outline-primary" id="button-login" onClick={() => setModalShow(true)}>
-            <LuUserCircle2 size={24} />ログイン中
+            <PiUserCircleLight size={24} />マイページ
           </Button>
 
           <MyVerticallyCenteredModal

@@ -25,7 +25,8 @@ const LoginInformation = () => {
     })
     .then(response => response.text())
     .then(data => {
-      if(data === true) {
+      console.log(data);
+      if(data === 'true') {
         setCookies('loginInfo', '1');
         console.log('ログイン成功');
         navigate('/');

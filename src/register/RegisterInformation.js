@@ -18,12 +18,27 @@ const RegisterForm = () => {
     console.log('firstName', firstName);
     console.log('mail', email);
     console.log('Password:', password);
-    setUserId('');
-    setLastName('');
-    setFirstName('');
-    setEmail('');
-    setPassword('');
-    // ここで新規ユーザ登録の処理を追加する
+
+    const formData = new FormData();
+    formData.append('id', userId);
+    formData.append('lastName', lastName);
+    formData.append('firstName', firstName);
+    formData.append('mail', email);
+    formData.append('password', password);
+    fetch('http://localhost:8080/regist', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+        console.log(data);
+        if(data === 'true'){
+            console.log('すでに存在しています。');
+        } else {
+            console.log('もんだいありません。');
+        }
+    })
+    .catch(error => console.error(error));
   };
 
   const MyVerticallyCenteredModal = (props) => {
@@ -76,6 +91,7 @@ const RegisterForm = () => {
                   placeholder="UserID"
                   value={userId}
                   onChange={(e) => setUserId(e.target.value)}
+                  required
                 />
               </Form.Group>
 
@@ -89,12 +105,14 @@ const RegisterForm = () => {
                             placeholder="LastName"
                             value={lastName}
                             onChange={(e) => setLastName(e.target.value)}
+                            required
                         />
                         <Form.Control 
                             type="text" 
                             placeholder="FirstName"
                             value={firstName}
                             onChange={(e) => setFirstName(e.target.value)}
+                            required
                         />
                     </Col>
                 </Row>
@@ -107,6 +125,7 @@ const RegisterForm = () => {
                   placeholder="E-mail"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  required
                 />
               </Form.Group>
 
@@ -117,12 +136,13 @@ const RegisterForm = () => {
                   placeholder="Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  required
                 />
               </Form.Group>
 
               <Row className="justify-content-center mb-3">
                 <Col xs={6}>
-                  <Button variant="primary" className="w-100" onClick={() => setModalShow(true)}>
+                  <Button variant="primary" type="submit" className="w-100" onClick={() => setModalShow(true)}>
                     新規登録
                   </Button>
 

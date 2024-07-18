@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal';
 import { PiUserCircleLight } from "react-icons/pi";
+import MyPage from "./mypage/MyPage";
 
 const Header = (props) =>{
     const headerStyle = {
@@ -25,6 +26,10 @@ const Header = (props) =>{
       navigate("/login");
     }
 
+    const handleMyPageClick = () => {
+      navigate("/MyPage");
+    }
+
     const Login = () => {
       return(
         <Button variant="outline-primary" id="button-login" onClick={handleLoginClick}>
@@ -32,53 +37,15 @@ const Header = (props) =>{
         </Button>
       );
      }
-  
-    const MyVerticallyCenteredModal = (props) => {
-      const handleLogoutClick = () => {
-        props.setCookies('loginInfo', 0);
-      }
-
-      return (
-        <Modal
-          {...props}
-          size="sm"
-          aria-labelledby="contained-modal-title-vcenter"
-          centered
-        >
-          <Modal.Header closeButton>
-            <Modal.Title id="contained-modal-title-vcenter">
-              ログアウトしますか？
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <Button variant="danger" className="me-3">マイページ</Button>
-          </Modal.Body>
-          <Modal.Footer>
-            <Row>
-              <Col className="text-center">
-                <Button variant="danger" className="me-3" onClick={handleLogoutClick}>ログアウト</Button>
-                <Button onClick={props.onHide}>キャンセル</Button>
-              </Col>
-            </Row>
-          </Modal.Footer>
-        </Modal>
-      );
-    }
 
     const User = () => {
       const [modalShow, setModalShow] = useState(false);
 
       return(
         <>
-          <Button variant="outline-primary" id="button-login" onClick={() => setModalShow(true)}>
+          <Button variant="outline-primary" id="button-login" onClick={handleMyPageClick}>
             <PiUserCircleLight size={24} />マイページ
           </Button>
-
-          <MyVerticallyCenteredModal
-          show={modalShow}
-          onHide={() => setModalShow(false)}
-          setCookies={props.setCookies}
-          />
         </>
       );
      }

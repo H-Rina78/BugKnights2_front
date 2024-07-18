@@ -4,6 +4,8 @@ import Col from 'react-bootstrap/Col';
 import './sideArea.css';
 import Carousel from 'react-bootstrap/Carousel';
 import { useNavigate } from 'react-router-dom';
+import Card from 'react-bootstrap/Card';
+import { CardBody } from 'react-bootstrap';
 
 const SideArea = (props) => {
     //サイドエリアのどのボタンを押したかの情報を切り替え
@@ -29,11 +31,16 @@ const SideArea = (props) => {
         backgroundColor:'#4169e1',
         color:'#ffffff'
     }
-    const advertisement2 = {
+    const advertisementTop = {
         border: "solid 2px #afeeee",
         borderRadius: "5px",
         padding: "8px",
         margin: "8px"
+    }
+
+    const advertisement2 = {
+        backgroundColor:'#ff8914',
+        color:'#ffffff'
     }
 
     const slides = [
@@ -131,7 +138,7 @@ const SideArea = (props) => {
                     </Col>
                 </Row>
                 <Row className='row px-1 mt-4 justify-content-center' style={advertisement}>
-                    <Row className='justify-content-center h5' style={advertisement2}>
+                    <Row className='justify-content-center h5' style={advertisementTop}>
                             相談予約受付中
                     </Row>
                     <Carousel>
@@ -144,6 +151,9 @@ const SideArea = (props) => {
                         ))}
                     </Carousel>
                     <p className='h8'>あなたのお悩みを私たちが解決します！</p>
+                </Row>
+                <Row className='py-3'>
+                    <img className='p-0' style={{width: '100%', height: '18rem'}} src='https://bugknights.blob.core.windows.net/products/広告.png' />
                 </Row>
             </Container>
         </>        

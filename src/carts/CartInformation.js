@@ -65,7 +65,7 @@ const CartInformation = () => {
                             </Form.Select>
                         </Row>
                     </Col>
-                    <Col className="col-4">
+                    <Col className="col-3 offset-end-1">
                         <Row className="pb-4 text-center" style={underlineStyle}><span style={price}>300円(税込 330円)　　×　3</span></Row>
                         <Row className="text-center"><span style={price}>合計：900円(税込 990円)</span></Row>
                         <Row className="pt-5 justify-content-end"><Button variant='primary' style={btnStyle}>削除</Button></Row>
@@ -86,7 +86,7 @@ const CartInformation = () => {
                             </Form.Select>
                         </Row>
                     </Col>
-                    <Col className="col-4">
+                    <Col className="col-3 offset-end-1">
                         <Row className="pb-4 text-center" style={underlineStyle}><span style={price}>1800円(税込 1980円)　　×　1</span></Row>
                         <Row className="text-center"><span style={price}>合計：1800円(税込 1980円)</span></Row>
                         <Row className="pt-5 justify-content-end"><Button variant='primary' style={btnStyle}>削除</Button></Row>
@@ -107,7 +107,7 @@ const CartInformation = () => {
                             </Form.Select>
                         </Row>
                     </Col>
-                    <Col className="col-4">
+                    <Col className="col-3 offset-end-1">
                         <Row className="pb-4 text-center" style={underlineStyle}><span style={price}>450円(税込 495円)　　×　10</span></Row>
                         <Row className="text-center"><span style={price}>合計：4500円(税込 4950円)</span></Row>
                         <Row className="pt-5 justify-content-end"><Button variant='primary' style={btnStyle}>削除</Button></Row>

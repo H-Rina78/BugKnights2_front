@@ -10,6 +10,7 @@ const RouteApp = () => {
         const existingCart = cookies.cart;
         if (existingCart !== null) {
             console.log("Cookie生成済み");
+            setCookies('cart', []);
         } else {
           // Cookieがない場合、バックエンドからカート情報をフェッチ
           fetch('https://bugknights-b.azurewebsites.net/setCookie')
@@ -17,7 +18,7 @@ const RouteApp = () => {
             .then(data => {
                 console.log(data); // クッキーがあるか確認
                 setCookies('loginInfo', 0);
-                setCookies('cart', "");
+                setCookies('cart', []);
             })
             .catch(error => console.error(error));
         }

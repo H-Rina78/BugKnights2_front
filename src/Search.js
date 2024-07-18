@@ -10,7 +10,6 @@ import { useNavigate } from 'react-router-dom';
 
 const Search = (props) => {
     const [search, setSearch] = useState("");
-    const [cartItemCount, setCartItemCount] = useState(1); // カートに入っている商品数を管理するステート
 
     const SearchStyle = {
         backgroundColor: '#eaeaea'

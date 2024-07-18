@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Container, Form, Button, Row, Col } from 'react-bootstrap';
 import SimpleHeader from '../SimpleHeader';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Modal from 'react-bootstrap/Modal';
 
 const RegisterForm = () => {
   const [userId, setUserId] = useState('');
@@ -24,6 +25,42 @@ const RegisterForm = () => {
     setPassword('');
     // ここで新規ユーザ登録の処理を追加する
   };
+
+  const MyVerticallyCenteredModal = (props) => {
+    return (
+      <Modal
+        {...props}
+        size="sm"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            入力内容確認
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Row>
+            <Col>
+                <p>ユーザID：{userId}</p>
+                <p>氏名：{lastName} {firstName}</p>
+                <p>メールアドレス：{email}</p>
+            </Col>
+          </Row>
+        </Modal.Body>
+        <Modal.Footer>
+            <Row>
+                <Col className="text-center">
+                    <Button variant="primary" className="me-3">登録</Button>
+                    <Button variant="danger" onClick={props.onHide}>キャンセル</Button>
+                </Col>
+            </Row>
+        </Modal.Footer>
+      </Modal>
+    );
+  }
+
+  const [modalShow, setModalShow] = useState(false);
 
   return (
     <>
@@ -85,9 +122,14 @@ const RegisterForm = () => {
 
               <Row className="justify-content-center mb-3">
                 <Col xs={6}>
-                  <Button variant="primary" type="submit" className="w-100">
+                  <Button variant="primary" className="w-100" onClick={() => setModalShow(true)}>
                     新規登録
                   </Button>
+
+                  <MyVerticallyCenteredModal
+                  show={modalShow}
+                  onHide={() => setModalShow(false)}
+                  />
                 </Col>
               </Row>
             </Form>

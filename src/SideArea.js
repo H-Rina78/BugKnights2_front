@@ -131,8 +131,8 @@ const SideArea = (props) => {
                     </Col>
                 </Row>
                 <Row className='row px-1 mt-4 justify-content-center' style={advertisement}>
-                    <Row className='text-center' style={advertisement2}>
-                            <h5>相談予約受付中</h5>
+                    <Row className='justify-content-center h5' style={advertisement2}>
+                            相談予約受付中
                     </Row>
                     <Carousel>
                         {slides.map((slide) => (
@@ -143,7 +143,7 @@ const SideArea = (props) => {
                             </Carousel.Item>
                         ))}
                     </Carousel>
-                    <h8>あなたのお悩みを私たちが解決します！</h8>
+                    <p className='h8'>あなたのお悩みを私たちが解決します！</p>
                 </Row>
             </Container>
         </>        

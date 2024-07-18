@@ -10,6 +10,19 @@ const ProductDetail = (props) => {
         marginBottom: '20px'   // 下線の下の余白を調整するために必要な場合があります
     };
 
+
+    const addToCart = (item) => {
+        // Cookieから既存のカート情報を読み込み
+        const existingCart = props.cart;
+        const updatedCart = [...existingCart, item];
+        props.setCookies('cart', updatedCart);
+        props.setInputKeyword("");
+        props.setInputCategoryId("");
+        props.setMainContentsView(0);
+        props.setUpperPrice(NaN);
+        props.setLowerPrice(NaN);
+    };
+
     return (
         <>
             <Container fluid>
@@ -32,7 +45,7 @@ const ProductDetail = (props) => {
                             </Col>
                             {/* カートボタン */}
                             <Col xs={6} md={4}>
-                                <Button variant='primary'>カートに入れる</Button>
+                                <Button variant='primary' onClick={() => addToCart(props.product)}>カートに入れる</Button>
                             </Col>
                         </Row>
                         {/* 商品説明欄 */}

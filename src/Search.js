@@ -56,9 +56,9 @@ const Search = (props) => {
                         <div style={{ position: 'relative', display: 'inline-block', width: '90px' }}>
                             <BsCart4 size={24} /> {/* アイコンのサイズを指定 */}
                             カート
-                            {cartItemCount > 0 && (
+                            {props.cart.length > 0 && (
                                 <Badge bg="secondary" className="cart-badge">
-                                    {cartItemCount}
+                                    {props.cart.length}
                                 </Badge>
                             )}
                         </div>

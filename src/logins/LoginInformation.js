@@ -25,11 +25,10 @@ const LoginInformation = () => {
     })
     .then(response => response.text())
     .then(data => {
-      console.log(data);
       if(data === true) {
         setCookies('loginInfo', '1');
-        console.log(cookies.loginInfo);
-        navigate("/")
+        console.log('ログイン成功');
+        navigate('/');
       } else {
         console.log('ログイン失敗');
       }

@@ -26,10 +26,12 @@ const LoginInformation = () => {
     .then(response => response.text())
     .then(data => {
       console.log(data);
-      if(data) {
+      if(data === true) {
         setCookies('loginInfo', '1');
         console.log(cookies.loginInfo);
         navigate("/")
+      } else {
+        console.log('ログイン失敗');
       }
     })
     .catch(error => console.error(error));

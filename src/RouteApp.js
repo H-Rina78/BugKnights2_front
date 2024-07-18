@@ -16,7 +16,7 @@ const RouteApp = () => {
             .then(response => response.text())
             .then(data => {
                 console.log(data); // クッキーがあるか確認
-                setCookies('loginInfo', '0');
+                setCookies('loginInfo', 0);
                 setCookies('cart', "");
             })
             .catch(error => console.error(error));

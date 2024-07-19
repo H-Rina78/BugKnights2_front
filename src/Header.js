@@ -4,7 +4,6 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useNavigate } from 'react-router-dom';
-import { PiUserCircleLight } from "react-icons/pi";
 import { Modal } from "react-bootstrap";
 import { useState } from "react";
 import {LuUserCircle2} from "react-icons/lu";
@@ -43,7 +42,7 @@ const Header = (props) =>{
 
      const MyVerticallyCenteredModal = () => {
       const handleLogoutClick = () => {
-        setCookies('loginInfo', 0);
+        setCookies('loginInfo', "0");
       }
 
       return (
@@ -86,7 +85,6 @@ const Header = (props) =>{
         </>
       );
   }
-
     return(
       <Container fluid  style={headerStyle}>
         <Row >

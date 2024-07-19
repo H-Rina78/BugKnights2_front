@@ -4,8 +4,9 @@ import MainContents from '../MainContents';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Header from '../Header';
+import { useCookies } from "react-cookie";
 
 const MainInformation = () => {
     //表示管理用のstate。
@@ -18,6 +19,29 @@ const MainInformation = () => {
   const [lowerPrice, setLowerPrice] = useState(NaN);
   //画面管理用、0:TOP画面、1:商品ページ、2:商品詳細ページ
   const [mainContentsView, setMainContentsView] = useState(0);
+
+  const [cookies] = useCookies('');
+
+  useEffect(() => {
+    // Cookieから既存のカート情報を読み込む
+    if (cookies.checkCookie !== undefined) {
+        console.log("Cookie生成済み");
+    } else {
+      // Cookieがない場合、バックエンドからカート情報をフェッチ
+      fetch('http://localhost:8080/bk/setCookie', {
+        method: 'GET',
+        credentials: 'include'
+      })
+        .then(response => {
+          response.text();
+          console.log(response);
+        })
+        .then(data => {
+            console.log('Cookie生成'); // クッキーがあるか確認
+        })
+        .catch(error => console.error(error));
+    }
+  }, [cookies.checkCookie]);
 
   return (
     //表示管理用の値やセッターをそれぞれのコンポーネントに渡してる

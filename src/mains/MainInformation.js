@@ -28,7 +28,7 @@ const MainInformation = () => {
         console.log("Cookie生成済み");
     } else {
       // Cookieがない場合、バックエンドからカート情報をフェッチ
-      fetch('https://bugknights-b.azurewebsites.net/bk/setCookie', {
+      fetch('http://localhost:8080/bk/setCookie', {
         method: 'GET',
         credentials: 'include'
       })

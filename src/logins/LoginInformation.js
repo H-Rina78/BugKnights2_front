@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { Container, Form, Button, Row, Col } from 'react-bootstrap';
 import SimpleHeader from '../SimpleHeader';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useNavigate, useOutletContext } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 const LoginInformation = () => {
-  const [, setCookies] = useOutletContext();
+  const [, setCookies] = useCookies('');
 
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');

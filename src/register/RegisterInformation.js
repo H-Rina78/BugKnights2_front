@@ -3,11 +3,14 @@ import { Container, Form, Button, Row, Col } from 'react-bootstrap';
 import SimpleHeader from '../SimpleHeader';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Modal from 'react-bootstrap/Modal';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterForm = () => {
   const [userId, setUserId] = useState('');
   const [lastName, setLastName] = useState('');
   const [firstName, setFirstName] = useState('');
+  const [address, setAddress] = useState('');
+  const [tel, setTel] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -21,27 +24,49 @@ const RegisterForm = () => {
 
     const formData = new FormData();
     formData.append('id', userId);
-    formData.append('lastName', lastName);
-    formData.append('firstName', firstName);
     formData.append('mail', email);
-    formData.append('password', password);
-    fetch('http://localhost:8080/regist', {
+    fetch('http://localhost:8080/registCheck', {
         method: 'POST',
         body: formData
     })
     .then(response => response.text())
     .then(data => {
         console.log(data);
-        if(data === 'true'){
-            console.log('すでに存在しています。');
+        if(data){
+            setModalShow(false);
         } else {
-            console.log('もんだいありません。');
+            setModalShow(true);
         }
     })
     .catch(error => console.error(error));
   };
 
   const MyVerticallyCenteredModal = (props) => {
+    const navigate = useNavigate();
+
+    const handleRegisterClick = () => {
+      navigate("/newuser");
+    }
+    const insertUser = () => {
+      const formData = new FormData();
+      formData.append('id', userId);
+      formData.append('lastName', lastName);
+      formData.append('firstName', firstName);
+      formData.append('address', address);
+      formData.append('tel', tel);
+      formData.append('mail', email);
+      formData.append('password', password);
+      fetch('http://localhost:8080/regist', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.text())
+      .then(data => {
+          console.log(data);
+          handleRegisterClick();
+      })
+      .catch(error => console.error(error));
+    }
     return (
       <Modal
         {...props}
@@ -59,6 +84,8 @@ const RegisterForm = () => {
             <Col>
                 <p>ユーザID：{userId}</p>
                 <p>氏名：{lastName} {firstName}</p>
+                <p>住所：{address}</p>
+                <p>電話番号：{tel}</p>
                 <p>メールアドレス：{email}</p>
             </Col>
           </Row>
@@ -66,7 +93,7 @@ const RegisterForm = () => {
         <Modal.Footer>
             <Row>
                 <Col className="text-center">
-                    <Button variant="primary" className="me-3">登録</Button>
+                    <Button variant="primary" className="me-3" onClick={insertUser}>登録</Button>
                     <Button variant="danger" onClick={props.onHide}>キャンセル</Button>
                 </Col>
             </Row>
@@ -119,6 +146,28 @@ const RegisterForm = () => {
               </Form.Group>
 
               <Form.Group className='mb-3' controlId="formBasicEmail">
+                <Form.Label>住所</Form.Label>
+                <Form.Control 
+                  type="text" 
+                  placeholder="address"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  required
+                />
+              </Form.Group>
+
+              <Form.Group className='mb-3' controlId="formBasicEmail">
+                <Form.Label>電話番号</Form.Label>
+                <Form.Control 
+                  type="text" 
+                  placeholder="tel"
+                  value={tel}
+                  onChange={(e) => setTel(e.target.value)}
+                  required
+                />
+              </Form.Group>
+
+              <Form.Group className='mb-3' controlId="formBasicEmail">
                 <Form.Label>メールアドレス</Form.Label>
                 <Form.Control 
                   type="text" 
@@ -142,7 +191,7 @@ const RegisterForm = () => {
 
               <Row className="justify-content-center mb-3">
                 <Col xs={6}>
-                  <Button variant="primary" type="submit" className="w-100" onClick={() => setModalShow(true)}>
+                  <Button variant="primary" type="submit" className="w-100">
                     新規登録
                   </Button>
 

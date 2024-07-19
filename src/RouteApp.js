@@ -3,7 +3,7 @@ import { useCookies } from "react-cookie";
 import { Outlet } from "react-router-dom";
 
 const RouteApp = () => {
-    const [cookies, setCookies, removeCookies] = useCookies(['cart', 'loginInfo']);
+    const [cookies, setCookies] = useCookies('');
 
     useEffect(() => {
         // Cookieから既存のカート情報を読み込む

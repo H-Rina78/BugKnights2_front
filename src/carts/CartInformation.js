@@ -33,6 +33,11 @@ const CartInformation = () => {
     }
 
     const btnStyle = {
+        hight:'20px',
+        width:'100px'
+    }
+
+    const deleteBtnStyle = {
         width:'100px',
         height:'30px',
         fontSize:'13px'
@@ -46,7 +51,8 @@ const CartInformation = () => {
     return (
         <>
         <SimpleHeader />
-        <Container fluid className='p-5' style={style}>
+        <Container fluid className='px-5 py-3' style={style}>
+        <Button className="ms-3 mb-3" onClick={handleClick} style={btnStyle}>戻る</Button>
             <Row className="justify-content-center py-3 px-5"  style={style2}>
                 <Row style={underlineStyle} className="d-flex align-items-center justify-content-center">
                     <Col className="col-9"><h1>カート</h1></Col>
@@ -71,13 +77,12 @@ const CartInformation = () => {
                         <Col className="col-3 offset-end-1">
                             <Row className="pb-4 text-center" style={underlineStyle}><span style={price}>{product.price}(税込 {Math.round(product.price * 1.1)}円)　　×　3</span></Row>
                             <Row className="text-center"><span style={price}>合計：900円(税込 990円)</span></Row>
-                            <Row className="pt-5 justify-content-end"><Button variant='primary' style={btnStyle}>削除</Button></Row>
+                            <Row className="pt-5 justify-content-end"><Button variant='primary' style={deleteBtnStyle}>削除</Button></Row>
                         </Col>
                     </Row>
                 ))}
             </Row>
         </Container>
-        <Button variant='primary' onClick={handleClick}>トップ</Button>
         </>
     );
 }

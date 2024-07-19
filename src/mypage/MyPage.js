@@ -3,14 +3,20 @@ import { useNavigate} from "react-router-dom";
 import SimpleHeader from "../SimpleHeader";
 import {Col} from "react-bootstrap";
 import {Button} from "react-bootstrap";
+import { useCookies } from "react-cookie";
 
 
 
 const MyPage = () =>{
-
+    const [, setCookies] = useCookies('');
     const navigate = useNavigate();
 
     const handleClick = () => navigate("/");
+
+    const handleClickLogout = () => {
+        setCookies('loginInfo', '0');
+        navigate("/");
+    }
 
     const AllStyle = {
         backgroundColor: "#eaeaea",
@@ -33,7 +39,7 @@ const MyPage = () =>{
         <header style={AllStyle}>
             <Row>
                 <Col className="col-10"><h2 className="ps-3 py-2">マイページ</h2></Col>
-                <Col className="col-2 d-flex align-items-center justify-content-end"><Button className="me-2"style={btnStyle}>ログアウト</Button></Col>
+                <Col className="col-2 d-flex align-items-center justify-content-end"><Button className="me-2"style={btnStyle} onClick={handleClickLogout}>ログアウト</Button></Col>
             </Row>
         </header>
         <Button className="ms-3 my-2" onClick={handleClick} style={btnStyle}>戻る</Button>

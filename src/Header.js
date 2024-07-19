@@ -74,8 +74,8 @@ const Header = (props) =>{
 
       return(
         <>
-          <Button variant="outline-primary" id="button-login" onClick={() => setModalShow(true)}>
-            <LuUserCircle2 size={24} />ログアウト
+          <Button variant="outline-primary" id="button-login" onClick={handleMyPageClick}>
+            <LuUserCircle2 size={24} />マイページ
           </Button>
 
           <MyVerticallyCenteredModal

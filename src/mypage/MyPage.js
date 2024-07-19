@@ -1,5 +1,5 @@
 import { Container, Row } from "react-bootstrap";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import SimpleHeader from "../SimpleHeader";
 import {Col} from "react-bootstrap";
 import {Button} from "react-bootstrap";

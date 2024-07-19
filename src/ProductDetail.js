@@ -2,6 +2,7 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { useCookies } from "react-cookie";
 
 const ProductDetail = (props) => {
     const underlineStyle = {
@@ -9,13 +10,13 @@ const ProductDetail = (props) => {
         paddingBottom: '8px',  // 下線とテキストの間隔を調整するために必要な場合があります
         marginBottom: '20px'   // 下線の下の余白を調整するために必要な場合があります
     };
-
+    const [cookies, setCookies] = useCookies('');
 
     const addToCart = (item) => {
         // Cookieから既存のカート情報を読み込み
-        const existingCart = props.cart;
+        const existingCart = cookies.cart;
         const updatedCart = [...existingCart, item];
-        props.setCookies('cart', updatedCart);
+        setCookies('cart', updatedCart);
         props.setInputKeyword("");
         props.setInputCategoryId("");
         props.setMainContentsView(0);
@@ -43,10 +44,6 @@ const ProductDetail = (props) => {
                             <Col xs={6} md={7} className='offset-1 mt-2 fs-2'>
                                 <div>{props.product.price}円 (税込 {Math.round(props.product.price * 1.1)}円)</div>
                             </Col>
-                            {/* カートボタン */}
-                            <Col xs={6} md={4}>
-                                <Button variant='primary' onClick={() => addToCart(props.product)}>カートに入れる</Button>
-                            </Col>
                         </Row>
                         {/* 商品説明欄 */}
                         <Row className='mt-5'>
@@ -58,6 +55,10 @@ const ProductDetail = (props) => {
                                     <p className='ms-3 fs-5'>{props.product.overview}</p>
                                 </Row>
                                 </p>
+                                {/* カートボタン */}
+                                <Col xs={6} md={4}>
+                                    <Button variant='primary' onClick={() => addToCart(props.product)}>カートに入れる</Button>
+                                </Col>
                             </Col>
                         </Row>
                     </Col>

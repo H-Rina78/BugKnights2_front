@@ -7,7 +7,7 @@ const RouteApp = () => {
 
     useEffect(() => {
         // Cookieから既存のカート情報を読み込む
-        if (cookies.checkCookie === true) {
+        if (cookies.ore === null) {
             console.log("Cookie生成済み");
         } else {
           // Cookieがない場合、バックエンドからカート情報をフェッチ
@@ -21,7 +21,7 @@ const RouteApp = () => {
             })
             .catch(error => console.error(error));
         }
-      }, [cookies.checkCookie, setCookies]);
+      }, [cookies.ore, setCookies]);
 
     return (
         <>

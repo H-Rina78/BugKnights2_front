@@ -8,6 +8,8 @@ import { PiUserCircleLight } from "react-icons/pi";
 import { Modal } from "react-bootstrap";
 import { useState } from "react";
 import {LuUserCircle2} from "react-icons/lu";
+import { useCookies } from "react-cookie";
+
 
 const Header = (props) =>{
     const headerStyle = {
@@ -19,6 +21,7 @@ const Header = (props) =>{
       borderBottom: 'solid',
     }
 
+    const [cookies, setCookies] = useCookies('');
 
     const navigate = useNavigate();
 
@@ -38,9 +41,9 @@ const Header = (props) =>{
       );
      }
 
-     const MyVerticallyCenteredModal = (props) => {
+     const MyVerticallyCenteredModal = () => {
       const handleLogoutClick = () => {
-        props.setCookies('loginInfo', 0);
+        setCookies('loginInfo', 0);
       }
 
       return (
@@ -79,13 +82,11 @@ const Header = (props) =>{
           <MyVerticallyCenteredModal
           show={modalShow}
           onHide={() => setModalShow(false)}
-          setCookies={props.setCookies}
           />
         </>
       );
   }
 
-    console.log(props.loginInfo);
     return(
       <Container fluid  style={headerStyle}>
         <Row >
@@ -93,13 +94,12 @@ const Header = (props) =>{
             Aceネットスーパー
           </Col>
           <Col className="text-end fs-5">
-            {(props.loginInfo === 0) &&
+            {(cookies.loginInfo === 0) &&
               <Login />
             }
-            {(props.loginInfo === 1) &&
+            {(cookies.loginInfo === 1) &&
               <User />
             }
-            
           </Col>
         </Row>
       </Container>

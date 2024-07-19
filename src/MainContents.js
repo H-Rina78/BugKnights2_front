@@ -8,7 +8,6 @@ const MainContents = (props) =>{
     //商品詳細用のデータ保存用
     //SearchProductsでセッターを呼び出して登録してる
     const [product, setProduct] = useState({});
-
     return(
         <>
             {(props.mainContentsView === 0) &&
@@ -24,7 +23,7 @@ const MainContents = (props) =>{
                 </>
             }
             {(props.mainContentsView === 2) &&
-                <ProductDetail product={product} cart={props.cart} setCookies={props.setCookies} setMainContentsView={props.setMainContentsView} setUpperPrice={props.setUpperPrice} setLowerPrice={props.setLowerPrice} setInputKeyword={props.setInputKeyword} setInputCategoryId={props.setInputCategoryId}/>
+                <ProductDetail product={product} setMainContentsView={props.setMainContentsView} setUpperPrice={props.setUpperPrice} setLowerPrice={props.setLowerPrice} setInputKeyword={props.setInputKeyword} setInputCategoryId={props.setInputCategoryId}/>
             }
         </>
     );

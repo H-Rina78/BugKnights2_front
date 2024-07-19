@@ -20,7 +20,7 @@ const LoginInformation = () => {
     const formData = new FormData();
     formData.append('id', userId);
     formData.append('password', password);
-    fetch('http://localhost:8080/bk/login', {
+    fetch('https://bugknights-b.azurewebsites.net/bk/login', {
       method: 'POST',
       body: formData,
       credentials: 'include'

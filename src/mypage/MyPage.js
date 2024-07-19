@@ -18,6 +18,18 @@ const MyPage = () =>{
         navigate("/");
     }
 
+    const basicInfoRevision = () => {
+        navigate("/basicInfoRevision");
+    }
+
+    const mailRevision = () => {
+        navigate("/mailRevision");
+    }
+
+    const secretInfoRevision = () => {
+        navigate("/secretInfoRevision");
+    }
+
     const AllStyle = {
         backgroundColor: "#eaeaea",
     }
@@ -56,7 +68,7 @@ const MyPage = () =>{
                                     <p className="offset-1">電話番号　：<span className="ps-3">123456789</span></p>
                                 </Col>
                                 <Col className="col-4 ms-5 d-flex align-items-center justify-content-end">
-                                    <Button style={btnStyle}>変更</Button>
+                                    <Button style={btnStyle} onClick={basicInfoRevision}>変更</Button>
                                 </Col>
                             </Row>
                             <h5 className="py-2 ps-2" style={AllStyle}>メールアドレス</h5>
@@ -65,7 +77,7 @@ const MyPage = () =>{
                                     <p className="offset-1">メールアドレス：<span className="ps-3">tanakatarou@exam.com</span></p>
                                 </Col>
                                 <Col className="col-4 ms-5 d-flex align-items-center justify-content-end">
-                                    <Button style={btnStyle}>変更</Button>
+                                    <Button style={btnStyle} onClick={mailRevision}>変更</Button>
                                 </Col>
                             </Row>
                             <h5 className="py-2 ps-2" style={AllStyle}>ID・パスワード</h5>
@@ -75,7 +87,7 @@ const MyPage = () =>{
                                     <p className="offset-1">パスワード 　：<span className="ps-3">セキュリティ上非表示となっています。</span></p>
                                 </Col>
                                 <Col className="col-4 ms-5 d-flex align-items-center justify-content-end">
-                                    <Button style={btnStyle}>変更</Button>
+                                    <Button style={btnStyle} onClick={secretInfoRevision}>変更</Button>
                                 </Col>
                             </Row>
                         </Col>    

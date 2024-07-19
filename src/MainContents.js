@@ -23,7 +23,7 @@ const MainContents = (props) =>{
                 </>
             }
             {(props.mainContentsView === 2) &&
-                <ProductDetail product={product} setMainContentsView={props.setMainContentsView} setUpperPrice={props.setUpperPrice} setLowerPrice={props.setLowerPrice} setInputKeyword={props.setInputKeyword} setInputCategoryId={props.setInputCategoryId}/>
+                <ProductDetail product={product} setMainContentsView={props.setMainContentsView} setUpperPrice={props.setUpperPrice} setLowerPrice={props.setLowerPrice} setInputKeyword={props.setInputKeyword} setInputCategoryId={props.setInputCategoryId}  setProduct={setProduct}/>
             }
         </>
     );

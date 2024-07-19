@@ -40,6 +40,14 @@ const Header = (props) =>{
       );
      }
 
+     const MyPage = () => {
+      return(
+        <Button variant="outline-primary" id="button-login" onClick={handleMyPageClick}>
+          <LuUserCircle2 size={24} />マイページ
+        </Button>
+      );
+     }
+
      const MyVerticallyCenteredModal = () => {
       const handleLogoutClick = () => {
         setCookies('loginInfo', "0");
@@ -74,8 +82,8 @@ const Header = (props) =>{
 
       return(
         <>
-          <Button variant="outline-primary" id="button-login" onClick={handleMyPageClick}>
-            <LuUserCircle2 size={24} />マイページ
+          <Button variant="outline-primary" id="button-login" onClick={setModalShow(true)}>
+            <LuUserCircle2 size={24} />ログアウト
           </Button>
 
           <MyVerticallyCenteredModal
@@ -96,7 +104,7 @@ const Header = (props) =>{
               <Login />
             }
             {(cookies.loginInfo === 1) &&
-              <User />
+              <MyPage />
             }
           </Col>
         </Row>

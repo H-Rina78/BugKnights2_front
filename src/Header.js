@@ -5,7 +5,9 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useNavigate } from 'react-router-dom';
 import { PiUserCircleLight } from "react-icons/pi";
-
+import { Modal } from "react-bootstrap";
+import { useState } from "react";
+import {LuUserCircle2} from "react-icons/lu";
 
 const Header = (props) =>{
     const headerStyle = {
@@ -36,16 +38,52 @@ const Header = (props) =>{
       );
      }
 
-    const User = () => {
+     const MyVerticallyCenteredModal = (props) => {
+      const handleLogoutClick = () => {
+        props.setCookies('loginInfo', 0);
+      }
+
+      return (
+        <Modal
+          {...props}
+          size="sm"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+        >
+          <Modal.Header closeButton>
+            <Modal.Title id="contained-modal-title-vcenter">
+              ログアウトしますか？
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Row>
+              <Col className="text-center">
+                <Button variant="danger" className="me-3" onClick={handleLogoutClick}>ログアウト</Button>
+                <Button onClick={props.onHide}>キャンセル</Button>
+              </Col>
+            </Row>
+          </Modal.Body>
+        </Modal>
+      );
+  }
+
+  const User = () => {
+      const [modalShow, setModalShow] = useState(false);
 
       return(
         <>
-          <Button variant="outline-primary" id="button-login" onClick={handleMyPageClick}>
-            <PiUserCircleLight size={24} />マイページ
+          <Button variant="outline-primary" id="button-login" onClick={() => setModalShow(true)}>
+            <LuUserCircle2 size={24} />ログアウト
           </Button>
+
+          <MyVerticallyCenteredModal
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          setCookies={props.setCookies}
+          />
         </>
       );
-     }
+  }
 
     console.log(props.loginInfo);
     return(
@@ -61,6 +99,7 @@ const Header = (props) =>{
             {(props.loginInfo === 1) &&
               <User />
             }
+            
           </Col>
         </Row>
       </Container>

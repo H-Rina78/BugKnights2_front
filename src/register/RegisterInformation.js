@@ -26,7 +26,7 @@ const RegisterForm = () => {
     const formData = new FormData();
     formData.append('id', userId);
     formData.append('mail', email);
-    fetch('http://localhost:8080/registCheck', {
+    fetch('https://bugknights-b.azurewebsites.net/registCheck', {
         method: 'POST',
         body: formData
     })
@@ -58,7 +58,7 @@ const RegisterForm = () => {
       formData.append('tel', tel);
       formData.append('mail', email);
       formData.append('password', password);
-      fetch('http://localhost:8080/regist', {
+      fetch('https://bugknights-b.azurewebsites.net/regist', {
         method: 'POST',
         body: formData
       })

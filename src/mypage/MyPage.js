@@ -1,11 +1,9 @@
 import { Container, Row } from "react-bootstrap";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import SimpleHeader from "../SimpleHeader";
-import { Modal } from "react-bootstrap";
 import {Col} from "react-bootstrap";
 import {Button} from "react-bootstrap";
-import { useState } from "react";
-import LuUserCircle2 from "react-icons/lu";
+
 
 
 const MyPage = () =>{

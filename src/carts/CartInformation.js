@@ -1,14 +1,15 @@
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import SimpleHeader from "../SimpleHeader";
 import { Col, Container, Row, Form } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
+import { useCookies } from "react-cookie";
 
 const CartInformation = () => {
     const navigate = useNavigate();
 
     const handleClick = () => navigate("/");
 
-    const [cookies] = useOutletContext();
+    const [cookies] = useCookies('');
 
     const products = cookies.cart;
 

@@ -7,11 +7,11 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import { BsCart4 } from 'react-icons/bs';
 import Badge from 'react-bootstrap/Badge';
 import { useNavigate } from 'react-router-dom';
-import { useCookies } from 'react-cookie';
 
 const Search = (props) => {
-    const [cookies] = useCookies('');
     const [search, setSearch] = useState("");
+
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
     const SearchStyle = {
         backgroundColor: '#eaeaea'
@@ -57,9 +57,9 @@ const Search = (props) => {
                         <div style={{ position: 'relative', display: 'inline-block', width: '90px' }}>
                             <BsCart4 size={24} /> {/* アイコンのサイズを指定 */}
                             カート
-                            {cookies.cart.length > 0 && (
+                            {cart.length > 0 && (
                                 <Badge bg="secondary" className="cart-badge">
-                                    {cookies.cart.length}
+                                    {cart.length}
                                 </Badge>
                             )}
                         </div>

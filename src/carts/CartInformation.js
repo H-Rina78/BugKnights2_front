@@ -2,16 +2,13 @@ import { useNavigate } from "react-router-dom";
 import SimpleHeader from "../SimpleHeader";
 import { Col, Container, Row, Form } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
-import { useCookies } from "react-cookie";
 
 const CartInformation = () => {
     const navigate = useNavigate();
 
     const handleClick = () => navigate("/");
 
-    const [cookies] = useCookies('');
-
-    const products = cookies.cart;
+    const products = JSON.parse(localStorage.getItem('cart')) || [];
 
     const style = {
         backgroundColor:'#eaeaea'

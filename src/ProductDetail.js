@@ -2,7 +2,6 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { useCookies } from "react-cookie";
 
 const ProductDetail = (props) => {
     const underlineStyle = {
@@ -10,13 +9,11 @@ const ProductDetail = (props) => {
         paddingBottom: '8px',  // 下線とテキストの間隔を調整するために必要な場合があります
         marginBottom: '20px'   // 下線の下の余白を調整するために必要な場合があります
     };
-    const [cookies, setCookies] = useCookies('');
 
     const addToCart = (item) => {
-        // Cookieから既存のカート情報を読み込み
-        const existingCart = cookies.cart;
-        const updatedCart = [...existingCart, item];
-        setCookies('cart', updatedCart);
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.push(item);
+        localStorage.setItem('cart', JSON.stringify(cart));
         props.setInputKeyword("");
         props.setInputCategoryId("");
         props.setMainContentsView(0);

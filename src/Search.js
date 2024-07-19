@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 
 const Search = (props) => {
-    const [cookies, setCookies] = useCookies('');
+    const [cookies] = useCookies('');
     const [search, setSearch] = useState("");
 
     const SearchStyle = {

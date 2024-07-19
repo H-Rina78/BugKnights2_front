@@ -13,6 +13,7 @@ const RegisterForm = () => {
   const [tel, setTel] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -31,14 +32,15 @@ const RegisterForm = () => {
     })
     .then(response => response.text())
     .then(data => {
-        console.log(data);
         if(data){
             setModalShow(false);
+            setMessage(data);
         } else {
             setModalShow(true);
         }
     })
     .catch(error => console.error(error));
+    console.log(message);
   };
 
   const MyVerticallyCenteredModal = (props) => {
@@ -190,7 +192,10 @@ const RegisterForm = () => {
               </Form.Group>
 
               <Row className="justify-content-center mb-3">
-                <Col xs={6}>
+                <Col xs={6} md={10} className='text-center'>
+                  <p style={{color: 'red'}}>{message}</p>
+                </Col>
+                <Col xs={6} md={6}>
                   <Button variant="primary" type="submit" className="w-100">
                     新規登録
                   </Button>

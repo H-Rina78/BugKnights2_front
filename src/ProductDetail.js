@@ -9,6 +9,12 @@ const ProductDetail = (props) => {
 
     const stringUrl = 'https://bugknights-b.azurewebsites.net/search/recommend';
 
+    const [quantity, setQuantity] = useState('');
+
+    const changeQuantity = (event) => {
+        setQuantity(event.target.value);
+    }
+
     useEffect(() => {
         const fetchProduct = async () => {
             try {
@@ -50,8 +56,14 @@ const ProductDetail = (props) => {
         marginBottom: '20px'
     };
 
+    const selectStyle = {
+        width: '60px',  // プルダウンの幅を調整
+        fontSize: '12px',  // フォントサイズを小さくする
+    }
+
     const addToCart = (item) => {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        item.quantity = quantity;
         cart.push(item);
         localStorage.setItem('cart', JSON.stringify(cart));
         props.setInputKeyword("");
@@ -80,6 +92,14 @@ const ProductDetail = (props) => {
                             {/* 価格 */}
                             <Col xs={6} md={7} className='offset-1 mt-1 fs-2'>
                                 <div>{props.product.price}円 (税込 {Math.round(props.product.price * 1.1)}円)</div>
+                            </Col>
+                            <Col md={4} style={{display: 'flex'}}>
+                                数量：
+                                <select className="ms-3 me-3" style={selectStyle} defaultValue="1" onChange={changeQuantity}>
+                                    {[...Array(11).keys()].map((num) => (
+                                        <option key={num} value={num}>{num}</option>
+                                    ))}
+                                </select>
                             </Col>
                         </Row>
                         {/* 商品説明欄 */}

@@ -22,9 +22,10 @@ const MainInformation = () => {
 
   const [cookies] = useCookies('');
 
+  console.log(cookies.checkCookie);
   useEffect(() => {
     // Cookieから既存のカート情報を読み込む
-    if (cookies.checkCookie !== undefined) {
+    if (cookies.checkCookie !== undefined && cookies.checkCookie !== null) {
         console.log("Cookie生成済み");
     } else {
       // Cookieがない場合、バックエンドからカート情報をフェッチ

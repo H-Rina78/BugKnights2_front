@@ -6,12 +6,18 @@ import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 
 const LoginInformation = () => {
+  const btnStyle = {
+    hight:'20px',
+    width:'100px'
+  }
+
   const [, setCookies] = useCookies('');
 
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
 
   const navigate = useNavigate();
+  const handleClick = () => navigate("/");
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -50,6 +56,7 @@ const LoginInformation = () => {
   return (
     <>
       <SimpleHeader />
+      <Button className="ms-2" onClick={handleClick} style={btnStyle}>戻る</Button>
       <Container className="mt-5">
         <Row className="justify-content-md-center">
           <Col xs={12} md={6}>

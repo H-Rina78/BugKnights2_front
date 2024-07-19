@@ -15,6 +15,11 @@ const RegisterForm = () => {
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
 
+  const btnStyle = {
+    hight:'20px',
+    width:'100px'
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log('UserID', userId);
@@ -42,6 +47,10 @@ const RegisterForm = () => {
     .catch(error => console.error(error));
     console.log(message);
   };
+
+  const navigate = useNavigate();
+
+    const handleClick = () => navigate("/login");
 
   const MyVerticallyCenteredModal = (props) => {
     const navigate = useNavigate();
@@ -109,6 +118,7 @@ const RegisterForm = () => {
   return (
     <>
       <SimpleHeader />
+      <Button className="ms-2" onClick={handleClick} style={btnStyle}>戻る</Button>
       <Container className="mt-5">
         <Row className="justify-content-md-center">
           <Col xs={12} md={6}>

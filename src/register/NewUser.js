@@ -7,6 +7,11 @@ const NewUser = () => {
 
     const handleClick = () => navigate("/");
 
+    const btnStyle = {
+        hight:'20px',
+        width:'100px'
+    }
+
     return (
         <>
             <SimpleHeader />
@@ -18,7 +23,7 @@ const NewUser = () => {
                 </Row>
                 <Row>
                     <Col>
-                        <Button></Button>
+                        <Button className="ms-3 mb-3" onClick={handleClick} style={btnStyle}>戻る</Button>
                     </Col>
                 </Row>
             </Container>

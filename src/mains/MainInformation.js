@@ -33,12 +33,9 @@ const MainInformation = () => {
         method: 'GET',
         credentials: 'include'
       })
-        .then(response => {
-          response.text();
-          console.log(response);
-        })
+        .then(response => response.text())
         .then(data => {
-            console.log('Cookie生成'); // クッキーがあるか確認
+          console.log(data);
         })
         .catch(error => console.error(error));
     }

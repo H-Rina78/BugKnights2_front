@@ -2,9 +2,13 @@ import SimpleHeader from "../SimpleHeader";
 import { Container, Form, Button, Row, Col } from 'react-bootstrap';
 import { useState } from "react";
 import { useLocation } from 'react-router-dom'
+import { useNavigate} from "react-router-dom";
 
 const BasicRevision = () => {
     const location = useLocation();
+
+    const navigate = useNavigate();
+    const handleClickMypage = () => navigate("/Mypage");
     
     const [lastName, setLastName] = useState(location.state.basicData.lastName);
     const [firstName, setFirstName] = useState(location.state.basicData.firstName);
@@ -15,9 +19,15 @@ const BasicRevision = () => {
         event.preventDefault();
     };
 
+    const btnStyle = {
+        hight:'20px',
+        width:'100px'
+    }
+
     return (
         <>
             <SimpleHeader />
+            <Button className="ms-2" style={btnStyle} onClick={handleClickMypage}>戻る</Button>
             <Container className="mt-5">
                 <Row className="justify-content-md-center">
                 <Col xs={12} md={6}>

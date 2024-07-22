@@ -6,8 +6,6 @@ import {Button} from "react-bootstrap";
 import { useCookies } from "react-cookie";
 import { useEffect, useState } from "react";
 
-
-
 const MyPage = () =>{
     const [, setCookies] = useCookies('');
     const [user, setUser] = useState({});

@@ -45,7 +45,7 @@ const UserIdRevision = () => {
                     </Form.Group>
                     <Row className="justify-content-center mb-3">
                         <Col xs={6} md={6}>
-                        <Button variant="primary" type="submit" className="w-100">
+                        <Button variant="primary" onClick={handleClickMypage} type="submit" className="w-100">
                             変更する
                         </Button>
                         </Col>

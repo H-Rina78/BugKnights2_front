@@ -52,6 +52,16 @@ const MyPage = () =>{
         });
     }
 
+    const passwordRevision = () => {
+        navigate("/secretInfoRevision", {
+            state: {
+                secretData : {
+                    id: user.id
+                }
+            }
+        });
+    }
+
     useEffect(() => {
         fetch('http://localhost:8080/bk/getUserCookie', {
             method: 'GET',
@@ -134,7 +144,7 @@ const MyPage = () =>{
                                     <p className="offset-1">パスワード 　：<span className="ps-3">セキュリティ上非表示となっています。</span></p>
                                 </Col>
                                 <Col className="col-4 ms-5 d-flex align-items-center justify-content-end">
-                                    <Button style={btnStyle}>変更</Button>
+                                    <Button style={btnStyle} onClick={passwordRevision}>変更</Button>
                                 </Col>
                             </Row>
                         </Col>    

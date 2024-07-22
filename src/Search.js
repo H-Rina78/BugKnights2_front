@@ -12,11 +12,9 @@ import { useCookies } from 'react-cookie';
 const Search = (props) => {
     const [search, setSearch] = useState("");
 
-    const [products, setProducts] = useState([]);
+    const [products, setProducts] = [props.products, props.setProducts];
     const [cookies] = useCookies('');
 
-
-    // const products = JSON.parse(localStorage.getItem('cart')) || [];
     useEffect(() => {
         if (cookies.loginSession !== undefined && cookies.loginSession !== null) {
             fetch('http://localhost:8080/bk/getCart', {
@@ -32,7 +30,7 @@ const Search = (props) => {
           } else {
             setProducts([]);
           }
-    }, [cookies.loginSession]);
+    }, [cookies.loginSession, setProducts]);
 
     const totalQuantity = () => {
         let totalQuantity = 0;
@@ -41,7 +39,6 @@ const Search = (props) => {
         })
         return totalQuantity;
     }
-    // const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
     const SearchStyle = {
         backgroundColor: '#eaeaea'

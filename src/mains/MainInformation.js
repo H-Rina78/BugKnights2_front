@@ -22,6 +22,8 @@ const MainInformation = () => {
 
   const [checkLogin, setCheckLogin] = useState(false);
 
+  const [products, setProducts] = useState([]);
+
   const [cookies, , removeCookies] = useCookies('');
 
   useEffect(() => {
@@ -46,20 +48,20 @@ const MainInformation = () => {
     } else {
       setCheckLogin(false);
     }
-  }, [cookies.loginSession, removeCookies]);
+  }, [cookies.loginSession, removeCookies, setCheckLogin]);
 
   return (
     //表示管理用の値やセッターをそれぞれのコンポーネントに渡してる
     <>
       <Header checkLogin={checkLogin} setCheckLogin={setCheckLogin}/>
-      <Search setInputKeyword={setInputKeyword} setInputCategoryId={setInputCategoryId} setMainContentsView={setMainContentsView} setUpperPrice={setUpperPrice} setLowerPrice={setLowerPrice}/>
+      <Search setInputKeyword={setInputKeyword} setInputCategoryId={setInputCategoryId} setMainContentsView={setMainContentsView} setUpperPrice={setUpperPrice} setLowerPrice={setLowerPrice} products={products} setProducts={setProducts}/>
       <Container fluid>
         <Row className='mt-3'>
           <Col className='col-2'>
             <SideArea setInputCategoryId={setInputCategoryId} setMainContentsView={setMainContentsView} setInputKeyword={setInputKeyword} setUpperPrice={setUpperPrice} setLowerPrice={setLowerPrice} inputCategoryId={inputCategoryId}/>
           </Col>
           <Col className='col-10'>
-            <MainContents inputCategoryId={inputCategoryId} inputKeyword={inputKeyword} mainContentsView={mainContentsView} setMainContentsView={setMainContentsView} upperPrice={upperPrice} lowerPrice={lowerPrice} setUpperPrice={setUpperPrice} setLowerPrice={setLowerPrice} setInputKeyword={setInputKeyword} setInputCategoryId={setInputCategoryId}/>
+            <MainContents inputCategoryId={inputCategoryId} inputKeyword={inputKeyword} mainContentsView={mainContentsView} setMainContentsView={setMainContentsView} upperPrice={upperPrice} lowerPrice={lowerPrice} setUpperPrice={setUpperPrice} setLowerPrice={setLowerPrice} setInputKeyword={setInputKeyword} setInputCategoryId={setInputCategoryId} products={products} setProducts={setProducts}/>
           </Col>
         </Row>
       </Container>

@@ -69,6 +69,8 @@ const ProductDetail = (props) => {
             const formData = new FormData();
             formData.append('id', item.id);
             formData.append('quantity', quantity);
+            console.log(item.id);
+            console.log(quantity);
             fetch('http://localhost:8080/bk/setCart', {
             method: 'POST',
             body: formData,
@@ -78,6 +80,11 @@ const ProductDetail = (props) => {
             .then(data => {
             console.log(data);
             if(data === 'true') {
+                item.quantity = quantity;
+                console.log(item);
+                const appendProduct = props.productCart
+                console.log(appendProduct);
+                props.setProductCart(appendProduct);
                 console.log('カートに登録しました');
                 props.setInputKeyword("");
                 props.setInputCategoryId("");
@@ -92,7 +99,6 @@ const ProductDetail = (props) => {
           } else {
             console.log('カートに登録時にエラーが出ました');
           }
-        console.log(quantity);
     };
 
     return (

@@ -24,7 +24,8 @@ const MyPage = () =>{
                 basicData: {
                     lastName: user.lastName, firstName: user.firstName,
                     address: user.address,
-                    tel: user.tel
+                    tel: user.tel,
+                    id: user.id
                 }
             }
         });
@@ -34,7 +35,8 @@ const MyPage = () =>{
         navigate("/mailRevision", {
             state: {
                 mailData: {
-                    mail: user.mail
+                    mail: user.mail,
+                    id: user.id
                 }
             }
         });

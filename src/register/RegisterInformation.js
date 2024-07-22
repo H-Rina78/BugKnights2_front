@@ -56,8 +56,20 @@ const RegisterForm = () => {
     const navigate = useNavigate();
 
     const handleRegisterClick = () => {
-      navigate("/newuser");
-    }
+      navigate("/newuser", {
+          state: {
+              userData: {
+                  firstName: firstName,
+                  lastName: lastName,
+                  mail: email,
+                  password: password,
+                  id: userId
+              }
+          }
+      });
+  }
+
+
     const insertUser = () => {
       const formData = new FormData();
       formData.append('id', userId);

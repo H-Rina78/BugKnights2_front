@@ -1,8 +1,9 @@
 import SimpleHeader from "../SimpleHeader";
 import { Container, Form, Button, Row, Col } from 'react-bootstrap';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom'
 import { useNavigate} from "react-router-dom";
+import Modal from 'react-bootstrap/Modal';
 
 const BasicRevision = () => {
     const location = useLocation();
@@ -14,6 +15,8 @@ const BasicRevision = () => {
     const [firstName, setFirstName] = useState(location.state.basicData.firstName);
     const [address, setAddress] = useState(location.state.basicData.address);
     const [tel, setTel] = useState(location.state.basicData.tel);
+    const [id] = useState(location.state.basicData.id);
+    console.log('ID', id);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -23,6 +26,65 @@ const BasicRevision = () => {
         hight:'20px',
         width:'100px'
     }
+
+    console.log('苗字', lastName);
+    console.log('名前', firstName);
+    console.log('住所', address);
+    console.log('電話番号', tel);
+
+    const MyVerticallyCenteredModal = (props) => {
+        const updateData = () => {
+            const formData = new FormData();
+            formData.append('lastName', lastName);
+            formData.append('firstName', firstName);
+            formData.append('address', address);
+            formData.append('tel', tel);
+            formData.append('id', id);
+            fetch('https://bugknights-b.azurewebsites.net/basicRevision', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+                navigate("/Mypage");
+            })
+            .catch(error => console.error(error));
+        }
+        return (
+          <Modal
+            {...props}
+            size="sm"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+          >
+            <Modal.Header closeButton>
+              <Modal.Title id="contained-modal-title-vcenter">
+                入力内容確認
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Row>
+                <Col>
+                    <p>氏名：{lastName} {firstName}</p>
+                    <p>住所：{address}</p>
+                    <p>電話番号：{tel}</p>
+                </Col>
+              </Row>
+            </Modal.Body>
+            <Modal.Footer>
+                <Row>
+                    <Col className="text-center">
+                        <Button variant="primary" className="me-3" onClick={updateData}>変更する</Button>
+                        <Button variant="danger" onClick={props.onHide}>キャンセル</Button>
+                    </Col>
+                </Row>
+            </Modal.Footer>
+          </Modal>
+        );
+      }
+
+      const [modalShow, setModalShow] = useState(false);
 
     return (
         <>
@@ -41,12 +103,14 @@ const BasicRevision = () => {
                                     type="text" 
                                     placeholder="LastName"
                                     value={lastName}
+                                    onChange={(e) => setLastName(e.target.value)}
                                     required
                                 />
                                 <Form.Control 
                                     type="text" 
                                     placeholder="FirstName"
                                     value={firstName}
+                                    onChange={(e) => setFirstName(e.target.value)}
                                     required
                                 />
                             </Col>
@@ -59,6 +123,7 @@ const BasicRevision = () => {
                             type="text" 
                             placeholder="address"
                             value={address}
+                            onChange={(e) => setAddress(e.target.value)}
                             required
                         />
                     </Form.Group>
@@ -69,15 +134,20 @@ const BasicRevision = () => {
                             type="text" 
                             placeholder="tel"
                             value={tel}
+                            onChange={(e) => setTel(e.target.value)}
                             required
                         />
                     </Form.Group>
 
                     <Row className="justify-content-center mb-3">
                         <Col xs={6} md={6}>
-                        <Button variant="primary" onClick={handleClickMypage} type="submit" className="w-100">
-                            新規登録
-                        </Button>
+                            <Button variant="primary" type="submit" className="w-100" onClick={() => setModalShow(true)}>
+                                変更する
+                            </Button>
+                            <MyVerticallyCenteredModal
+                                show={modalShow}
+                                onHide={() => setModalShow(false)}
+                            />
                         </Col>
                     </Row>
                     </Form>

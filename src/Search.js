@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Search.css';
 import { BsSearch } from 'react-icons/bs';
 import Button from 'react-bootstrap/Button';
@@ -7,11 +7,41 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import { BsCart4 } from 'react-icons/bs';
 import Badge from 'react-bootstrap/Badge';
 import { useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 const Search = (props) => {
     const [search, setSearch] = useState("");
 
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const [products, setProducts] = useState([]);
+    const [cookies] = useCookies('');
+
+
+    // const products = JSON.parse(localStorage.getItem('cart')) || [];
+    useEffect(() => {
+        if (cookies.loginSession !== undefined && cookies.loginSession !== null) {
+            fetch('http://localhost:8080/bk/getCart', {
+              method: 'GET',
+              credentials: 'include'
+            })
+            .then(response => response.json())
+            .then(data => {
+              setProducts(data);
+            })
+            .catch(error => console.error(error));
+              console.log("エラー");
+          } else {
+            setProducts([]);
+          }
+    }, [cookies.loginSession]);
+
+    const totalQuantity = () => {
+        let totalQuantity = 0;
+        products.forEach((product) => {
+            totalQuantity += product.quantity;
+        })
+        return totalQuantity;
+    }
+    // const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
     const SearchStyle = {
         backgroundColor: '#eaeaea'
@@ -57,9 +87,9 @@ const Search = (props) => {
                         <div style={{ position: 'relative', display: 'inline-block', width: '90px' }}>
                             <BsCart4 size={24} /> {/* アイコンのサイズを指定 */}
                             カート
-                            {cart.length > 0 && (
+                            {totalQuantity() > 0 && (
                                 <Badge bg="secondary" className="cart-badge">
-                                    {cart.length}
+                                    {totalQuantity()}
                                 </Badge>
                             )}
                         </div>

@@ -46,7 +46,7 @@ const MainInformation = () => {
     } else {
       setCheckLogin(false);
     }
-  }, [cookies.loginSession]);
+  }, [cookies.loginSession, removeCookies]);
 
   return (
     //表示管理用の値やセッターをそれぞれのコンポーネントに渡してる

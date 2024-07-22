@@ -21,7 +21,7 @@ const MyPage = () =>{
     }
 
     const basicInfoRevision = () => {
-        navigate("/basicInfoRevision", {
+        navigate("/basicRevision", {
             state: {
                 basicData: {
                     lastName: user.lastName, firstName: user.firstName,

@@ -20,31 +20,38 @@ const MainInformation = () => {
   //画面管理用、0:TOP画面、1:商品ページ、2:商品詳細ページ
   const [mainContentsView, setMainContentsView] = useState(0);
 
-  const [cookies] = useCookies('');
+  const [checkLogin, setCheckLogin] = useState(false);
 
-  console.log(cookies.checkCookie);
+  const [cookies, , removeCookies] = useCookies('');
+
   useEffect(() => {
     // Cookieから既存のカート情報を読み込む
-    if (cookies.checkCookie !== undefined && cookies.checkCookie !== null) {
-        console.log("Cookie生成済み");
-    } else {
-      // Cookieがない場合、バックエンドからカート情報をフェッチ
-      fetch('http://localhost:8080/bk/setCookie', {
+    if (cookies.loginSession !== undefined && cookies.loginSession !== null) {
+      fetch('http://localhost:8080/bk/checkLogin', {
         method: 'GET',
         credentials: 'include'
       })
-        .then(response => response.text())
-        .then(data => {
-          console.log(data);
-        })
-        .catch(error => console.error(error));
+      .then(response => response.text())
+      .then(data => {
+        if(data === 'true') {
+          setCheckLogin(true);
+          console.log('ログイン済み');
+        } else {
+          console.log('間違ってるぞー');
+          removeCookies('loginSession');
+        }
+      })
+      .catch(error => console.error(error));
+        console.log("エラー");
+    } else {
+      setCheckLogin(false);
     }
-  }, [cookies.checkCookie]);
+  }, [cookies.loginSession]);
 
   return (
     //表示管理用の値やセッターをそれぞれのコンポーネントに渡してる
     <>
-      <Header />
+      <Header checkLogin={checkLogin} setCheckLogin={setCheckLogin}/>
       <Search setInputKeyword={setInputKeyword} setInputCategoryId={setInputCategoryId} setMainContentsView={setMainContentsView} setUpperPrice={setUpperPrice} setLowerPrice={setLowerPrice}/>
       <Container fluid>
         <Row className='mt-3'>

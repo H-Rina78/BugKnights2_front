@@ -100,11 +100,8 @@ const Header = (props) =>{
             Aceネットスーパー
           </Col>
           <Col className="text-end fs-5">
-            {(cookies.loginInfo === 0) &&
-              <Login />
-            }
-            {(cookies.loginInfo === 1) &&
-              <MyPage />
+            {props.checkLogin ?
+              <MyPage /> : <Login />
             }
           </Col>
         </Row>

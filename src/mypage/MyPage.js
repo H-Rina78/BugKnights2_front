@@ -7,14 +7,14 @@ import { useCookies } from "react-cookie";
 import { useEffect, useState } from "react";
 
 const MyPage = () =>{
-    const [, setCookies] = useCookies('');
+    const [, , removeCookies] = useCookies('');
     const [user, setUser] = useState({});
     const navigate = useNavigate();
 
     const handleClick = () => navigate("/");
 
     const handleClickLogout = () => {
-        setCookies('loginInfo', '0');
+        removeCookies('loginSession');
         navigate("/");
     }
 

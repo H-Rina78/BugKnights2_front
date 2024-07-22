@@ -1,17 +1,21 @@
 import SimpleHeader from "../SimpleHeader";
 import { Container, Button, Row, Col } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 const NewUser = () => {
+    const [, setCookies] = useCookies('');
+
     const navigate = useNavigate();
 
-    const handleClick = () => navigate("/login");
-
-    const handleTopBackClick = () => navigate("/");
+    const handleClickLogin = () => {
+        setCookies('loginInfo', '1');
+        navigate("/");
+    }
 
     const btnStyle = {
         hight:'20px',
-        width:'100px'
+        width:'170px'
     }
 
     const textStyle = {
@@ -32,26 +36,23 @@ const NewUser = () => {
         <>
             <SimpleHeader />
             <Container>
-                <Row className="text-center">
+                <Row className="my-5 text-center">
                     <h3>ユーザー登録</h3>
-                    <Col className="h2 text-center">
-                        新規ユーザー登録が完了しました。
+                    <Col className="h2 mt-4 text-center">
+                        ユーザー登録が完了しました。
                     </Col>
                 </Row>
                 <Row className="justify-content-center">
                     <Col className="col-6" style={AllStyle}>
-                    <Row className="px-3 py-2" style={style}><h4>登録情報</h4></Row>
+                        <Row className="px-3 py-2" style={style}><h4>登録情報</h4></Row>
                         <p className="ps-3 pt-3" style={textStyle}>ユーザーID　：<span>Taroudayonyon4</span></p>
                         <p className="ps-3 pt-1" style={textStyle}>氏名　　　：<span>田中太郎</span></p>
                         <p className="ps-3 pt-1" style={textStyle}>メールアドレス：<span>tanakatarou@exam.com</span></p>
                     </Col>
                 </Row>
-                <Row>
-                    <Col>
-                        <Button className="ms-3 mb-3" onClick={handleClick} style={btnStyle}>ログイン</Button>
-                    </Col>
-                    <Col>
-                        <Button className="ms-3 mb-3" onClick={handleTopBackClick} style={btnStyle}>商品を見る</Button>
+                <Row className="my-4 justify-content-center">
+                    <Col className="d-flex align-items-center justify-content-center">
+                        <Button className="ms-3 mb-3" onClick={handleClickLogin} style={btnStyle}>お買い物を始める</Button>
                     </Col>
                 </Row>
             </Container>

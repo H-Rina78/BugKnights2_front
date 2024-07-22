@@ -56,7 +56,7 @@ const CartInformation = () => {
             <Row className="justify-content-center py-3 px-5"  style={style2}>
                 <Row style={underlineStyle} className="d-flex align-items-center justify-content-center">
                     <Col className="col-9"><h1>カート</h1></Col>
-                    <Col className="h5 col-3">カートに入っている商品：{products.length}</Col>
+                    <Col className="h5 col-3">カートに入っている商品：{products.length}点</Col>
                 </Row>
                 {products.map((product) => (
                     <Row className="p-2 mt-3" style={underlineStyle}>

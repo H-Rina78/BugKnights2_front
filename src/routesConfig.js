@@ -5,7 +5,7 @@ import CartInformation from "./carts/CartInformation";
 import MainInformation from "./mains/MainInformation";
 import MyPage from "./mypage/MyPage";
 import NewUser from "./register/NewUser";
-import BasicInfoRevision from "./register/basicInfoRevision";
+import BasicRevision from "./register/BasicRevision";
 import MailRevision from "./register/mailRevision";
 import SecretInfoRevision from "./register/secretInfoRevision";
 
@@ -18,7 +18,7 @@ const routesConfig = createBrowserRouter(
             <Route path="/cart" element={<CartInformation />} />
             <Route path="/mypage" element={<MyPage />} />
             <Route path="/newuser" element={<NewUser />} />
-            <Route path="/basicInfoRevision" element={<BasicInfoRevision />} />
+            <Route path="/basicRevision" element={<BasicRevision />} />
             <Route path="/mailRevision" element={<MailRevision />} />
             <Route path="/secretInfoRevision" element={<SecretInfoRevision />} />
         </>

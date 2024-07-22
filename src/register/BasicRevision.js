@@ -1,10 +1,21 @@
 import SimpleHeader from "../SimpleHeader";
 import { Container, Form, Button, Row, Col } from 'react-bootstrap';
+import { useEffect, useState } from "react";
+import { useLocation } from 'react-router-dom'
 
-const basicInfoRevision = () => {
-      const handleSubmit = (event) => {
+const BasicRevision = () => {
+    const [data, setData] = useState('');
+    const location = useLocation();
+
+    useEffect(() => {
+        setData(location.state.basicData);
+    }, [location]);
+
+    console.log(data);
+
+    const handleSubmit = (event) => {
         event.preventDefault();
-      };
+    };
 
     return (
         <>
@@ -66,4 +77,4 @@ const basicInfoRevision = () => {
         </>
     );
 }
-export default basicInfoRevision;
+export default BasicRevision;

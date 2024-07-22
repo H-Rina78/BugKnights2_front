@@ -21,15 +21,35 @@ const MyPage = () =>{
     }
 
     const basicInfoRevision = () => {
-        navigate("/basicInfoRevision");
+        navigate("/basicInfoRevision", {
+            state: {
+                basicData: {
+                    lastName: user.lastName, firstName: user.firstName,
+                    address: user.address,
+                    tel: user.tel
+                }
+            }
+        });
     }
 
     const mailRevision = () => {
-        navigate("/mailRevision");
+        navigate("/mailRevision", {
+            state: {
+                mailData: {
+                    mail: user.mail
+                }
+            }
+        });
     }
 
     const secretInfoRevision = () => {
-        navigate("/secretInfoRevision");
+        navigate("/secretInfoRevision", {
+            state: {
+                secretData : {
+                    id: user.id
+                }
+            }
+        });
     }
 
     useEffect(() => {
@@ -40,6 +60,7 @@ const MyPage = () =>{
         .then(response => response.text())
         .then(data => {
             if(data !== '') {
+                console.log(data);
                 setUser(JSON.parse(data));
             }
         })
@@ -83,7 +104,7 @@ const MyPage = () =>{
                                 <Col className="col-7 mt-2">
                                     <p className="offset-1">氏名　　　：<span className="ps-3">{user.lastName} {user.firstName}</span></p>
                                     <p className="offset-1">住所　　　：<span className="ps-3">{user.address}</span></p>
-                                    <p className="offset-1">電話番号　：<span className="ps-3">{user.tell}</span></p>
+                                    <p className="offset-1">電話番号　：<span className="ps-3">{user.tel}</span></p>
                                 </Col>
                                 <Col className="col-4 ms-5 d-flex align-items-center justify-content-end">
                                     <Button style={btnStyle} onClick={basicInfoRevision}>変更</Button>

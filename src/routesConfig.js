@@ -7,7 +7,7 @@ import MyPage from "./mypage/MyPage";
 import NewUser from "./register/NewUser";
 import BasicRevision from "./register/BasicRevision";
 import EMailRevision from "./register/EMailRevision";
-import SecretInfoRevision from "./register/secretInfoRevision";
+import SecretRevision from "./register/SecretRevision";
 
 const routesConfig = createBrowserRouter(
     createRoutesFromElements(
@@ -20,7 +20,7 @@ const routesConfig = createBrowserRouter(
             <Route path="/newuser" element={<NewUser />} />
             <Route path="/basicRevision" element={<BasicRevision />} />
             <Route path="/mailRevision" element={<EMailRevision />} />
-            <Route path="/secretInfoRevision" element={<SecretInfoRevision />} />
+            <Route path="/secretInfoRevision" element={<SecretRevision />} />
         </>
     )
 );

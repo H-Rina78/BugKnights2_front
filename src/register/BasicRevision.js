@@ -1,6 +1,6 @@
 import SimpleHeader from "../SimpleHeader";
 import { Container, Form, Button, Row, Col } from 'react-bootstrap';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useLocation } from 'react-router-dom'
 import { useNavigate} from "react-router-dom";
 import Modal from 'react-bootstrap/Modal';

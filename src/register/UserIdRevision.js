@@ -5,14 +5,14 @@ import SimpleHeader from '../SimpleHeader';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate} from "react-router-dom";
 
-const EMailRevision = () => {  
+const UserIdRevision = () => {  
     const navigate = useNavigate();
     const handleClickMypage = () => navigate("/Mypage");
 
     const location = useLocation();
-    const [mail, setMail] = useState(location.state.mailData.mail);
+    const [id, setId] = useState(location.state.secretData.id);
 
-    console.log(mail);
+    console.log(id);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -25,16 +25,16 @@ const EMailRevision = () => {
       <Container className="mt-5">
         <Row className="justify-content-md-center">
             <Row className="text-center">
-                <p style={{fontSize:'20px'}}>新しいメールアドレスを入力してください。</p>
+                <p style={{fontSize:'20px'}}>新しいユーザーIDを入力してください。</p>
             </Row>
             <Col className='my-3' xs={12} md={6}>
                 <Form>
-                    <Form.Group className='mb-3' controlId="formBasicEmail">
-                        <Form.Label>メールアドレス</Form.Label>
+                    <Form.Group className='mb-3' controlId="formBasicPassword">
+                        <Form.Label>ユーザーID</Form.Label>
                         <Form.Control 
                             type="text" 
-                            placeholder="E-mail"
-                            value={mail}
+                            placeholder="ユーザーID"
+                            value={id}
                             required
                         />
                     </Form.Group>
@@ -53,4 +53,4 @@ const EMailRevision = () => {
   );
 };
 
-export default EMailRevision;
+export default UserIdRevision;

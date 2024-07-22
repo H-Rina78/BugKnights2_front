@@ -42,8 +42,8 @@ const MyPage = () =>{
         });
     }
 
-    const secretInfoRevision = () => {
-        navigate("/secretInfoRevision", {
+    const UserIdRevision = () => {
+        navigate("/UserIdRevision", {
             state: {
                 secretData : {
                     id: user.id
@@ -119,14 +119,22 @@ const MyPage = () =>{
                                     <Button style={btnStyle} onClick={mailRevision}>変更</Button>
                                 </Col>
                             </Row>
-                            <h5 className="py-2 ps-2" style={AllStyle}>ID・パスワード</h5>
+                            <h5 className="py-2 ps-2" style={AllStyle}>ユーザーID</h5>
                             <Row  className="mb-3">
                                 <Col className="col-7 mt-2">
                                     <p className="offset-1">ユーザーID　：<span className="ps-3">{user.id}</span></p>
+                                </Col>
+                                <Col className="col-4 ms-5 d-flex align-items-center justify-content-end">
+                                    <Button style={btnStyle} onClick={UserIdRevision}>変更</Button>
+                                </Col>
+                            </Row>
+                            <h5 className="py-2 ps-2" style={AllStyle}>パスワード</h5>
+                            <Row  className="mb-3">
+                                <Col className="col-7 mt-2">
                                     <p className="offset-1">パスワード 　：<span className="ps-3">セキュリティ上非表示となっています。</span></p>
                                 </Col>
                                 <Col className="col-4 ms-5 d-flex align-items-center justify-content-end">
-                                    <Button style={btnStyle} onClick={secretInfoRevision}>変更</Button>
+                                    <Button style={btnStyle}>変更</Button>
                                 </Col>
                             </Row>
                         </Col>    

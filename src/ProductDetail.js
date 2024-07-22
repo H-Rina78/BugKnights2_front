@@ -4,12 +4,15 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
+import { useCookies } from 'react-cookie';
 
 const ProductDetail = (props) => {
 
     const stringUrl = 'https://bugknights-b.azurewebsites.net/search/recommend';
 
-    const [quantity, setQuantity] = useState('');
+    const [quantity, setQuantity] = useState('1');
+
+    const [cookies] = useCookies('');
 
     const changeQuantity = (event) => {
         setQuantity(event.target.value);
@@ -62,15 +65,34 @@ const ProductDetail = (props) => {
     }
 
     const addToCart = (item) => {
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        item.quantity = quantity;
-        cart.push(item);
-        localStorage.setItem('cart', JSON.stringify(cart));
-        props.setInputKeyword("");
-        props.setInputCategoryId("");
-        props.setMainContentsView(0);
-        props.setUpperPrice(NaN);
-        props.setLowerPrice(NaN);
+        if (cookies.loginSession !== undefined && cookies.loginSession !== null) {
+            const formData = new FormData();
+            formData.append('id', item.id);
+            formData.append('quantity', quantity);
+            fetch('http://localhost:8080/bk/setCart', {
+            method: 'POST',
+            body: formData,
+            credentials: 'include'
+            })
+            .then(response => response.text())
+            .then(data => {
+            console.log(data);
+            if(data === 'true') {
+                console.log('カートに登録しました');
+                props.setInputKeyword("");
+                props.setInputCategoryId("");
+                props.setMainContentsView(0);
+                props.setUpperPrice(NaN);
+                props.setLowerPrice(NaN);
+            } else {
+                console.log('カートに登録できませんでした');
+            }
+            })
+            .catch(error => console.error(error));
+          } else {
+            console.log('カートに登録時にエラーが出ました');
+          }
+        console.log(quantity);
     };
 
     return (
@@ -106,10 +128,8 @@ const ProductDetail = (props) => {
                         <Row className='mt-3'>
                             <Col>
                                 <h5>商品説明</h5>
-                                <p>
-                                    {/* 商品概要 */}
-                                    <p className='ms-3 fs-5'>{props.product.overview}</p>
-                                </p>
+                                {/* 商品概要 */}
+                                <p className='ms-3 fs-5'>{props.product.overview}</p>
                                 {/* カートボタン */}
                                 <Col xs={6} md={4}>
                                     <Button variant='primary' onClick={() => addToCart(props.product)}>カートに入れる</Button>

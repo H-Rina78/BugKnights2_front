@@ -4,11 +4,13 @@ import SimpleHeader from "../SimpleHeader";
 import {Col} from "react-bootstrap";
 import {Button} from "react-bootstrap";
 import { useCookies } from "react-cookie";
+import { useEffect, useState } from "react";
 
 
 
 const MyPage = () =>{
     const [, setCookies] = useCookies('');
+    const [user, setUser] = useState({});
     const navigate = useNavigate();
 
     const handleClick = () => navigate("/");
@@ -29,6 +31,22 @@ const MyPage = () =>{
     const secretInfoRevision = () => {
         navigate("/secretInfoRevision");
     }
+
+    useEffect(() => {
+        fetch('http://localhost:8080/bk/getUserCookie', {
+            method: 'GET',
+            credentials: 'include' // クッキーを含めるためのオプション
+        })
+        .then(response => response.text())
+        .then(data => {
+            if(data !== '') {
+                setUser(JSON.parse(data));
+            }
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    }, []);
 
     const AllStyle = {
         backgroundColor: "#eaeaea",
@@ -63,9 +81,9 @@ const MyPage = () =>{
                             <h5 className="py-2 ps-2" style={AllStyle}>基本情報</h5>
                             <Row className="mb-3">
                                 <Col className="col-7 mt-2">
-                                    <p className="offset-1">氏名　　　：<span className="ps-3">田中太郎</span></p>
-                                    <p className="offset-1">住所　　　：<span className="ps-3">東京都江戸川区東小岩</span></p>
-                                    <p className="offset-1">電話番号　：<span className="ps-3">123456789</span></p>
+                                    <p className="offset-1">氏名　　　：<span className="ps-3">{user.lastName} {user.firstName}</span></p>
+                                    <p className="offset-1">住所　　　：<span className="ps-3">{user.address}</span></p>
+                                    <p className="offset-1">電話番号　：<span className="ps-3">{user.tell}</span></p>
                                 </Col>
                                 <Col className="col-4 ms-5 d-flex align-items-center justify-content-end">
                                     <Button style={btnStyle} onClick={basicInfoRevision}>変更</Button>
@@ -74,7 +92,7 @@ const MyPage = () =>{
                             <h5 className="py-2 ps-2" style={AllStyle}>メールアドレス</h5>
                             <Row  className="mb-3">
                                 <Col className="col-7 mt-2">
-                                    <p className="offset-1">メールアドレス：<span className="ps-3">tanakatarou@exam.com</span></p>
+                                    <p className="offset-1">メールアドレス：<span className="ps-3">{user.mail}</span></p>
                                 </Col>
                                 <Col className="col-4 ms-5 d-flex align-items-center justify-content-end">
                                     <Button style={btnStyle} onClick={mailRevision}>変更</Button>
@@ -83,7 +101,7 @@ const MyPage = () =>{
                             <h5 className="py-2 ps-2" style={AllStyle}>ID・パスワード</h5>
                             <Row  className="mb-3">
                                 <Col className="col-7 mt-2">
-                                    <p className="offset-1">ユーザーID　：<span className="ps-3">Taroudayonyon4</span></p>
+                                    <p className="offset-1">ユーザーID　：<span className="ps-3">{user.id}</span></p>
                                     <p className="offset-1">パスワード 　：<span className="ps-3">セキュリティ上非表示となっています。</span></p>
                                 </Col>
                                 <Col className="col-4 ms-5 d-flex align-items-center justify-content-end">

@@ -1,17 +1,15 @@
 import SimpleHeader from "../SimpleHeader";
 import { Container, Form, Button, Row, Col } from 'react-bootstrap';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useLocation } from 'react-router-dom'
 
 const BasicRevision = () => {
-    const [data, setData] = useState('');
     const location = useLocation();
-
-    useEffect(() => {
-        setData(location.state.basicData);
-    }, [location]);
-
-    console.log(data);
+    
+    const [lastName, setLastName] = useState(location.state.basicData.lastName);
+    const [firstName, setFirstName] = useState(location.state.basicData.firstName);
+    const [address, setAddress] = useState(location.state.basicData.address);
+    const [tel, setTel] = useState(location.state.basicData.tel);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -32,11 +30,13 @@ const BasicRevision = () => {
                                     className='me-3'
                                     type="text" 
                                     placeholder="LastName"
+                                    value={lastName}
                                     required
                                 />
                                 <Form.Control 
                                     type="text" 
                                     placeholder="FirstName"
+                                    value={firstName}
                                     required
                                 />
                             </Col>
@@ -46,18 +46,20 @@ const BasicRevision = () => {
                     <Form.Group className='mb-3' controlId="formBasicEmail">
                         <Form.Label>住所</Form.Label>
                         <Form.Control 
-                        type="text" 
-                        placeholder="address"
-                        required
+                            type="text" 
+                            placeholder="address"
+                            value={address}
+                            required
                         />
                     </Form.Group>
 
                     <Form.Group className='mb-3' controlId="formBasicEmail">
                         <Form.Label>電話番号</Form.Label>
                         <Form.Control 
-                        type="text" 
-                        placeholder="tel"
-                        required
+                            type="text" 
+                            placeholder="tel"
+                            value={tel}
+                            required
                         />
                     </Form.Group>
 
@@ -66,8 +68,6 @@ const BasicRevision = () => {
                         <Button variant="primary" type="submit" className="w-100">
                             新規登録
                         </Button>
-
-                        
                         </Col>
                     </Row>
                     </Form>

@@ -29,7 +29,7 @@ const MainInformation = () => {
   useEffect(() => {
     // Cookieから既存のカート情報を読み込む
     if (cookies.loginSession !== undefined && cookies.loginSession !== null) {
-      fetch('http://localhost:8080/bk/checkLogin', {
+      fetch('bugknights-b.azurewebsites.net/bk/checkLogin', {
         method: 'GET',
         credentials: 'include'
       })

@@ -29,7 +29,7 @@ const MainInformation = () => {
   useEffect(() => {
     // Cookieから既存のカート情報を読み込む
     if (cookies.loginSession !== undefined && cookies.loginSession !== null) {
-      fetch('bugknights-b.azurewebsites.net/bk/checkLogin', {
+      fetch('http://localhost:8080/bk/checkLogin', {
         method: 'GET',
         credentials: 'include'
       })
@@ -54,7 +54,7 @@ const MainInformation = () => {
     //表示管理用の値やセッターをそれぞれのコンポーネントに渡してる
     <>
       <Header checkLogin={checkLogin} setCheckLogin={setCheckLogin}/>
-      <Search setInputKeyword={setInputKeyword} setInputCategoryId={setInputCategoryId} setMainContentsView={setMainContentsView} setUpperPrice={setUpperPrice} setLowerPrice={setLowerPrice} products={products} setProducts={setProducts}/>
+      <Search setInputKeyword={setInputKeyword} setInputCategoryId={setInputCategoryId} setMainContentsView={setMainContentsView} setUpperPrice={setUpperPrice} setLowerPrice={setLowerPrice} products={products} setProducts={setProducts} checkLogin={checkLogin}/>
       <Container fluid>
         <Row className='mt-3'>
           <Col className='col-2'>

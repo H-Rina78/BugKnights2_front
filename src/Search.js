@@ -17,7 +17,7 @@ const Search = (props) => {
 
     useEffect(() => {
         if (cookies.loginSession !== undefined && cookies.loginSession !== null) {
-            fetch('bugknights-b.azurewebsites.net/bk/getCart', {
+            fetch('http://localhost:8080/bk/getCart', {
               method: 'GET',
               credentials: 'include'
             })
@@ -80,17 +80,19 @@ const Search = (props) => {
                     </InputGroup>
                 </div>
                 <div className='col text-end'>
-                    <Button onClick={handleCartClick} className="cart-button">
-                        <div style={{ position: 'relative', display: 'inline-block', width: '100px' }}>
-                            <BsCart4 size={24} /> {/* アイコンのサイズを指定 */}
-                            カート
-                            {totalQuantity() > 0 && (
-                                <Badge bg="secondary" className="cart-badge">
-                                    {totalQuantity()}
-                                </Badge>
-                            )}
-                        </div>
-                    </Button>
+                    {props.checkLogin === true &&
+                        <Button onClick={handleCartClick} className="cart-button">
+                            <div style={{ position: 'relative', display: 'inline-block', width: '90px' }}>
+                                <BsCart4 size={24} /> {/* アイコンのサイズを指定 */}
+                                カート
+                                {totalQuantity() > 0 && (
+                                    <Badge bg="secondary" className="cart-badge">
+                                        {totalQuantity()}
+                                    </Badge>
+                                )}
+                            </div>
+                        </Button>
+                    }
                 </div>
             </div>
         </div>

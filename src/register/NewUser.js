@@ -13,7 +13,6 @@ const NewUser = () => {
     const [firstName] = useState(location.state.userData.firstName);
     const [lastName] = useState(location.state.userData.lastName);
     const [mail] = useState(location.state.userData.mail);
-    const [password] = useState(location.state.userData.password);
     const [id] = useState(location.state.userData.id);
     
     const btnStyle = {

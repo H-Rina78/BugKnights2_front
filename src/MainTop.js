@@ -72,9 +72,9 @@ const MainTop = (props) => {
                             <Card.Body>
                                 <Card.Text>{product.name}</Card.Text>
                                 <Card.Text>{product.overview}</Card.Text>
-                                <div style={{display:'flex'}}>
-                                <Card.Title>{product.price}円</Card.Title>
-                                <Card.Text className='ms-2'>(税込 {Math.round(product.price * 1.1)}円)</Card.Text>
+                                <div style={{ display: 'flex' }}>
+                                    <Card.Title>{product.price}円</Card.Title>
+                                    <Card.Text className='ms-2'>(税込 {Math.round(product.price * 1.1)}円)</Card.Text>
                                 </div>
                             </Card.Body>
                         </Card>
@@ -83,7 +83,7 @@ const MainTop = (props) => {
             </Row>
             {/* ページネーションUI */}
             <Row className='mt-4'>
-                <Col className='col-6'>
+                <Col className='d-flex justify-content-center'>
                     <Pagination>
                         <Pagination.Prev onClick={() => paginate(currentPage - 1)} disabled={currentPage === 1} />
                         {pageNumbers}

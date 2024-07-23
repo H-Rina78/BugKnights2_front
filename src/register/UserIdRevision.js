@@ -91,11 +91,7 @@ const UserIdRevision = () => {
                     <Form.Group className='mb-3' controlId="formBasicId">
                     <Form.Label>現在のユーザーID</Form.Label>
                         <Form.Control 
-                            type="text" 
-                            placeholder="ユーザーID"
                             value={currentId}
-                            onChange={(e)=>setId(e.target.value)}
-                            required
                         />
                     </Form.Group>
                     <Form.Group className='mb-3' controlId="formBasicId">

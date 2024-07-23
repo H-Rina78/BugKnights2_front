@@ -53,6 +53,7 @@ const CartInformation = () => {
             .then(response => response.text())
             .then(data => {
               console.log(data);
+              navigate('/');
             })
             .catch(error => console.error(error));
               console.log("エラー");

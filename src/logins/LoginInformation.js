@@ -15,6 +15,7 @@ const LoginInformation = () => {
 
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
 
   const navigate = useNavigate();
   const handleClick = () => navigate("/");
@@ -40,6 +41,7 @@ const LoginInformation = () => {
         navigate('/');
       } else {
         console.log('ログイン失敗');
+        setMessage('IDまたはパスワードが誤っています。');
       }
     })
     .catch(error => console.error(error));
@@ -82,6 +84,9 @@ const LoginInformation = () => {
               </Form.Group>
 
               <Row className="justify-content-center mb-3">
+                <Col xs={6} md={10} className='text-center'>
+                  <p style={{color: 'red'}}>{message}</p>
+                </Col>
                 <Col xs={6}>
                   <Button variant="primary" type="submit" className="w-100">
                     ログインする

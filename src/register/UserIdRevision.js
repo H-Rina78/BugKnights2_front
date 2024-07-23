@@ -89,11 +89,21 @@ const UserIdRevision = () => {
             <Col className='my-3' xs={12} md={6}>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group className='mb-3' controlId="formBasicId">
-                        <Form.Label>ユーザーID</Form.Label>
+                    <Form.Label>現在のユーザーID</Form.Label>
                         <Form.Control 
                             type="text" 
                             placeholder="ユーザーID"
                             value={currentId}
+                            onChange={(e)=>setId(e.target.value)}
+                            required
+                        />
+                    </Form.Group>
+                    <Form.Group className='mb-3' controlId="formBasicId">
+                        <Form.Label>新しいユーザーID</Form.Label>
+                        <Form.Control 
+                            type="text" 
+                            placeholder="ユーザーID"
+                            value={id}
                             onChange={(e)=>setId(e.target.value)}
                             required
                         />

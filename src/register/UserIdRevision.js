@@ -11,9 +11,8 @@ const UserIdRevision = () => {
     const handleClickMypage = () => navigate("/Mypage");
 
     const location = useLocation();
-    const [id, setId] = useState(location.state.secretData.id);
-
-    console.log(id);
+    const [currentId] = useState(location.state.secretData.id);
+    const [id, setId] = useState('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -23,13 +22,16 @@ const UserIdRevision = () => {
         
         const updateData = () => {
             const formData = new FormData();
-            formData.append('id',id);
-            fetch('https://bugknights-b.azurewebsites.net/idRevision', {
+            formData.append('currentId', currentId);
+            formData.append('id', id);
+            // fetch('https://bugknights-b.azurewebsites.net/idRevision', {
+            fetch('http://localhost:8080/idRevision', {
                 method: 'POST',
                 body: formData
             })
             .then(response => response.text())
             .then(data => {
+                console.log('stateid', id);
                 console.log(data);
                 navigate("/Mypage");
             })
@@ -91,7 +93,7 @@ const UserIdRevision = () => {
                         <Form.Control 
                             type="text" 
                             placeholder="ユーザーID"
-                            value={id}
+                            value={currentId}
                             onChange={(e)=>setId(e.target.value)}
                             required
                         />

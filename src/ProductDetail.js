@@ -5,8 +5,10 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
 
 const ProductDetail = (props) => {
+    const navigate = useNavigate();
 
     const stringUrl = 'https://bugknights-b.azurewebsites.net/search/recommend';
 
@@ -91,6 +93,7 @@ const ProductDetail = (props) => {
                 props.setMainContentsView(0);
                 props.setUpperPrice(NaN);
                 props.setLowerPrice(NaN);
+                navigate(0);
             } else {
                 console.log('カートに登録できませんでした');
             }

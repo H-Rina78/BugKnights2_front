@@ -81,7 +81,7 @@ const Search = (props) => {
                 </div>
                 <div className='col text-end'>
                     <Button onClick={handleCartClick} className="cart-button">
-                        <div style={{ position: 'relative', display: 'inline-block', width: '90px' }}>
+                        <div style={{ position: 'relative', display: 'inline-block', width: '100px' }}>
                             <BsCart4 size={24} /> {/* アイコンのサイズを指定 */}
                             カート
                             {totalQuantity() > 0 && (

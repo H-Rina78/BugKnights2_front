@@ -89,10 +89,15 @@ const SecretRevision = () => {
 
     const [modalShow, setModalShow] = useState(false);
 
+    const btnStyle = {
+        hight:'20px',
+        width:'100px'
+    }
+
     return (
         <>
             <SimpleHeader />
-            <Button className="ms-2" onClick={handleClickMypage}>戻る</Button>
+            <Button className="ms-2" style={btnStyle} onClick={handleClickMypage}>戻る</Button>
             <Container className="mt-5">
                 <Row className="justify-content-md-center">
                     <Row className="text-center">

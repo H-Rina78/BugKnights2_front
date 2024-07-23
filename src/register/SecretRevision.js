@@ -54,37 +54,37 @@ const SecretRevision = () => {
             })
             .catch(error => console.error(error));
         }
-    }
 
-    return (
-        <Modal
-            {...props}
-            size="sm"
-            aria-labelledby="contained-modal-title-vcenter"
-            centered
-        >
-            <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">
-                    入力内容確認
-                </Modal.Title>
-            </Modal.Header>
-                <Modal.Body>
-                    <Row>
-                        <Col>
-                            <p>変更しますか？</p>
-                        </Col>
-                    </Row>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Row>
-                        <Col className="text-center">
-                            <Button variant="primary" className="me-3" onClick={updateData}>変更する</Button>
-                            <Button variant="danger" onClick={props.onHide}>キャンセル</Button>
-                        </Col>
-                    </Row>
-                </Modal.Footer>
-        </Modal>
-    );
+        return (
+            <Modal
+                {...props}
+                size="sm"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title id="contained-modal-title-vcenter">
+                        入力内容確認
+                    </Modal.Title>
+                </Modal.Header>
+                    <Modal.Body>
+                        <Row>
+                            <Col>
+                                <p>変更しますか？</p>
+                            </Col>
+                        </Row>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Row>
+                            <Col className="text-center">
+                                <Button variant="primary" className="me-3" onClick={updateData}>変更する</Button>
+                                <Button variant="danger" onClick={props.onHide}>キャンセル</Button>
+                            </Col>
+                        </Row>
+                    </Modal.Footer>
+            </Modal>
+        );
+    }
 
     const [modalShow, setModalShow] = useState(false);
 

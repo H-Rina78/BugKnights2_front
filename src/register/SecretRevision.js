@@ -14,7 +14,7 @@ const SecretRevision = () => {
     const [id] = useState(location.state.secretData.id);
     const [oldPassword, setOldPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
-    console.log('id', id);
+    const [message, setMessage] = useState('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -33,6 +33,7 @@ const SecretRevision = () => {
                 setModalShow(true);
             } else {
                 setModalShow(false);
+                setMessage('入力されたパスワードが誤っています。');
             }
         })
         .catch(error => console.error(error));
@@ -108,6 +109,9 @@ const SecretRevision = () => {
                                     onChange={(e) => setOldPassword(e.target.value)}
                                     required
                                 />
+                                <Col xs={6} md={10} className='text-start'>
+                                    <p style={{color: 'red'}}>{message}</p>
+                                </Col>
                             </Form.Group>
                             <Form.Group className='mb-3' controlId="formBasicPassword">
                                 <Form.Label>新しいパスワード</Form.Label>
@@ -121,13 +125,13 @@ const SecretRevision = () => {
                             </Form.Group>
                             <Row className="justify-content-center mb-3">
                                 <Col xs={6} md={6}>
-                                <Button variant="primary" type="submit" className="w-100" onClick={() => setModalShow(true)}>
-                                    変更する
-                                </Button>
-                                <MyVerticallyCenteredModal
-                                    show={modalShow}
-                                    onHide={() => setModalShow(false)}
-                                />
+                                    <Button variant="primary" type="submit" className="w-100">
+                                        変更する
+                                    </Button>
+                                    <MyVerticallyCenteredModal
+                                        show={modalShow}
+                                        onHide={() => setModalShow(false)}
+                                    />
                                 </Col>
                             </Row>
                         </Form>

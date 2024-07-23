@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useLocation } from 'react-router-dom'
 import { Container, Form, Button, Row, Col } from 'react-bootstrap';
 import SimpleHeader from '../SimpleHeader';

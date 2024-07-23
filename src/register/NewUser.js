@@ -2,7 +2,6 @@ import { useState } from "react";
 import SimpleHeader from "../SimpleHeader";
 import { Container, Button, Row, Col } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
 import { useLocation } from 'react-router-dom'
 
 const NewUser = () => {

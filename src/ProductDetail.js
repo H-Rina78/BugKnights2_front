@@ -71,7 +71,7 @@ const ProductDetail = (props) => {
             formData.append('quantity', quantity);
             console.log(item.id);
             console.log(quantity);
-            fetch('http://localhost:8080/bk/setCart', {
+            fetch('bugknights-b.azurewebsites.net/bk/setCart', {
             method: 'POST',
             body: formData,
             credentials: 'include'

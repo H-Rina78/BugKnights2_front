@@ -27,7 +27,7 @@ const LoginInformation = () => {
     const formData = new FormData();
     formData.append('id', userId);
     formData.append('password', password);
-    fetch('bugknights-b.azurewebsites.net/bk/login', {
+    fetch('http://localhost:8080/bk/login', {
       method: 'POST',
       body: formData,
       credentials: 'include'
@@ -36,7 +36,6 @@ const LoginInformation = () => {
     .then(data => {
       console.log(data);
       if(data === 'true') {
-        setCookies('loginInfo', '1');
         console.log('ログイン成功');
         navigate('/');
       } else {

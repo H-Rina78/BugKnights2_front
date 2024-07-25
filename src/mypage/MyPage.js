@@ -63,7 +63,7 @@ const MyPage = () =>{
     }
 
     useEffect(() => {
-        fetch('bugknights-b.azurewebsites.net/bk/getUserCookie', {
+        fetch('http://localhost:8080/bk/getUserCookie', {
             method: 'GET',
             credentials: 'include' // クッキーを含めるためのオプション
         })

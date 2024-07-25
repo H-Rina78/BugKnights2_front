@@ -10,9 +10,10 @@ import { useNavigate } from 'react-router-dom';
 const ProductDetail = (props) => {
     const navigate = useNavigate();
 
-    const stringUrl = 'https://bugknights-b.azurewebsites.net/search/recommend';
+    const stringUrl = 'http://localhost:8080/search/recommend';
 
     const [quantity, setQuantity] = useState('1');
+    const [cartError, setCartError] = useState(0);
 
     const [cookies] = useCookies('');
 
@@ -73,7 +74,7 @@ const ProductDetail = (props) => {
             formData.append('quantity', quantity);
             console.log(item.id);
             console.log(quantity);
-            fetch('bugknights-b.azurewebsites.net/bk/setCart', {
+            fetch('http://localhost:8080/bk/setCart', {
             method: 'POST',
             body: formData,
             credentials: 'include'
@@ -88,19 +89,25 @@ const ProductDetail = (props) => {
                 console.log(appendProduct);
                 props.setProductCart(appendProduct);
                 console.log('カートに登録しました');
+                setCartError(0);
                 props.setInputKeyword("");
                 props.setInputCategoryId("");
                 props.setMainContentsView(0);
                 props.setUpperPrice(NaN);
                 props.setLowerPrice(NaN);
                 navigate(0);
+            } else if(data === '20length'){
+                console.log('カート商品が多すぎます');
+                setCartError(1);
             } else {
                 console.log('カートに登録できませんでした');
+                setCartError(1);
             }
             })
             .catch(error => console.error(error));
           } else {
             console.log('カートに登録時にエラーが出ました');
+            setCartError(2);
           }
     };
 
@@ -142,6 +149,12 @@ const ProductDetail = (props) => {
                                 {/* カートボタン */}
                                 <Col xs={6} md={4}>
                                     <Button variant='primary' onClick={() => addToCart(props.product)}>カートに入れる</Button>
+                                    {cartError === 1 && 
+                                        <p style={{color: 'red'}}>カートがいっぱいです</p>
+                                    }
+                                    {cartError === 2 && 
+                                        <p style={{color: 'red'}}>ログインしてください</p>
+                                    }
                                 </Col>
                             </Col>
                         </Row>

@@ -31,7 +31,7 @@ const RegisterForm = () => {
     const formData = new FormData();
     formData.append('id', userId);
     formData.append('mail', email);
-    fetch('https://bugknights-b.azurewebsites.net/registCheck', {
+    fetch('http://localhost:8080/registCheck', {
         method: 'POST',
         body: formData
     })
@@ -79,7 +79,7 @@ const RegisterForm = () => {
       formData.append('tel', tel);
       formData.append('mail', email);
       formData.append('password', password);
-      fetch('https://bugknights-b.azurewebsites.net/regist', {
+      fetch('http://localhost:8080/regist', {
         method: 'POST',
         body: formData
       })
@@ -143,6 +143,7 @@ const RegisterForm = () => {
                   value={userId}
                   onChange={(e) => setUserId(e.target.value)}
                   required
+                  maxLength={15}
                 />
               </Form.Group>
 
@@ -157,6 +158,7 @@ const RegisterForm = () => {
                             value={lastName}
                             onChange={(e) => setLastName(e.target.value)}
                             required
+                            maxLength={15}
                         />
                         <Form.Control 
                             type="text" 
@@ -164,6 +166,7 @@ const RegisterForm = () => {
                             value={firstName}
                             onChange={(e) => setFirstName(e.target.value)}
                             required
+                            maxLength={15}
                         />
                     </Col>
                 </Row>
@@ -177,6 +180,7 @@ const RegisterForm = () => {
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
                   required
+                  maxLength={50}
                 />
               </Form.Group>
 
@@ -188,17 +192,19 @@ const RegisterForm = () => {
                   value={tel}
                   onChange={(e) => setTel(e.target.value)}
                   required
+                  maxLength={11}
                 />
               </Form.Group>
 
               <Form.Group className='mb-3' controlId="formBasicEmail">
                 <Form.Label>メールアドレス</Form.Label>
                 <Form.Control 
-                  type="text" 
+                  type="email" 
                   placeholder="E-mail"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
+                  maxLength={50}
                 />
               </Form.Group>
 
@@ -210,6 +216,7 @@ const RegisterForm = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
+                  maxLength={15}
                 />
               </Form.Group>
 

@@ -21,7 +21,7 @@ const SecretRevision = () => {
         const formData = new FormData();
         formData.append('id', id);
         formData.append('oldPassword', oldPassword);
-        fetch('bugknights-b.azurewebsites.net/matchPassword', {
+        fetch('http://localhost:8080/matchPassword', {
             method: 'POST',
             body: formData
         })
@@ -43,7 +43,7 @@ const SecretRevision = () => {
             const formData = new FormData();
             formData.append('id', id);
             formData.append('newPassword', newPassword);
-            fetch('bugknights-b.azurewebsites.net/passwordRevision', {
+            fetch('http://localhost:8080/passwordRevision', {
                 method: 'POST',
                 body: formData
             })

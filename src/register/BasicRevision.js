@@ -40,7 +40,7 @@ const BasicRevision = () => {
             formData.append('address', address);
             formData.append('tel', tel);
             formData.append('id', id);
-            fetch('https://bugknights-b.azurewebsites.net/basicRevision', {
+            fetch('http://localhost:8080/basicRevision', {
                 method: 'POST',
                 body: formData
             })

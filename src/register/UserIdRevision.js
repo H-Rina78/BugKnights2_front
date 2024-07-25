@@ -24,7 +24,7 @@ const UserIdRevision = () => {
             const formData = new FormData();
             formData.append('currentId', currentId);
             formData.append('id', id);
-            fetch('https://bugknights-b.azurewebsites.net/idRevision', {
+            fetch('http://localhost:8080/idRevision', {
                 method: 'POST',
                 body: formData
             })

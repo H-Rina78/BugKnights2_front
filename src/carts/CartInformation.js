@@ -15,7 +15,7 @@ const CartInformation = () => {
 
     useEffect(() => {
         if (cookies.loginSession !== undefined && cookies.loginSession !== null) {
-            fetch('bugknights-b.azurewebsites.net/bk/getCart', {
+            fetch('http://localhost:8080/bk/getCart', {
               method: 'GET',
               credentials: 'include'
             })
@@ -34,9 +34,11 @@ const CartInformation = () => {
 
     const totalQuantity = () => {
         let totalQuantity = 0;
-        products.forEach((product) => {
-            totalQuantity += product.quantity;
-        })
+        if(Array.isArray(products)) {
+            products.forEach((product) => {
+                totalQuantity += product.quantity;
+            })
+        }
         return totalQuantity;
     }
 
@@ -45,7 +47,7 @@ const CartInformation = () => {
             const formData = new FormData();
             const stringProducts = JSON.stringify(products);
             formData.append('products', stringProducts);
-            fetch('bugknights-b.azurewebsites.net/bk/changeCart', {
+            fetch('http://localhost:8080/bk/changeCart', {
               method: 'POST',
               body: formData,
               credentials: 'include'
@@ -70,16 +72,29 @@ const CartInformation = () => {
 
     const changeQuantity = (event) => {
         const results = event.target.value.split(',');
-        const productList = products.map((product) => {
-            if(product.id === results[0]) {
-                product.quantity = parseInt(results[1], 10);
-                return product;
-            } else {
-                return product;
-            }
-        });
-        setProducts(productList);
+        if(Array.isArray(products)) {
+            const productList = products.map((product) => {
+                if(product.id === results[0]) {
+                    product.quantity = parseInt(results[1], 10);
+                    return product;
+                } else {
+                    return product;
+                }
+            });
+            setProducts(productList);
+        }
     }
+
+    const [productTotal, setProductTotal] = useState([]);
+    useEffect( () => {
+        let total = 0;
+        if(Array.isArray(products)) {
+            products.forEach((product) => {
+                total += product.price * product.quantity;
+            });
+        }
+        setProductTotal(total);
+    },[setProductTotal,products]);
 
     const style = {
         backgroundColor:'#eaeaea'
@@ -135,7 +150,7 @@ const CartInformation = () => {
                     <Col className="col-9"><h1>カート</h1></Col>
                     <Col className="h5 col-3">カートに入っている商品：{totalQuantity()}点</Col>
                 </Row>
-                {products.map((product) => (
+                {Array.isArray(products) && products.map((product) => (
                     <Row key={product.id} className="p-2 mt-3" style={underlineStyle}>
                         <Col className="col-5 text-center">
                             <img style={{ width: '15rem', height: '10rem' }} src={`https://bugknights.blob.core.windows.net/products/${product.imageName}`} alt='advertisement' />
@@ -152,12 +167,16 @@ const CartInformation = () => {
                             </Row>
                         </Col>
                         <Col className="col-3 offset-end-1">
-                            <Row className="pb-4 text-center" style={underlineStyle}><span style={price}>{product.price}(税込 {Math.round(product.price * 1.1)}円)　　×　{product.quantity}</span></Row>
+                            <Row className="pb-4 text-center" style={underlineStyle}><span style={price}>{product.price}円(税込 {Math.round(product.price * 1.1)}円)　　×　{product.quantity}</span></Row>
                             <Row className="text-center"><span style={price}>合計：{product.price * product.quantity}円(税込 {Math.round((product.price * product.quantity) * 1.1)}円)</span></Row>
                             <Row className="pt-5 justify-content-end"><Button variant='primary' style={deleteBtnStyle} onClick={() => handleClickRemove(product.id)}>削除</Button></Row>
                         </Col>
                     </Row>
                 ))}
+                <Row className="justify-content-end fs-3">
+                    小計：{productTotal}円(税込 {Math.round((productTotal) * 1.1)}円)
+
+                </Row>
             </Row>
         </Container>
         </>

@@ -11,8 +11,8 @@ import { useCookies } from 'react-cookie';
 
 const Search = (props) => {
     const [search, setSearch] = useState("");
-
-    const [products, setProducts] = [props.products, props.setProducts];
+    const setCartProducts = props.setCartProducts;
+    const setTotal = props.setTotal;
     const [cookies] = useCookies('');
 
     useEffect(() => {
@@ -23,24 +23,27 @@ const Search = (props) => {
             })
             .then(response => response.json())
             .then(data => {
-              setProducts(data);
+                setCartProducts(data);
+                if(!Array.isArray(data)) {
+                    setCartProducts([]);
+                }
+                console.log(data);
+                let totalQuantity = 0;
+                if(Array.isArray(data)) {
+                    data.forEach((product) => {
+                        totalQuantity += product.quantity;
+                    })
+                }
+                setTotal(totalQuantity);
+                console.log('カートのレンダリング中!');
             })
             .catch(error => console.error(error));
               console.log("エラー");
           } else {
-            setProducts([]);
+            setCartProducts([]);
           }
-    }, [cookies.loginSession, setProducts]);
+    }, [cookies.loginSession, setCartProducts, setTotal]);
 
-    const totalQuantity = () => {
-        let totalQuantity = 0;
-        if(Array.isArray(products)) {
-            products.forEach((product) => {
-                totalQuantity += product.quantity;
-            })
-        }
-        return totalQuantity;
-    }
 
     const SearchStyle = {
         backgroundColor: '#eaeaea'
@@ -87,9 +90,9 @@ const Search = (props) => {
                             <div style={{ position: 'relative', display: 'inline-block', width: '100px' }}>
                                 <BsCart4 size={24} /> {/* アイコンのサイズを指定 */}
                                 カート
-                                {totalQuantity() > 0 && (
+                                {props.total > 0 && (
                                     <Badge bg="secondary" className="cart-badge">
-                                        {totalQuantity()}
+                                        {props.total}
                                     </Badge>
                                 )}
                             </div>

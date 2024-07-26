@@ -19,12 +19,16 @@ const MainInformation = () => {
   const [lowerPrice, setLowerPrice] = useState(NaN);
   //画面管理用、0:TOP画面、1:商品ページ、2:商品詳細ページ
   const [mainContentsView, setMainContentsView] = useState(0);
-
+  //ログイン管理用、0:非ログイン、1:ログイン
   const [checkLogin, setCheckLogin] = useState(false);
-
-  const [products, setProducts] = useState([]);
-
+  //searchのカートボタンの商品
+  const [cartProducts, setCartProducts] = useState([]);
+  //searchのカートボタンの総商品数
+  const [total, setTotal] = useState(0);
+  //cookieの登録用
   const [cookies, , removeCookies] = useCookies('');
+
+  
 
   useEffect(() => {
     // Cookieから既存のカート情報を読み込む
@@ -54,14 +58,39 @@ const MainInformation = () => {
     //表示管理用の値やセッターをそれぞれのコンポーネントに渡してる
     <>
       <Header checkLogin={checkLogin} setCheckLogin={setCheckLogin}/>
-      <Search setInputKeyword={setInputKeyword} setInputCategoryId={setInputCategoryId} setMainContentsView={setMainContentsView} setUpperPrice={setUpperPrice} setLowerPrice={setLowerPrice} products={products} setProducts={setProducts} checkLogin={checkLogin}/>
+      <Search setInputKeyword={setInputKeyword}
+      setInputCategoryId={setInputCategoryId}
+      setMainContentsView={setMainContentsView}
+      setUpperPrice={setUpperPrice}
+      setLowerPrice={setLowerPrice}
+      setCartProducts={setCartProducts}
+      checkLogin={checkLogin}
+      total={total}
+      setTotal={setTotal}/>
       <Container fluid>
         <Row className='mt-3'>
           <Col className='col-2'>
-            <SideArea setInputCategoryId={setInputCategoryId} setMainContentsView={setMainContentsView} setInputKeyword={setInputKeyword} setUpperPrice={setUpperPrice} setLowerPrice={setLowerPrice} inputCategoryId={inputCategoryId}/>
+            <SideArea setInputCategoryId={setInputCategoryId}
+            setMainContentsView={setMainContentsView}
+            setInputKeyword={setInputKeyword}
+            setUpperPrice={setUpperPrice}
+            setLowerPrice={setLowerPrice}
+            inputCategoryId={inputCategoryId}/>
           </Col>
           <Col className='col-10'>
-            <MainContents inputCategoryId={inputCategoryId} inputKeyword={inputKeyword} mainContentsView={mainContentsView} setMainContentsView={setMainContentsView} upperPrice={upperPrice} lowerPrice={lowerPrice} setUpperPrice={setUpperPrice} setLowerPrice={setLowerPrice} setInputKeyword={setInputKeyword} setInputCategoryId={setInputCategoryId} products={products} setProducts={setProducts}/>
+            <MainContents inputCategoryId={inputCategoryId}
+            inputKeyword={inputKeyword}
+            mainContentsView={mainContentsView}
+            setMainContentsView={setMainContentsView}
+            upperPrice={upperPrice}
+            lowerPrice={lowerPrice}
+            setUpperPrice={setUpperPrice}
+            setLowerPrice={setLowerPrice}
+            setInputKeyword={setInputKeyword}
+            setInputCategoryId={setInputCategoryId}
+            cartProducts={cartProducts}
+            setCartProducts={setCartProducts}
+            setTotal={setTotal}/>
           </Col>
         </Row>
       </Container>

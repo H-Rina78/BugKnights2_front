@@ -4,6 +4,9 @@ import SimpleHeader from '../SimpleHeader';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
+import { FaRegEye } from "react-icons/fa";
+import { FaRegEyeSlash } from "react-icons/fa";
+import InputGroup from 'react-bootstrap/InputGroup';
 
 const LoginInformation = () => {
   const btnStyle = {
@@ -11,10 +14,11 @@ const LoginInformation = () => {
     width:'100px'
   }
 
-  const [, setCookies] = useCookies('');
+  const [, ] = useCookies('');
 
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordType, setPasswordType] = useState('password');
   const [message, setMessage] = useState('');
 
   const navigate = useNavigate();
@@ -48,6 +52,7 @@ const LoginInformation = () => {
 
   const registerStyle = {
     color: 'blue'
+    
   }
 
   const handleRegisterClick = () => {
@@ -61,26 +66,48 @@ const LoginInformation = () => {
       <Container className="mt-5">
         <Row className="justify-content-md-center">
           <Col xs={12} md={6}>
-            <Form onSubmit={handleSubmit}>
-              <Form.Group className='mb-3' controlId="formBasicEmail">
-                <Form.Label>ユーザーID</Form.Label>
-                <Form.Control 
-                  type="text" 
-                  placeholder="UserID"
-                  value={userId}
-                  onChange={(e) => setUserId(e.target.value)}
-                />
-              </Form.Group>
+              <Form onSubmit={handleSubmit} >
+              <Row>
+                <Form.Group className='mb-3' controlId="formBasicEmail">
+                  <Form.Label>ユーザーID</Form.Label>
+                  <Form.Control 
+                    type="text" 
+                    placeholder="UserID"
+                    value={userId}
+                    onChange={(e) => setUserId(e.target.value)}
+                  />
+                </Form.Group>
+              </Row>
 
-              <Form.Group className='mb-3' controlId="formBasicPassword">
-                <Form.Label>パスワード</Form.Label>
-                <Form.Control 
-                  type="password" 
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </Form.Group>
+              <Row md={12}>
+                <Form.Group className='mb-3' controlId="formBasicPassword">
+                  <Form.Label>パスワード</Form.Label>
+                  <InputGroup>
+                      <Form.Control 
+                        type={passwordType} 
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                      />
+                      <div className='p-2'>
+                        {passwordType === "password" && (
+                            <FaRegEye
+                              size={24}
+                              onClick={() => setPasswordType("text")}
+                              className="Password__visual"
+                            />
+                        )}
+                        {passwordType === "text" && (
+                            <FaRegEyeSlash
+                              size={24}
+                              onClick={() => setPasswordType("password")}
+                              className="Password__visual"
+                            />
+                        )}
+                      </div>
+                  </InputGroup>
+                </Form.Group>
+              </Row>
 
               <Row className="justify-content-center mb-3">
                 <Col xs={6} md={10} className='text-center'>
@@ -95,9 +122,9 @@ const LoginInformation = () => {
             </Form>
           </Col>
         </Row>
-        <Row className='justify-content-center' onClick={handleRegisterClick} >
+        <Row className='justify-content-center'>
             <Col className='col-2 text-center' style={registerStyle}>
-                新規登録はこちらから
+                <a onClick={handleRegisterClick} >新規登録はこちらから</a>
             </Col>
         </Row>
       </Container>

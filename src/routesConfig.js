@@ -10,6 +10,7 @@ import EMailRevision from "./register/EMailRevision";
 import UserIdRevision from "./register/UserIdRevision";
 import SecretRevision from "./register/SecretRevision";
 import Payment from "./payment/Payment";
+import PaymentCompleted from "./payment/PaymentCompleted";
 
 const routesConfig = createBrowserRouter(
     createRoutesFromElements(
@@ -25,6 +26,7 @@ const routesConfig = createBrowserRouter(
             <Route path="/UserIdRevision" element={<UserIdRevision />} />
             <Route path="/secretInfoRevision" element={<SecretRevision />} />
             <Route path="/payment" element={<Payment />} />
+            <Route path="/completed" element={<PaymentCompleted />} />
         </>
     )
 );

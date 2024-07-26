@@ -37,8 +37,10 @@ const MainContents = (props) =>{
                 setLowerPrice={props.setLowerPrice} 
                 setInputKeyword={props.setInputKeyword} 
                 setInputCategoryId={props.setInputCategoryId} 
-                setProduct={setProduct} productCart={props.products} 
-                setProductCart={props.setProducts}/>
+                setProduct={setProduct}
+                cartProducts={props.cartProducts}
+                setCartProducts={props.setCartProducts}
+                setTotal={props.setTotal}/>
             }
         </>
     );

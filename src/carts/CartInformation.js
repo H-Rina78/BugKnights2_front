@@ -101,7 +101,7 @@ const CartInformation = () => {
     useEffect(() => {
         const timer = setTimeout(() => {
             setShowComponent(true);
-        }, 1500);
+        }, 4000);
         return () => clearTimeout(timer);
     }, []);
 

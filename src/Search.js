@@ -61,6 +61,16 @@ const Search = (props) => {
         setSearch(event.target.value);
     }
 
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            props.setInputKeyword(search);
+            props.setInputCategoryId("");
+            props.setMainContentsView(1);
+            props.setUpperPrice(NaN);
+            props.setLowerPrice(NaN);
+        }
+      };
+
     const navigate = useNavigate();
 
     const handleCartClick = () => {
@@ -73,7 +83,7 @@ const Search = (props) => {
         <div className='container-fluid'>
             <div className='row py-3' style={SearchStyle}>
                 <div className='col-5'>
-                    <InputGroup className="m-1" onChange={handleChange}>
+                    <InputGroup className="m-1" onChange={handleChange} onKeyDown={handleKeyDown}>
                         <Form.Control
                             placeholder="商品名を入力してください"
                             aria-label="product"

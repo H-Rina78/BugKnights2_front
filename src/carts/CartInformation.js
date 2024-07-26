@@ -167,7 +167,7 @@ const CartInformation = () => {
                             </Row>
                         </Col>
                         <Col className="col-3 offset-end-1">
-                            <Row className="pb-4 text-center" style={underlineStyle}><span style={price}>{product.price}円(税込 {Math.round(product.price * 1.1)}円)　　×　{product.quantity}</span></Row>
+                            <Row className="pb-4 text-center" style={underlineStyle}><span style={price}>{product.price}円(税込 {Math.round(product.price * 1.1)}円)　×　{product.quantity}</span></Row>
                             <Row className="text-center"><span style={price}>合計：{product.price * product.quantity}円(税込 {Math.round((product.price * product.quantity) * 1.1)}円)</span></Row>
                             <Row className="pt-5 justify-content-end"><Button variant='primary' style={deleteBtnStyle} onClick={() => handleClickRemove(product.id)}>削除</Button></Row>
                         </Col>

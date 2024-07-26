@@ -124,7 +124,7 @@ const LoginInformation = () => {
         </Row>
         <Row className='justify-content-center'>
             <Col className='col-2 text-center' style={registerStyle}>
-                <a onClick={handleRegisterClick} >新規登録はこちらから</a>
+                <span onClick={handleRegisterClick} >新規登録はこちらから</span>
             </Col>
         </Row>
       </Container>

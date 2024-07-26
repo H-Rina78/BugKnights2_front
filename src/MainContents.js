@@ -13,17 +13,32 @@ const MainContents = (props) =>{
             {(props.mainContentsView === 0) &&
             <>
                 {/* <RecommendTop /> */}
-                <MainTop setMainContentsView={props.setMainContentsView} setProduct={setProduct} />
+                <MainTop setMainContentsView={props.setMainContentsView} 
+                setProduct={setProduct} />
             </>
             }
             {(props.mainContentsView === 1) &&
                 <>
-                    <SearchByPrice setUpperPrice={props.setUpperPrice} setLowerPrice={props.setLowerPrice}/>
-                    <SearchProducts inputCategoryId={props.inputCategoryId} inputKeyword={props.inputKeyword} upperPrice={props.upperPrice} lowerPrice={props.lowerPrice} setMainContentsView={props.setMainContentsView} setProduct={setProduct}/>
+                    <SearchByPrice setUpperPrice={props.setUpperPrice} 
+                    setLowerPrice={props.setLowerPrice}/>
+                    <SearchProducts 
+                    inputCategoryId={props.inputCategoryId} 
+                    inputKeyword={props.inputKeyword} 
+                    upperPrice={props.upperPrice} 
+                    lowerPrice={props.lowerPrice} 
+                    setMainContentsView={props.setMainContentsView} 
+                    setProduct={setProduct}/>
                 </>
             }
             {(props.mainContentsView === 2) &&
-                <ProductDetail product={product} setMainContentsView={props.setMainContentsView} setUpperPrice={props.setUpperPrice} setLowerPrice={props.setLowerPrice} setInputKeyword={props.setInputKeyword} setInputCategoryId={props.setInputCategoryId}  setProduct={setProduct} productCart={props.products} setProductCart={props.setProducts}/>
+                <ProductDetail product={product} 
+                setMainContentsView={props.setMainContentsView} 
+                setUpperPrice={props.setUpperPrice} 
+                setLowerPrice={props.setLowerPrice} 
+                setInputKeyword={props.setInputKeyword} 
+                setInputCategoryId={props.setInputCategoryId} 
+                setProduct={setProduct} productCart={props.products} 
+                setProductCart={props.setProducts}/>
             }
         </>
     );

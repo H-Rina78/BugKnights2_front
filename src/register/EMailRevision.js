@@ -27,7 +27,7 @@ const EMailRevision = () => {
             const formData = new FormData();
             formData.append('mail',mail);
             formData.append('id',id);
-            fetch('http://localhost:8080/mailRevision', {
+            fetch('https://bugknights-b.azurewebsites.net/mailRevision', {
                 method: 'POST',
                 body: formData
             })

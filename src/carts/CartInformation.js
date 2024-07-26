@@ -12,6 +12,7 @@ const CartInformation = () => {
     const [cookies] = useCookies('');
 
     const handleClick = () => navigate("/");
+    const handleClickPayment = () => navigate("/payment");
 
     useEffect(() => {
         if (cookies.loginSession !== undefined && cookies.loginSession !== null) {
@@ -175,9 +176,9 @@ const CartInformation = () => {
                 ))}
                 <Row className="justify-content-end fs-3">
                     小計：{productTotal}円(税込 {Math.round((productTotal) * 1.1)}円)
-
                 </Row>
             </Row>
+            <Row className="justify-content-end fs-3"><Button variant='primary' style={deleteBtnStyle} className="d-flex align-items-center justify-content-center" onClick={handleClickPayment}>レジへ進む</Button></Row>
         </Container>
         </>
     );

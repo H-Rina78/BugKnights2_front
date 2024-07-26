@@ -5,11 +5,9 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import { useCookies } from 'react-cookie';
-import { useNavigate } from 'react-router-dom';
+
 
 const ProductDetail = (props) => {
-    const navigate = useNavigate();
-
     const stringUrl = 'http://localhost:8080/search/recommend';
 
     const [quantity, setQuantity] = useState('1');
@@ -66,6 +64,10 @@ const ProductDetail = (props) => {
         width: '60px',  // プルダウンの幅を調整
         fontSize: '12px',  // フォントサイズを小さくする
     }
+    //カンマ表示の処理
+    const numberFormat = (num) => {
+        return num.toLocaleString();
+    };
 
     const addToCart = (item) => {
         if (cookies.loginSession !== undefined && cookies.loginSession !== null) {
@@ -85,9 +87,19 @@ const ProductDetail = (props) => {
             if(data === 'true') {
                 item.quantity = quantity;
                 console.log(item);
-                const appendProduct = props.productCart
-                console.log(appendProduct);
-                props.setProductCart(appendProduct);
+                const appendProduct = props.cartProducts
+                let checkProduct = true;
+                for(let i = 0; i < appendProduct.length; i++) {
+                    const product = appendProduct[i];
+                    if(product.id === item.id) {
+                        appendProduct[i] = item;
+                        checkProduct = false;
+                    }
+                }
+                if(checkProduct) {
+                    appendProduct.push(item);
+                }
+                props.setCartProducts(appendProduct);
                 console.log('カートに登録しました');
                 setCartError(0);
                 props.setInputKeyword("");
@@ -95,7 +107,13 @@ const ProductDetail = (props) => {
                 props.setMainContentsView(0);
                 props.setUpperPrice(NaN);
                 props.setLowerPrice(NaN);
-                navigate(0);
+                let totalQuantity = 0;
+                if(Array.isArray(appendProduct)) {
+                    appendProduct.forEach((product) => {
+                        totalQuantity += parseInt(product.quantity);
+                    })
+                }
+                props.setTotal(totalQuantity);
             } else if(data === '20length'){
                 console.log('カート商品が多すぎます');
                 setCartError(1);
@@ -129,7 +147,7 @@ const ProductDetail = (props) => {
                         <Row className='align-items-center'>
                             {/* 価格 */}
                             <Col xs={6} md={7} className='offset-1 mt-1 fs-2'>
-                                <div>{props.product.price}円 (税込 {Math.round(props.product.price * 1.1)}円)</div>
+                                <div>{numberFormat(props.product.price)}円 (税込 {numberFormat(Math.round(props.product.price * 1.1))}円)</div>
                             </Col>
                             <Col md={4} style={{display: 'flex'}}>
                                 数量：
@@ -183,8 +201,8 @@ const ProductDetail = (props) => {
                                 <Card.Img variant='top' src={`https://bugknights.blob.core.windows.net/products/${product.imageName}`} style={{ width: '100%', height: '7rem' }} />
                                 <Card.Body>
                                     <Card.Text>{product.name}</Card.Text>
-                                    <Card.Title style={{fontSize:'20px'}}>{product.price}円</Card.Title>
-                                    <Card.Text className='ms-2' style={{fontSize:'15px'}}>(税込 {Math.round(product.price * 1.1)}円)</Card.Text>
+                                    <Card.Title style={{fontSize:'20px'}}>{numberFormat(product.price)}円</Card.Title>
+                                    <Card.Text className='ms-2' style={{fontSize:'15px'}}>(税込 {numberFormat(Math.round(product.price * 1.1))}円)</Card.Text>
                                 </Card.Body>
                             </Card>
                         </div>

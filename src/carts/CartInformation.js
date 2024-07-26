@@ -97,6 +97,14 @@ const CartInformation = () => {
         setProductTotal(total);
     },[setProductTotal,products]);
 
+    const [showComponent, setShowComponent] = useState(false);
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setShowComponent(true);
+        }, 1500);
+        return () => clearTimeout(timer);
+    }, []);
+
     const style = {
         backgroundColor:'#eaeaea'
     }
@@ -149,7 +157,7 @@ const CartInformation = () => {
         <SimpleHeader />
         <Container fluid className='px-5 py-3' style={style}>
         <Button className="ms-3 mb-3" onClick={handleClick} style={btnStyle}>戻る</Button>
-        {products !== defaultProducts && <Button className="ms-3 mb-3" style={saveBtnStyle} onClick={handleClickChangeSave}>変更を保存する</Button>}
+        {products !== defaultProducts && showComponent && <Button className="ms-3 mb-3" style={saveBtnStyle} onClick={handleClickChangeSave}>変更を保存する</Button>}
             <Row className="justify-content-center py-3 px-5"  style={style2}>
                 <Row style={underlineStyle} className="d-flex align-items-center justify-content-center">
                     <Col className="col-9"><h1>カート</h1></Col>
@@ -173,7 +181,7 @@ const CartInformation = () => {
                         </Col>
                         <Col className="col-3 offset-end-1">
                             <Row className="pb-4 text-center" style={underlineStyle}><span style={price}>{numberFormat(product.price)}円(税込 {Math.round(product.price * 1.1)}円)　×　{product.quantity}</span></Row>
-                            <Row className="text-center"><span style={price}>合計：{numberFormat(product.price * product.quantity)}円(税込 {Math.round((product.price * product.quantity) * 1.1)}円)</span></Row>
+                            <Row className="text-center"><span style={price}>合計：{numberFormat(product.price * product.quantity)}円(税込 {numberFormat(Math.round((product.price * product.quantity) * 1.1))}円)</span></Row>
                             <Row className="pt-5 justify-content-end"><Button variant='primary' style={deleteBtnStyle} onClick={() => handleClickRemove(product.id)}>削除</Button></Row>
                         </Col>
                     </Row>

@@ -58,6 +58,10 @@ const SearchProducts = (props) => {
         event.currentTarget.style.transform = 'scale(1)';
     }
 
+    const numberFormat = (num) => {
+        return num.toLocaleString();
+    };
+
     return (
         <>
             <div className='row'>
@@ -72,8 +76,8 @@ const SearchProducts = (props) => {
                                 <Card.Text>{product.name}</Card.Text>
                                 <Card.Text>{product.overview}</Card.Text>
                                 <div style={{display:'flex'}}>
-                                <Card.Title>{product.price}円</Card.Title>
-                                <Card.Text className='ms-2'>(税込 {Math.round(product.price * 1.1)}円)</Card.Text>
+                                <Card.Title>{numberFormat(product.price)}円</Card.Title>
+                                <Card.Text className='ms-2'>(税込 {numberFormat(Math.round(product.price * 1.1))}円)</Card.Text>
                                 </div>
                             </Card.Body>
                         </Card>

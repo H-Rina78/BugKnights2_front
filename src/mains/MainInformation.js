@@ -28,8 +28,6 @@ const MainInformation = () => {
   //cookieの登録用
   const [cookies, , removeCookies] = useCookies('');
 
-  
-
   useEffect(() => {
     // Cookieから既存のカート情報を読み込む
     if (cookies.loginSession !== undefined && cookies.loginSession !== null) {

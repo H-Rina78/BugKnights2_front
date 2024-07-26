@@ -88,6 +88,11 @@ const MyPage = () =>{
         width:'100px'
     }
 
+    const btnChangeStyle = {
+        hight:'10px',
+        width:'60px'
+    }
+
     const boxStyle = {
         border: "solid 2px #eaeaea",
         padding: "8px",
@@ -111,40 +116,82 @@ const MyPage = () =>{
                         <Col className="col-8">
                             <h5 className="py-2 ps-2" style={AllStyle}>基本情報</h5>
                             <Row className="mb-3">
-                                <Col className="col-7 mt-2">
-                                    <p className="offset-1">氏名　　　：<span className="ps-3">{user.lastName} {user.firstName}</span></p>
-                                    <p className="offset-1">住所　　　：<span className="ps-3">{user.address}</span></p>
-                                    <p className="offset-1">電話番号　：<span className="ps-3">{user.tel}</span></p>
+                                <Col className="col-10 mt-2 ps-0">
+                                    <Row className="ms-3">
+                                        <Col className="col-3 pe-0">
+                                            <p className="offset-1">氏名　　　：</p>
+                                        </Col>
+                                        <Col className="col-9 ps-0">
+                                            <p className="ps-3">{user.lastName} {user.firstName}</p>
+                                        </Col>
+                                    </Row>
+                                    <Row className="ms-3">
+                                        <Col className="col-3 pe-0">
+                                            <p className="offset-1">住所　　　：</p>
+                                        </Col>
+                                        <Col className="col-9 ps-0">
+                                            <p className="ps-3">{user.address}</p>
+                                        </Col>
+                                    </Row>
+                                    <Row className="ms-3">
+                                        <Col className="col-3 pe-0">
+                                            <p className="offset-1">電話番号　：</p>
+                                        </Col>
+                                        <Col className="col-9 ps-0">
+                                            <span className="ps-3">{user.tel}</span>
+                                        </Col>
+                                    </Row>     
                                 </Col>
-                                <Col className="col-4 ms-5 d-flex align-items-center justify-content-end">
-                                    <Button style={btnStyle} onClick={basicInfoRevision}>変更</Button>
+                                <Col className="col-2 d-flex align-items-center justify-content-end">
+                                    <Button style={btnChangeStyle} onClick={basicInfoRevision}>変更</Button>
                                 </Col>
                             </Row>
                             <h5 className="py-2 ps-2" style={AllStyle}>メールアドレス</h5>
                             <Row  className="mb-3">
-                                <Col className="col-7 mt-2">
-                                    <p className="offset-1">メールアドレス：<span className="ps-3">{user.mail}</span></p>
+                                <Col className="col-10 mt-2 ps-0">
+                                    <Row className="ms-3">
+                                        <Col className="col-3 pe-0">
+                                            <p className="offset-1">メールアドレス：</p>
+                                        </Col>
+                                        <Col className="col-9 ps-0">
+                                            <p className="ps-3">{user.mail}</p>
+                                        </Col>
+                                    </Row>
                                 </Col>
-                                <Col className="col-4 ms-5 d-flex align-items-center justify-content-end">
-                                    <Button style={btnStyle} onClick={mailRevision}>変更</Button>
+                                <Col className="col-2 d-flex align-items-center justify-content-end">
+                                    <Button style={btnChangeStyle} onClick={mailRevision}>変更</Button>
                                 </Col>
                             </Row>
                             <h5 className="py-2 ps-2" style={AllStyle}>ユーザーID</h5>
                             <Row  className="mb-3">
-                                <Col className="col-7 mt-2">
-                                    <p className="offset-1">ユーザーID　：<span className="ps-3">{user.id}</span></p>
+                                <Col className="col-10 mt-2 ps-0">
+                                    <Row  className="ms-3">
+                                        <Col className="col-3 pe-0">
+                                            <p className="offset-1">ユーザーID　：</p>
+                                        </Col>
+                                        <Col className="col-9 ps-0">
+                                            <p className="ps-3">{user.id}</p> 
+                                        </Col>
+                                    </Row>
                                 </Col>
-                                <Col className="col-4 ms-5 d-flex align-items-center justify-content-end">
-                                    <Button style={btnStyle} onClick={UserIdRevision}>変更</Button>
+                                <Col className="col-2 d-flex align-items-center justify-content-end">
+                                    <Button style={btnChangeStyle} onClick={UserIdRevision}>変更</Button>
                                 </Col>
                             </Row>
                             <h5 className="py-2 ps-2" style={AllStyle}>パスワード</h5>
                             <Row  className="mb-3">
-                                <Col className="col-7 mt-2">
-                                    <p className="offset-1">パスワード 　：<span className="ps-3">セキュリティ上非表示となっています。</span></p>
+                                <Col className="col-10 mt-2 ps-0">
+                                    <Row  className="ms-3">
+                                        <Col className="col-3 pe-0">
+                                            <p className="offset-1">パスワード 　：</p>
+                                        </Col>
+                                        <Col className="col-9 ps-0">
+                                            <p className="ps-3">セキュリティ上非表示となっています。</p>
+                                        </Col>
+                                    </Row>
                                 </Col>
-                                <Col className="col-4 ms-5 d-flex align-items-center justify-content-end">
-                                    <Button style={btnStyle} onClick={passwordRevision}>変更</Button>
+                                <Col className="col-2 d-flex align-items-center justify-content-end">
+                                    <Button style={btnChangeStyle} onClick={passwordRevision}>変更</Button>
                                 </Col>
                             </Row>
                         </Col>    

@@ -36,7 +36,7 @@ const Payment = () => {
     const toggleAddressEdit = () => {
         if (addressEditable) {
             // 編集をキャンセルした場合は住所をリセット
-            setAddress(user.address || '');
+            setAddress('');
         }
         setAddressEditable(!addressEditable);
     };

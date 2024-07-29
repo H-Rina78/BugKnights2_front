@@ -1,0 +1,73 @@
+/* Payment.css */
+
+/* 全体の背景色とパディング */
+.Confirmation-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5; /* 淡いグレー */
+}
+
+/* ヘッダー行のスタイリング */
+.header-row {
+    margin-bottom: 20px;
+    background-color:rgb(18, 122, 216); /* 濃い青 */
+    padding: 15px;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+}
+
+/* 住所選択、配送日時、支払い方法のセクション */
+.address-row, .delivery-time-row, .payment-method-row {
+    margin-bottom: 20px;
+}
+
+/* フォームグループのスタイリング */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #003366; /* 濃い青 */
+}
+
+.form-control {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #003366; /* 濃い青 */
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-control:focus {
+    border-color: #005bb5; /* 青色のフォーカス */
+    box-shadow: 0 0 0 0.2rem rgba(0, 92, 183, 0.25);
+}
+
+/* ラジオボタンのスタイリング */
+.form-check {
+    margin-bottom: 10px;
+}
+
+.form-check-input {
+    margin-right: 10px;
+}
+
+.form-check-label {
+    font-weight: normal;
+    color: #333; /* ダークグレー */
+}
+
+.form-check-input:checked {
+    background-color: #003366; /* 濃い青 */
+    border-color: #003366; /* 濃い青 */
+}
+
+.form-check-input:focus {
+    border-color: #005bb5; /* 青色のフォーカス */
+    box-shadow: 0 0 0 0.2rem rgba(0, 92, 183, 0.25);
+}

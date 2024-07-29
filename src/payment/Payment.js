@@ -2,7 +2,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import SimpleHeader from '../SimpleHeader';
 import './Payment.css';
 import {Button} from "react-bootstrap";
-import { useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import Form from 'react-bootstrap/Form';
 import { useEffect, useState } from "react";
 
@@ -10,7 +10,7 @@ const Payment = () => {
 
     const navigate = useNavigate();
     const handleClick = () => navigate("/cart");
-    const handleClickCompleted = () => navigate("/completed");
+    const handleClickConfirmation = () => navigate("/confirmation");
 
     const [user, setUser] = useState({});
     const [addressEditable, setAddressEditable] = useState(false); // 新しい状態変数
@@ -190,7 +190,7 @@ const Payment = () => {
                     </Col>
                 </Row>
                 <Row className='justify-content-end'>
-                    <Button className="ms-3 my-2" onClick={handleClickCompleted} style={btnStyle}>確認画面</Button>
+                    <Button className="ms-3 my-2" onClick={handleClickConfirmation} style={btnStyle}>確認画面</Button>
                 </Row>
             </Container>
 

@@ -11,6 +11,7 @@ import UserIdRevision from "./register/UserIdRevision";
 import SecretRevision from "./register/SecretRevision";
 import Payment from "./payment/Payment";
 import PaymentCompleted from "./payment/PaymentCompleted";
+import Confirmation from "./payment/Confirmation";
 
 const routesConfig = createBrowserRouter(
     createRoutesFromElements(
@@ -27,6 +28,7 @@ const routesConfig = createBrowserRouter(
             <Route path="/secretInfoRevision" element={<SecretRevision />} />
             <Route path="/payment" element={<Payment />} />
             <Route path="/completed" element={<PaymentCompleted />} />
+            <Route path="/confirmation" element={<Confirmation />} />
         </>
     )
 );

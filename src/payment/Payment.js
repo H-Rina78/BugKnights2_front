@@ -13,6 +13,8 @@ const Payment = () => {
     const handleClickCompleted = () => navigate("/completed");
 
     const [user, setUser] = useState({});
+    const [addressEditable, setAddressEditable] = useState(false); // 新しい状態変数
+    const [address, setAddress] = useState('');
 
     useEffect(() => {
         fetch('http://localhost:8080/bk/getUserCookie', {
@@ -30,6 +32,14 @@ const Payment = () => {
             console.error(error);
         });
     }, []);
+
+    const toggleAddressEdit = () => {
+        if (addressEditable) {
+            // 編集をキャンセルした場合は住所をリセット
+            setAddress('');
+        }
+        setAddressEditable(!addressEditable);
+    };
 
     // 選択された支払い方法を管理するための状態
     const [selectedMethod, setSelectedMethod] = useState('creditCard');
@@ -72,22 +82,18 @@ const Payment = () => {
                         <h4>住所選択：</h4>
                     </Col>
                     <Col className='col-4 text-end'>
-                        <Button className="ms-3 my-2" onClick={handleClick} style={btnStyle}>変更する</Button>
+                        <Button className="ms-3 my-2" onClick={toggleAddressEdit} style={btnStyle}>
+                            {addressEditable ? 'キャンセル' : '変更する'}
+                        </Button>
                     </Col> 
                     <Col className='col-12'>
                         <Form.Control
                             type="text"
+                            value={address}
                             placeholder={user.address}
-                            aria-label="Disabled input example"
-                            disabled
-                            readOnly
-                        />
-                        <br />
-                        <Form.Control
-                            type="text"
-                            placeholder="新しい住所"
-                            aria-label="Disabled input example"
-                            readOnly
+                            aria-label="住所入力"
+                            disabled={!addressEditable}
+                            onChange={(e) => setAddress(e.target.value)}
                         />
                     </Col>  
                 </Row>

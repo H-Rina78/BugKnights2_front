@@ -20,7 +20,7 @@ const BasicRevision = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-    };
+    }
 
     const btnStyle = {
         hight:'20px',

@@ -9,8 +9,8 @@ import { useEffect, useState } from "react";
 const MyPage = () =>{
     const [, , removeCookies] = useCookies('');
     const [user, setUser] = useState({});
+    
     const navigate = useNavigate();
-
     const handleClick = () => navigate("/");
 
     const handleClickLogout = () => {

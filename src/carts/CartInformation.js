@@ -190,7 +190,7 @@ const CartInformation = () => {
                     小計：{numberFormat(productTotal)}円(税込 {numberFormat(Math.round((productTotal) * 1.1))}円)
                 </Row>
             </Row>
-            <Row className="justify-content-end fs-3"><Button variant='primary' style={deleteBtnStyle} className="d-flex align-items-center justify-content-center" onClick={handleClickPayment}>レジへ進む</Button></Row>
+            <Row className="justify-content-end p-3"><Button variant='primary' style={btnStyle} className="d-flex align-items-center justify-content-center" onClick={handleClickPayment}>レジへ進む</Button></Row>
         </Container>
         </>
     );

@@ -16,7 +16,7 @@ const CartInformation = () => {
 
     useEffect(() => {
         if (cookies.loginSession !== undefined && cookies.loginSession !== null) {
-            fetch('http://localhost:8080/bk/getCart', {
+            fetch('https://bugknights-b.azurewebsites.net/bk/getCart', {
               method: 'GET',
               credentials: 'include'
             })
@@ -48,7 +48,7 @@ const CartInformation = () => {
             const formData = new FormData();
             const stringProducts = JSON.stringify(products);
             formData.append('products', stringProducts);
-            fetch('http://localhost:8080/bk/changeCart', {
+            fetch('https://bugknights-b.azurewebsites.net/bk/changeCart', {
               method: 'POST',
               body: formData,
               credentials: 'include'

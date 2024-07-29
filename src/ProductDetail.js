@@ -8,7 +8,7 @@ import { useCookies } from 'react-cookie';
 
 
 const ProductDetail = (props) => {
-    const stringUrl = 'http://localhost:8080/search/recommend';
+    const stringUrl = 'https://bugknights-b.azurewebsites.net/search/recommend';
 
     const [quantity, setQuantity] = useState('1');
     const [cartError, setCartError] = useState(0);
@@ -76,7 +76,7 @@ const ProductDetail = (props) => {
             formData.append('quantity', quantity);
             console.log(item.id);
             console.log(quantity);
-            fetch('http://localhost:8080/bk/setCart', {
+            fetch('https://bugknights-b.azurewebsites.net/bk/setCart', {
             method: 'POST',
             body: formData,
             credentials: 'include'

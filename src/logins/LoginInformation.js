@@ -14,7 +14,7 @@ const LoginInformation = () => {
     width:'100px'
   }
 
-  const [, ] = useCookies('');
+  const [, setCookies] = useCookies('');
 
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
@@ -39,8 +39,9 @@ const LoginInformation = () => {
     .then(response => response.text())
     .then(data => {
       console.log(data);
-      if(data === 'true') {
+      if(data !== 'false') {
         console.log('ログイン成功');
+        setCookies('loginSession', data);
         navigate('/');
       } else {
         console.log('ログイン失敗');

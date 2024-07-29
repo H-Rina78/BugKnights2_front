@@ -17,7 +17,7 @@ const Search = (props) => {
 
     useEffect(() => {
         if (cookies.loginSession !== undefined && cookies.loginSession !== null) {
-            fetch('https://bugknights-b.azurewebsites.net/bk/getCart', {
+            fetch('http://localhost:8080/bk/getCart', {
               method: 'GET',
               credentials: 'include'
             })

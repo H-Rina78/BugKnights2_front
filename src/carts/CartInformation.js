@@ -128,7 +128,7 @@ const CartInformation = () => {
     }
 
     const btnStyle = {
-        height:'20px',
+        height:'35px',
         width:'100px'
     }
 

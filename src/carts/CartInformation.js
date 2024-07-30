@@ -12,7 +12,7 @@ const CartInformation = () => {
     const [cookies] = useCookies('');
 
     const handleClick = () => navigate("/");
-    const handleClickPayment = () => navigate("/payment");
+    const handleClickPayment = () => navigate("/payment", { state: { productTotal } });
 
     useEffect(() => {
         if (cookies.loginSession !== undefined && cookies.loginSession !== null) {
@@ -87,7 +87,7 @@ const CartInformation = () => {
     }
 
     const [productTotal, setProductTotal] = useState([]);
-    useEffect( () => {
+    useEffect(() => {
         let total = 0;
         if(Array.isArray(products)) {
             products.forEach((product) => {
@@ -95,7 +95,7 @@ const CartInformation = () => {
             });
         }
         setProductTotal(total);
-    },[setProductTotal,products]);
+    }, [setProductTotal, products]);
 
     const [showComponent, setShowComponent] = useState(false);
     useEffect(() => {
@@ -128,12 +128,12 @@ const CartInformation = () => {
     }
 
     const btnStyle = {
-        hight:'20px',
+        height:'20px',
         width:'100px'
     }
 
     const saveBtnStyle = {
-        hight:'20px',
+        height:'20px',
         width:'150px'
     }
 

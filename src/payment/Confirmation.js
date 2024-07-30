@@ -1,13 +1,12 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import SimpleHeader from '../SimpleHeader';
-import {Button} from "react-bootstrap";
-import {useNavigate} from "react-router-dom";
-import './Confirmation.css';
+import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
 import { useState } from "react";
+import './Confirmation.css';
 
-const Confirmation = () =>{
-
+const Confirmation = () => {
     const navigate = useNavigate();
     const handleClickBack = () => navigate("/payment");
     const handleClickCompleted = () => navigate("/completed");
@@ -17,18 +16,23 @@ const Confirmation = () =>{
     const [date] = useState(location.state.basicData.date);
     const [time] = useState(location.state.basicData.time);
     const [method] = useState(location.state.basicData.method);
+    const [total] = useState(location.state.basicData.total);
+
+    const numberFormat = (num) => {
+        return num.toLocaleString();
+    };
 
     const btnStyle = {
-        hight:'20px',
-        width:'100px'
-    }
+        height: '40px',
+        width: '100px'
+    };
 
-    return(
+    return (
         <>
-        <SimpleHeader />
-        <Button className="ms-3 my-2" onClick={handleClickBack} style={btnStyle}>戻る</Button>
-        <Container className="Confirmation-container">
-        <Row className="header-row">
+            <SimpleHeader />
+            <Button className="ms-3 my-2" onClick={handleClickBack} style={btnStyle}>戻る</Button>
+            <Container className="Confirmation-container">
+                <Row className="header-row">
                     <Col>
                         <h2>確認画面</h2>
                     </Col>     
@@ -70,15 +74,15 @@ const Confirmation = () =>{
                         <h4>金額　　　：</h4>
                     </Col>
                     <Col className='col-9 ps-0 text'>
-                        
+                        {numberFormat(total)}円（税込 {numberFormat(Math.round(total * 1.1))}円)
                     </Col>
                 </Row>
                 <Row className='justify-content-end'>
                     <Button className="ms-3 my-2" onClick={handleClickCompleted} style={btnStyle}>購入する</Button>
                 </Row>
-        </Container>
+            </Container>
         </>
-    )
-}
+    );
+};
 
 export default Confirmation;

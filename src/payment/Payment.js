@@ -1,13 +1,12 @@
 import { Container, Row, Col, Button, Form } from 'react-bootstrap';
 import SimpleHeader from '../SimpleHeader';
 import './Payment.css';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const Payment = () => {
     const navigate = useNavigate();
-    const handleClick = () => navigate("/cart");
-
+    const location = useLocation();
     const [user, setUser] = useState({});
     const [addressEditable, setAddressEditable] = useState(false);
     const [address, setAddress] = useState('');
@@ -15,8 +14,14 @@ const Payment = () => {
     const [deliveryDate, setDeliveryDate] = useState('');
     const [deliveryTime, setDeliveryTime] = useState('');
     const [errors, setErrors] = useState({});
+    const [productTotal, setProductTotal] = useState(0); // 小計を状態として管理
 
     useEffect(() => {
+        // 小計をlocation.stateから取得
+        if (location.state && location.state.productTotal) {
+            setProductTotal(location.state.productTotal);
+        }
+
         fetch('http://localhost:8080/bk/getUserCookie', {
             method: 'GET',
             credentials: 'include'
@@ -24,22 +29,19 @@ const Payment = () => {
         .then(response => response.text())
         .then(data => {
             if (data !== '') {
-                const userData = JSON.parse(data);
-                setUser(userData);
-                // user.addressが存在する場合にaddressを初期化
-                if (userData.address) {
-                    setAddress(userData.address);
-                }
+                setUser(JSON.parse(data));
+                setAddress(JSON.parse(data).address || ''); // user.address を初期値として設定
             }
         })
         .catch(error => {
             console.error(error);
         });
-    }, []);
+    }, [location.state]);
+
+    const handleClick = () => navigate("/cart");
 
     const toggleAddressEdit = () => {
         if (addressEditable) {
-            // 編集モードをキャンセルする際にuser.addressを再設定
             setAddress(user.address || '');
         }
         setAddressEditable(!addressEditable);
@@ -94,11 +96,16 @@ const Payment = () => {
                         address: address,
                         date: deliveryDate,
                         time: deliveryTime,
-                        method: selectedMethod
+                        method: selectedMethod,
+                        total: productTotal // 小計も一緒に渡す
                     }
                 }
             });
         }
+    };
+
+    const numberFormat = (num) => {
+        return num.toLocaleString();
     };
 
     const btnStyle = {
@@ -241,7 +248,7 @@ const Payment = () => {
                 <Row className="address-row">
                     <Col>
                         <h4>金額：</h4>
-                        <span></span>
+                        <span>小計: {numberFormat(productTotal)}円（税込 {numberFormat(Math.round(productTotal * 1.1))}円)</span>
                     </Col>
                 </Row>
                 <Row className='justify-content-end'>

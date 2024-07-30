@@ -124,133 +124,133 @@ const MyPage = () =>{
 
     return(
         <>
-        <SimpleHeader />
-        <header style={AllStyle}>
-            <Row>
-                <Col className="col-10"><h2 className="ps-3 py-2">マイページ</h2></Col>
-                <Col className="col-2 d-flex align-items-center justify-content-end"><Button className="me-2"style={btnStyle} onClick={handleClickLogout}>ログアウト</Button></Col>
-            </Row>
-        </header>
-        <Button className="ms-3 my-2" onClick={handleClick} style={btnStyle}>戻る</Button>
-        <Container >
-            <Row  className="ms-5" style={boxStyle}>
-                <Row className="my-2 text-center"><h3>登録情報</h3></Row>
-                    <Row className="justify-content-center">
-                        <Col className="col-8">
-                            <h5 className="py-2 ps-2" style={AllStyle}>基本情報</h5>
-                            <Row className="mb-3">
-                                <Col className="col-10 mt-2 ps-0">
-                                    <Row className="ms-3">
-                                        <Col className="col-3 pe-0">
-                                            <p className="offset-1">氏名　　　：</p>
-                                        </Col>
-                                        <Col className="col-9 ps-0">
-                                            <p className="ps-3">{user.lastName} {user.firstName}</p>
-                                        </Col>
-                                    </Row>
-                                    <Row className="ms-3">
-                                        <Col className="col-3 pe-0">
-                                            <p className="offset-1">住所　　　：</p>
-                                        </Col>
-                                        <Col className="col-9 ps-0">
-                                            <p className="ps-3">{user.address}</p>
-                                        </Col>
-                                    </Row>
-                                    <Row className="ms-3">
-                                        <Col className="col-3 pe-0">
-                                            <p className="offset-1">電話番号　：</p>
-                                        </Col>
-                                        <Col className="col-9 ps-0">
-                                            <span className="ps-3">{user.tel}</span>
-                                        </Col>
-                                    </Row>     
-                                </Col>
-                                <Col className="col-2 d-flex align-items-center justify-content-end">
-                                    <Button style={btnChangeStyle} onClick={basicInfoRevision}>変更</Button>
-                                </Col>
-                            </Row>
-                            <h5 className="py-2 ps-2" style={AllStyle}>メールアドレス</h5>
-                            <Row  className="mb-3">
-                                <Col className="col-10 mt-2 ps-0">
-                                    <Row className="ms-3">
-                                        <Col className="col-3 pe-0">
-                                            <p className="offset-1">メールアドレス：</p>
-                                        </Col>
-                                        <Col className="col-9 ps-0">
-                                            <p className="ps-3">{user.mail}</p>
-                                        </Col>
-                                    </Row>
-                                </Col>
-                                <Col className="col-2 d-flex align-items-center justify-content-end">
-                                    <Button style={btnChangeStyle} onClick={mailRevision}>変更</Button>
-                                </Col>
-                            </Row>
-                            <h5 className="py-2 ps-2" style={AllStyle}>ユーザーID</h5>
-                            <Row  className="mb-3">
-                                <Col className="col-10 mt-2 ps-0">
-                                    <Row  className="ms-3">
-                                        <Col className="col-3 pe-0">
-                                            <p className="offset-1">ユーザーID　：</p>
-                                        </Col>
-                                        <Col className="col-9 ps-0">
-                                            <p className="ps-3">{user.id}</p> 
-                                        </Col>
-                                    </Row>
-                                </Col>
-                                <Col className="col-2 d-flex align-items-center justify-content-end">
-                                    <Button style={btnChangeStyle} onClick={UserIdRevision}>変更</Button>
-                                </Col>
-                            </Row>
-                            <h5 className="py-2 ps-2" style={AllStyle}>パスワード</h5>
-                            <Row  className="mb-3">
-                                <Col className="col-10 mt-2 ps-0">
-                                    <Row  className="ms-3">
-                                        <Col className="col-3 pe-0">
-                                            <p className="offset-1">パスワード 　：</p>
-                                        </Col>
-                                        <Col className="col-9 ps-0">
-                                            <p className="ps-3">セキュリティ上非表示となっています。</p>
-                                        </Col>
-                                    </Row>
-                                </Col>
-                                <Col className="col-2 d-flex align-items-center justify-content-end">
-                                    <Button style={btnChangeStyle} onClick={passwordRevision}>変更</Button>
-                                </Col>
-                            </Row>
-                        </Col>    
+            <SimpleHeader />
+            <header style={AllStyle}>
+                <Row>
+                    <Col className="col-10"><h2 className="ps-3 py-2">マイページ</h2></Col>
+                    <Col className="col-2 d-flex align-items-center justify-content-end"><Button className="me-2"style={btnStyle} onClick={handleClickLogout}>ログアウト</Button></Col>
                 </Row>
-           </Row>
-           {order.length !== 0 &&
-                <Row className="ms-5" style={boxStyle}>
-                    <Row className="my-2 text-center"><h3>購入履歴</h3></Row>
-                    <Row className="justify-content-center">
-                        <>
-                        {order.map((orderPage) => (
+            </header>
+            <Button className="ms-3 my-2" onClick={handleClick} style={btnStyle}>戻る</Button>
+            <Container >
+                <Row  className="ms-5" style={boxStyle}>
+                    <Row className="my-2 text-center"><h3>登録情報</h3></Row>
+                        <Row className="justify-content-center">
                             <Col className="col-8">
-                                <h5 className="py-2 ps-2" style={AllStyle}>{orderPage.orderDate}</h5>
+                                <h5 className="py-2 ps-2" style={AllStyle}>基本情報</h5>
                                 <Row className="mb-3">
                                     <Col className="col-10 mt-2 ps-0">
-                                        <>
-                                            {orderPage.product.map((product) => (
-                                                <Row className="ms-3">
-                                                    <Col className="col-3 pe-0">
-                                                        <p className="offset-1">{product.name}　　：</p>
-                                                    </Col>
-                                                    <Col className="col-9 ps-0">
-                                                        <p className="ps-3">ここに商品が入る</p>
-                                                    </Col>
-                                                </Row>
-                                            ))}
-                                        </>
+                                        <Row className="ms-3">
+                                            <Col className="col-3 pe-0">
+                                                <p className="offset-1">氏名　　　：</p>
+                                            </Col>
+                                            <Col className="col-9 ps-0">
+                                                <p className="ps-3">{user.lastName} {user.firstName}</p>
+                                            </Col>
+                                        </Row>
+                                        <Row className="ms-3">
+                                            <Col className="col-3 pe-0">
+                                                <p className="offset-1">住所　　　：</p>
+                                            </Col>
+                                            <Col className="col-9 ps-0">
+                                                <p className="ps-3">{user.address}</p>
+                                            </Col>
+                                        </Row>
+                                        <Row className="ms-3">
+                                            <Col className="col-3 pe-0">
+                                                <p className="offset-1">電話番号　：</p>
+                                            </Col>
+                                            <Col className="col-9 ps-0">
+                                                <span className="ps-3">{user.tel}</span>
+                                            </Col>
+                                        </Row>     
+                                    </Col>
+                                    <Col className="col-2 d-flex align-items-center justify-content-end">
+                                        <Button style={btnChangeStyle} onClick={basicInfoRevision}>変更</Button>
                                     </Col>
                                 </Row>
-                            </Col>
-                        ))}
-                        </>
+                                <h5 className="py-2 ps-2" style={AllStyle}>メールアドレス</h5>
+                                <Row  className="mb-3">
+                                    <Col className="col-10 mt-2 ps-0">
+                                        <Row className="ms-3">
+                                            <Col className="col-3 pe-0">
+                                                <p className="offset-1">メールアドレス：</p>
+                                            </Col>
+                                            <Col className="col-9 ps-0">
+                                                <p className="ps-3">{user.mail}</p>
+                                            </Col>
+                                        </Row>
+                                    </Col>
+                                    <Col className="col-2 d-flex align-items-center justify-content-end">
+                                        <Button style={btnChangeStyle} onClick={mailRevision}>変更</Button>
+                                    </Col>
+                                </Row>
+                                <h5 className="py-2 ps-2" style={AllStyle}>ユーザーID</h5>
+                                <Row  className="mb-3">
+                                    <Col className="col-10 mt-2 ps-0">
+                                        <Row  className="ms-3">
+                                            <Col className="col-3 pe-0">
+                                                <p className="offset-1">ユーザーID　：</p>
+                                            </Col>
+                                            <Col className="col-9 ps-0">
+                                                <p className="ps-3">{user.id}</p> 
+                                            </Col>
+                                        </Row>
+                                    </Col>
+                                    <Col className="col-2 d-flex align-items-center justify-content-end">
+                                        <Button style={btnChangeStyle} onClick={UserIdRevision}>変更</Button>
+                                    </Col>
+                                </Row>
+                                <h5 className="py-2 ps-2" style={AllStyle}>パスワード</h5>
+                                <Row  className="mb-3">
+                                    <Col className="col-10 mt-2 ps-0">
+                                        <Row  className="ms-3">
+                                            <Col className="col-3 pe-0">
+                                                <p className="offset-1">パスワード 　：</p>
+                                            </Col>
+                                            <Col className="col-9 ps-0">
+                                                <p className="ps-3">セキュリティ上非表示となっています。</p>
+                                            </Col>
+                                        </Row>
+                                    </Col>
+                                    <Col className="col-2 d-flex align-items-center justify-content-end">
+                                        <Button style={btnChangeStyle} onClick={passwordRevision}>変更</Button>
+                                    </Col>
+                                </Row>
+                            </Col>    
                     </Row>
-                </Row>
-           }
-        </Container>
+            </Row>
+            {order.length !== 0 &&
+                    <Row className="ms-5" style={boxStyle}>
+                        <Row className="my-2 text-center"><h3>購入履歴</h3></Row>
+                        <Row className="justify-content-center">
+                            <>
+                                {order.map((orderPage) => (
+                                    <Col className="col-8">
+                                        <h5 className="py-2 ps-2" style={AllStyle}>{orderPage.orderDate}</h5>
+                                        <Row className="mb-3">
+                                            <Col className="col-10 mt-2 ps-0">
+                                                <>
+                                                    {orderPage.product.map((product) => (
+                                                        <Row className="ms-3">
+                                                            <Col className="col-3 pe-0">
+                                                                <p className="offset-1">{product.name}</p>
+                                                            </Col>
+                                                            <Col className="col-9 ps-0">
+                                                                <p className="ps-3">：{product.quantity}個</p>
+                                                            </Col>
+                                                        </Row>
+                                                    ))}
+                                                </>
+                                            </Col>
+                                        </Row>
+                                    </Col>
+                                ))}
+                            </>
+                        </Row>
+                    </Row>
+            }
+            </Container>
         </>
     )
 }

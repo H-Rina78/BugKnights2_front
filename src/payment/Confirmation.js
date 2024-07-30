@@ -11,8 +11,9 @@ const Confirmation = () => {
     const handleClickBack = () => navigate("/payment");
     const handleClickCompleted = () => {
         const formData = new FormData();
+        console.log(id);
         formData.append('id', id);
-        fetch('https://bugknights-b.azurewebsites.net/insertOrder', {
+        fetch('http://localhost:8080/insertOrder', {
                 method: 'POST',
                 body: formData
             })

@@ -133,7 +133,7 @@ const CartInformation = () => {
     }
 
     const saveBtnStyle = {
-        height:'20px',
+        height:'35px',
         width:'150px'
     }
 

@@ -9,7 +9,20 @@ import './Confirmation.css';
 const Confirmation = () => {
     const navigate = useNavigate();
     const handleClickBack = () => navigate("/payment");
-    const handleClickCompleted = () => navigate("/completed");
+    const handleClickCompleted = () => {
+        const formData = new FormData();
+        formData.append('id', id);
+        fetch('http://localhost:8080/insertOrder', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+                navigate("/completed");
+            })
+            .catch(error => console.error(error));    
+    }
 
     const location = useLocation();
     const [address] = useState(location.state.basicData.address);
@@ -17,6 +30,7 @@ const Confirmation = () => {
     const [time] = useState(location.state.basicData.time);
     const [method] = useState(location.state.basicData.method);
     const [total] = useState(location.state.basicData.total);
+    const [id] = useState(location.state.basicData.id);
 
     const numberFormat = (num) => {
         return num.toLocaleString();

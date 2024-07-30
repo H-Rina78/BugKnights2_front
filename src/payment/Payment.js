@@ -97,7 +97,8 @@ const Payment = () => {
                         date: deliveryDate,
                         time: deliveryTime,
                         method: selectedMethod,
-                        total: productTotal
+                        total: productTotal,
+                        id: user.id
                     }
                 }
             });

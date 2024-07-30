@@ -3,6 +3,7 @@ import SimpleHeader from '../SimpleHeader';
 import './Payment.css';
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useCookies } from 'react-cookie';
 
 const Payment = () => {
     const navigate = useNavigate();
@@ -15,6 +16,7 @@ const Payment = () => {
     const [deliveryTime, setDeliveryTime] = useState('');
     const [errors, setErrors] = useState({});
     const [productTotal, setProductTotal] = useState(0); // 小計を状態として管理
+    const [cookies] = useCookies('');
 
     useEffect(() => {
         // 小計をlocation.stateから取得
@@ -22,8 +24,11 @@ const Payment = () => {
             setProductTotal(location.state.productTotal);
         }
 
+        const formData = new FormData();
+        formData.append('session', cookies.loginSession);
         fetch('http://localhost:8080/bk/getUserCookie', {
-            method: 'GET',
+            method: 'POST',
+            body: formData,
             credentials: 'include'
         })
         .then(response => response.text())

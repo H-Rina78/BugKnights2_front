@@ -7,7 +7,7 @@ import { useCookies } from "react-cookie";
 import { useEffect, useState } from "react";
 
 const MyPage = () =>{
-    const [, , removeCookies] = useCookies('');
+    const [cookies, , removeCookies] = useCookies('');
     const [user, setUser] = useState({});
     const [order, setOrder] = useState({});
     
@@ -64,8 +64,11 @@ const MyPage = () =>{
     }
 
     useEffect(() => {
+        const formData = new FormData();
+        formData.append('session', cookies.loginSession);
         fetch('http://localhost:8080/bk/getUserCookie', {
-            method: 'GET',
+            method: 'POST',
+            body: formData,
             credentials: 'include' // クッキーを含めるためのオプション
         })
         .then(response => response.text())
@@ -78,7 +81,7 @@ const MyPage = () =>{
         .catch(error => {
             console.error(error);
         });
-    }, []);
+    }, [cookies.loginSession]);
 
     useEffect(() => {
         if(Object.keys(user).length !== 0){

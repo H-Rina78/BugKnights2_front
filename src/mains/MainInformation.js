@@ -31,8 +31,11 @@ const MainInformation = () => {
   useEffect(() => {
     // Cookieから既存のカート情報を読み込む
     if (cookies.loginSession !== undefined && cookies.loginSession !== null) {
+      const formData = new FormData();
+      formData.append('session', cookies.loginSession);
       fetch('http://localhost:8080/bk/checkLogin', {
-        method: 'GET',
+        method: 'POST',
+        body: formData,
         credentials: 'include'
       })
       .then(response => response.text())

@@ -74,6 +74,7 @@ const ProductDetail = (props) => {
             const formData = new FormData();
             formData.append('id', item.id);
             formData.append('quantity', quantity);
+            formData.append('session', cookies.loginSession);
             console.log(item.id);
             console.log(quantity);
             fetch('http://localhost:8080/bk/setCart', {

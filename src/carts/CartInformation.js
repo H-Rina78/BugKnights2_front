@@ -16,8 +16,11 @@ const CartInformation = () => {
 
     useEffect(() => {
         if (cookies.loginSession !== undefined && cookies.loginSession !== null) {
+            const formData = new FormData();
+            formData.append('session', cookies.loginSession);
             fetch('http://localhost:8080/bk/getCart', {
-              method: 'GET',
+              method: 'POST',
+              body: formData,
               credentials: 'include'
             })
             .then(response => response.json())
@@ -48,6 +51,7 @@ const CartInformation = () => {
             const formData = new FormData();
             const stringProducts = JSON.stringify(products);
             formData.append('products', stringProducts);
+            formData.append('session', cookies.loginSession);
             fetch('http://localhost:8080/bk/changeCart', {
               method: 'POST',
               body: formData,

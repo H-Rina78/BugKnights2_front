@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 const MyPage = () =>{
     const [cookies, , removeCookies] = useCookies('');
     const [user, setUser] = useState({});
-    const [order, setOrder] = useState({});
+    const [order, setOrder] = useState([]);
     
     const navigate = useNavigate();
     const handleClick = () => navigate("/");
@@ -220,26 +220,28 @@ const MyPage = () =>{
                         </Col>    
                 </Row>
            </Row>
-           <Row className="ms-5" style={boxStyle}>
-                <Row className="my-2 text-center"><h3>購入履歴</h3></Row>
-                <Row className="justify-content-center">
-                    <Col className="col-8">
-                        <h5 className="py-2 ps-2" style={AllStyle}>{order[0].orderDate}</h5>
-                        <Row className="mb-3">
-                            <Col className="col-10 mt-2 ps-0">
-                                <Row className="ms-3">
-                                    <Col className="col-3 pe-0">
-                                        <p className="offset-1">商品名　　：</p>
-                                    </Col>
-                                    <Col className="col-9 ps-0">
-                                        <p className="ps-3">ここに商品が入る</p>
-                                    </Col>
-                                </Row>
-                            </Col>
-                        </Row>
-                    </Col>
-                </Row>
-           </Row>
+           {order.length !== 0 && 
+                <Row className="ms-5" style={boxStyle}>
+                    <Row className="my-2 text-center"><h3>購入履歴</h3></Row>
+                    <Row className="justify-content-center">
+                        <Col className="col-8">
+                            <h5 className="py-2 ps-2" style={AllStyle}>{order[0].orderDate}</h5>
+                            <Row className="mb-3">
+                                <Col className="col-10 mt-2 ps-0">
+                                    <Row className="ms-3">
+                                        <Col className="col-3 pe-0">
+                                            <p className="offset-1">商品名　　：</p>
+                                        </Col>
+                                        <Col className="col-9 ps-0">
+                                            <p className="ps-3">ここに商品が入る</p>
+                                        </Col>
+                                    </Row>
+                                </Col>
+                            </Row>
+                        </Col>
+                    </Row>
+            </Row>
+           }
         </Container>
         </>
     )

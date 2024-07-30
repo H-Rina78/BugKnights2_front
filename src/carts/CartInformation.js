@@ -60,7 +60,7 @@ const CartInformation = () => {
             .then(response => response.text())
             .then(data => {
               console.log(data);
-              navigate('/');
+              setDefaultProducts(products);
             })
             .catch(error => console.error(error));
               console.log("エラー");

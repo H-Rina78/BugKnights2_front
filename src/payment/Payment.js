@@ -17,7 +17,7 @@ const Payment = () => {
     const [address, setAddress] = useState('');
 
     useEffect(() => {
-        fetch('http://localhost:8080/bk/getUserCookie', {
+        fetch('https://bugknights-b.azurewebsites.net/bk/getUserCookie', {
             method: 'GET',
             credentials: 'include' // クッキーを含めるためのオプション
         })

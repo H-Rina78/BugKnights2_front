@@ -26,7 +26,7 @@ const Payment = () => {
 
         const formData = new FormData();
         formData.append('session', cookies.loginSession);
-        fetch('http://localhost:8080/bk/getUserCookie', {
+        fetch('https://bugknights-b.azurewebsites.net/bk/getUserCookie', {
             method: 'POST',
             body: formData,
             credentials: 'include'

@@ -19,7 +19,7 @@ const Search = (props) => {
         if (cookies.loginSession !== undefined && cookies.loginSession !== null) {
             const formData = new FormData();
             formData.append('session', cookies.loginSession);
-            fetch('http://localhost:8080/bk/getCart', {
+            fetch('https://bugknights-b.azurewebsites.net/bk/getCart', {
               method: 'POST',
               body: formData,
               credentials: 'include'

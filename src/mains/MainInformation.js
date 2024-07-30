@@ -33,7 +33,7 @@ const MainInformation = () => {
     if (cookies.loginSession !== undefined && cookies.loginSession !== null) {
       const formData = new FormData();
       formData.append('session', cookies.loginSession);
-      fetch('http://localhost:8080/bk/checkLogin', {
+      fetch('https://bugknights-b.azurewebsites.net/bk/checkLogin', {
         method: 'POST',
         body: formData,
         credentials: 'include'

@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 const MainTop = (props) => {
-    const stringUrl = 'http://localhost:8080/search';
+    const stringUrl = 'https://bugknights-b.azurewebsites.net/search';
     const itemsPerPage = 8; // 1ページあたりの商品数
 
     const [MainCards, setMainCards] = useState([]);

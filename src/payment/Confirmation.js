@@ -12,7 +12,7 @@ const Confirmation = () => {
     const handleClickCompleted = () => {
         const formData = new FormData();
         formData.append('id', id);
-        fetch('http://localhost:8080/insertOrder', {
+        fetch('https://bugknights-b.azurewebsites.net/insertOrder', {
                 method: 'POST',
                 body: formData
             })

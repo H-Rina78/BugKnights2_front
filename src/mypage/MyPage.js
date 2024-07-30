@@ -66,7 +66,7 @@ const MyPage = () =>{
     useEffect(() => {
         const formData = new FormData();
         formData.append('session', cookies.loginSession);
-        fetch('http://localhost:8080/bk/getUserCookie', {
+        fetch('https://bugknights-b.azurewebsites.net/bk/getUserCookie', {
             method: 'POST',
             body: formData,
             credentials: 'include' // クッキーを含めるためのオプション
@@ -87,7 +87,7 @@ const MyPage = () =>{
         if(Object.keys(user).length !== 0){
             const formData = new FormData();
             formData.append('id', user.id);
-            fetch('http://localhost:8080/orderHistory', {
+            fetch('https://bugknights-b.azurewebsites.net/orderHistory', {
                 method: 'POST',
                 body: formData
             })
@@ -220,27 +220,35 @@ const MyPage = () =>{
                         </Col>    
                 </Row>
            </Row>
-           {order.length !== 0 && 
+           {order.length !== 0 &&
                 <Row className="ms-5" style={boxStyle}>
                     <Row className="my-2 text-center"><h3>購入履歴</h3></Row>
                     <Row className="justify-content-center">
-                        <Col className="col-8">
-                            <h5 className="py-2 ps-2" style={AllStyle}>{order[0].orderDate}</h5>
-                            <Row className="mb-3">
-                                <Col className="col-10 mt-2 ps-0">
-                                    <Row className="ms-3">
-                                        <Col className="col-3 pe-0">
-                                            <p className="offset-1">商品名　　：</p>
-                                        </Col>
-                                        <Col className="col-9 ps-0">
-                                            <p className="ps-3">ここに商品が入る</p>
-                                        </Col>
-                                    </Row>
-                                </Col>
-                            </Row>
-                        </Col>
+                        <>
+                        {order.map((orderPage) => (
+                            <Col className="col-8">
+                                <h5 className="py-2 ps-2" style={AllStyle}>{orderPage.orderDate}</h5>
+                                <Row className="mb-3">
+                                    <Col className="col-10 mt-2 ps-0">
+                                        <>
+                                            {orderPage.product.map((product) => (
+                                                <Row className="ms-3">
+                                                    <Col className="col-3 pe-0">
+                                                        <p className="offset-1">{product.name}　　：</p>
+                                                    </Col>
+                                                    <Col className="col-9 ps-0">
+                                                        <p className="ps-3">ここに商品が入る</p>
+                                                    </Col>
+                                                </Row>
+                                            ))}
+                                        </>
+                                    </Col>
+                                </Row>
+                            </Col>
+                        ))}
+                        </>
                     </Row>
-            </Row>
+                </Row>
            }
         </Container>
         </>

@@ -41,7 +41,7 @@ const Payment = () => {
         .catch(error => {
             console.error(error);
         });
-    }, [location.state]);
+    }, [location.state, cookies.loginSession]);
 
     const handleClick = () => navigate("/cart");
 

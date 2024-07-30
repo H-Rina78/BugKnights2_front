@@ -6,15 +6,15 @@ const SearchProducts = (props) => {
 
     if (props.inputCategoryId !== "") {
         if (!Number.isNaN(props.upperPrice) && !Number.isNaN(props.lowerPrice)) {
-            stringUrl = `https://bugknights-b.azurewebsites.net/search/categoryP?category_id=${props.inputCategoryId}&upper_price=${props.upperPrice}&lower_price=${props.lowerPrice}`;
+            stringUrl = `http://localhost:8080/search/categoryP?category_id=${props.inputCategoryId}&upper_price=${props.upperPrice}&lower_price=${props.lowerPrice}`;
         } else {
-            stringUrl = `https://bugknights-b.azurewebsites.net/search/category?category_id=${props.inputCategoryId}`;
+            stringUrl = `http://localhost:8080/search/category?category_id=${props.inputCategoryId}`;
         }
     } else if (props.inputKeyword !== "") {
         if (!Number.isNaN(props.upperPrice) && !Number.isNaN(props.lowerPrice)) {
-            stringUrl = `https://bugknights-b.azurewebsites.net/search/keywordP?keyword=${props.inputKeyword}&upper_price=${props.upperPrice}&lower_price=${props.lowerPrice}`;
+            stringUrl = `http://localhost:8080/search/keywordP?keyword=${props.inputKeyword}&upper_price=${props.upperPrice}&lower_price=${props.lowerPrice}`;
         } else {
-            stringUrl = `https://bugknights-b.azurewebsites.net/search/keyword?keyword=${props.inputKeyword}`;
+            stringUrl = `http://localhost:8080/search/keyword?keyword=${props.inputKeyword}`;
         }
     }
 

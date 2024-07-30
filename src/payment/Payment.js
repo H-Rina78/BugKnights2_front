@@ -1,31 +1,35 @@
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Button, Form } from 'react-bootstrap';
 import SimpleHeader from '../SimpleHeader';
 import './Payment.css';
-import {Button} from "react-bootstrap";
-import {useNavigate} from "react-router-dom";
-import Form from 'react-bootstrap/Form';
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const Payment = () => {
-
     const navigate = useNavigate();
     const handleClick = () => navigate("/cart");
-    const handleClickConfirmation = () => navigate("/confirmation");
 
     const [user, setUser] = useState({});
-    const [addressEditable, setAddressEditable] = useState(false); // 新しい状態変数
+    const [addressEditable, setAddressEditable] = useState(false);
     const [address, setAddress] = useState('');
+    const [selectedMethod, setSelectedMethod] = useState('クレジットカード'); // 初期値を設定
+    const [deliveryDate, setDeliveryDate] = useState('');
+    const [deliveryTime, setDeliveryTime] = useState('');
+    const [errors, setErrors] = useState({});
 
     useEffect(() => {
         fetch('http://localhost:8080/bk/getUserCookie', {
             method: 'GET',
-            credentials: 'include' // クッキーを含めるためのオプション
+            credentials: 'include'
         })
         .then(response => response.text())
         .then(data => {
-            if(data !== '') {
-                console.log(data);
-                setUser(JSON.parse(data));
+            if (data !== '') {
+                const userData = JSON.parse(data);
+                setUser(userData);
+                // user.addressが存在する場合にaddressを初期化
+                if (userData.address) {
+                    setAddress(userData.address);
+                }
             }
         })
         .catch(error => {
@@ -35,37 +39,72 @@ const Payment = () => {
 
     const toggleAddressEdit = () => {
         if (addressEditable) {
-            // 編集をキャンセルした場合は住所をリセット
-            setAddress('');
+            // 編集モードをキャンセルする際にuser.addressを再設定
+            setAddress(user.address || '');
         }
         setAddressEditable(!addressEditable);
     };
 
-    // 選択された支払い方法を管理するための状態
-    const [selectedMethod, setSelectedMethod] = useState('creditCard');
-
-    // 配送日時の状態
-    const [deliveryDate, setDeliveryDate] = useState('');
-    const [deliveryTime, setDeliveryTime] = useState('');
-
-    // ラジオボタンの選択変更を処理する関数
     const handleChange = (event) => {
         setSelectedMethod(event.target.value);
+        // エラーメッセージの削除
+        setErrors(prevErrors => ({ ...prevErrors, paymentMethod: '' }));
     };
 
-    // 配送日時の変更を処理する関数
     const handleDateChange = (event) => {
         setDeliveryDate(event.target.value);
-    }
+        // エラーメッセージの削除
+        setErrors(prevErrors => ({ ...prevErrors, deliveryDate: '' }));
+    };
 
     const handleTimeChange = (event) => {
         setDeliveryTime(event.target.value);
-    }
+        // エラーメッセージの削除
+        setErrors(prevErrors => ({ ...prevErrors, deliveryTime: '' }));
+    };
+
+    const validateForm = () => {
+        const newErrors = {};
+
+        if (addressEditable && !address) {
+            newErrors.address = '住所を入力してください';
+        }
+
+        if (!deliveryDate) {
+            newErrors.deliveryDate = '配送日付を選択してください';
+        }
+
+        if (!deliveryTime) {
+            newErrors.deliveryTime = '配送時間帯を選択してください';
+        }
+
+        if (!selectedMethod) {
+            newErrors.paymentMethod = 'お支払い方法を選択してください';
+        }
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
+    const handleClickConfirmation = () => {
+        if (validateForm()) {
+            navigate("/confirmation", {
+                state: {
+                    basicData: {
+                        address: address,
+                        date: deliveryDate,
+                        time: deliveryTime,
+                        method: selectedMethod
+                    }
+                }
+            });
+        }
+    };
 
     const btnStyle = {
-        hight:'20px',
-        width:'100px'
-    }
+        height: '40px',
+        width: '100px'
+    };
 
     return (
         <>
@@ -90,11 +129,19 @@ const Payment = () => {
                         <Form.Control
                             type="text"
                             value={address}
-                            placeholder={user.address}
+                            placeholder={"住所を入力"}
                             aria-label="住所入力"
                             disabled={!addressEditable}
-                            onChange={(e) => setAddress(e.target.value)}
+                            onChange={(e) => {
+                                setAddress(e.target.value);
+                                // エラーメッセージの削除
+                                if (addressEditable) {
+                                    setErrors(prevErrors => ({ ...prevErrors, address: '' }));
+                                }
+                            }}
+                            required={addressEditable}
                         />
+                        {errors.address && <div className="text-danger">{errors.address}</div>}
                     </Col>  
                 </Row>
                 <Row className="delivery-time-row">
@@ -108,7 +155,9 @@ const Payment = () => {
                                 value={deliveryDate}
                                 onChange={handleDateChange}
                                 className="form-control"
+                                required
                             />
+                            {errors.deliveryDate && <div className="text-danger">{errors.deliveryDate}</div>}
                         </div>
                         <div className="form-group">
                             <label htmlFor="deliveryTime">時間帯：</label>
@@ -117,6 +166,7 @@ const Payment = () => {
                                 value={deliveryTime}
                                 onChange={handleTimeChange}
                                 className="form-control"
+                                required
                             >
                                 <option value="">選択してください</option>
                                 <option value="08:00-12:00">8:00～12:00</option>
@@ -125,6 +175,7 @@ const Payment = () => {
                                 <option value="16:00-18:00">16:00～18:00</option>
                                 <option value="18:00-20:00">18:00～20:00</option>
                             </select>
+                            {errors.deliveryTime && <div className="text-danger">{errors.deliveryTime}</div>}
                         </div>
                     </Col>
                 </Row>
@@ -137,10 +188,11 @@ const Payment = () => {
                                     type="radio"
                                     id="creditCard"
                                     name="paymentMethod"
-                                    value="creditCard"
-                                    checked={selectedMethod === 'creditCard'}
+                                    value="クレジットカード"
+                                    checked={selectedMethod === 'クレジットカード'}
                                     onChange={handleChange}
                                     className="form-check-input"
+                                    required
                                 />
                                 <label htmlFor="creditCard" className="form-check-label">クレジットカード</label>
                             </div>
@@ -149,10 +201,11 @@ const Payment = () => {
                                     type="radio"
                                     id="convenienceStore"
                                     name="paymentMethod"
-                                    value="convenienceStore"
-                                    checked={selectedMethod === 'convenienceStore'}
+                                    value="コンビニ払い"
+                                    checked={selectedMethod === 'コンビニ払い'}
                                     onChange={handleChange}
                                     className="form-check-input"
+                                    required
                                 />
                                 <label htmlFor="convenienceStore" className="form-check-label">コンビニ払い</label>
                             </div>
@@ -161,8 +214,8 @@ const Payment = () => {
                                     type="radio"
                                     id="cashOnDelivery"
                                     name="paymentMethod"
-                                    value="cashOnDelivery"
-                                    checked={selectedMethod === 'cashOnDelivery'}
+                                    value="代引き"
+                                    checked={selectedMethod === '代引き'}
                                     onChange={handleChange}
                                     className="form-check-input"
                                 />
@@ -173,16 +226,18 @@ const Payment = () => {
                                     type="radio"
                                     id="mobilePayment"
                                     name="paymentMethod"
-                                    value="mobilePayment"
-                                    checked={selectedMethod === 'mobilePayment'}
+                                    value="スマホ決済"
+                                    checked={selectedMethod === 'スマホ決済'}
                                     onChange={handleChange}
                                     className="form-check-input"
                                 />
                                 <label htmlFor="mobilePayment" className="form-check-label">スマホ決済</label>
                             </div>
+                            {errors.paymentMethod && <div className="text-danger">{errors.paymentMethod}</div>}
                         </div>
                     </Col>
                 </Row>
+
                 <Row className="address-row">
                     <Col>
                         <h4>金額：</h4>
@@ -193,7 +248,6 @@ const Payment = () => {
                     <Button className="ms-3 my-2" onClick={handleClickConfirmation} style={btnStyle}>確認画面</Button>
                 </Row>
             </Container>
-
         </>
     );
 };

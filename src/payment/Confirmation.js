@@ -3,12 +3,20 @@ import SimpleHeader from '../SimpleHeader';
 import {Button} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
 import './Confirmation.css';
+import { useLocation } from 'react-router-dom';
+import { useState } from "react";
 
 const Confirmation = () =>{
 
     const navigate = useNavigate();
     const handleClickBack = () => navigate("/payment");
     const handleClickCompleted = () => navigate("/completed");
+
+    const location = useLocation();
+    const [address] = useState(location.state.basicData.address);
+    const [date] = useState(location.state.basicData.date);
+    const [time] = useState(location.state.basicData.time);
+    const [method] = useState(location.state.basicData.method);
 
     const btnStyle = {
         hight:'20px',
@@ -26,25 +34,43 @@ const Confirmation = () =>{
                     </Col>     
                 </Row>
                 <Row className="address-row">
-                    <Col className='col-8'>
-                        <h4>住所：</h4>
+                    <Col className='col-3 pe-0'>
+                        <h4>住所　　　：</h4>
+                    </Col>
+                    <Col className='col-9 ps-0 text'>
+                        {address}
                     </Col>
                 </Row>
                 <Row className="delivery-time-row">
-                    <Col>
-                        <h4>配送日時選択：</h4>
-                        <h4>時間帯：</h4>
+                    <Col className='col-3 pe-0'>
+                        <h4>配送日　　：</h4>
+                    </Col>
+                    <Col className='col-9 ps-0 text'>
+                        {date}
+                    </Col>
+                </Row>
+                <Row className="delivery-time-row">
+                    <Col className='col-3 pe-0'>
+                        <h4>時間帯　　：</h4>
+                    </Col>
+                    <Col className='col-9 ps-0 text'>
+                        {time}
                     </Col>
                 </Row>
                 <Row className="payment-method-row">
-                    <Col>
-                        <h4>お支払い方法選択：</h4>
+                    <Col className='col-3 pe-0'>
+                        <h4>支払い方法：</h4>
+                    </Col>
+                    <Col className='col-9 ps-0 text'>
+                        {method}
                     </Col>
                 </Row>
                 <Row className="address-row">
-                    <Col>
-                        <h4>金額：</h4>
-                        <span></span>
+                    <Col className='col-3 pe-0'>
+                        <h4>金額　　　：</h4>
+                    </Col>
+                    <Col className='col-9 ps-0 text'>
+                        
                     </Col>
                 </Row>
                 <Row className='justify-content-end'>

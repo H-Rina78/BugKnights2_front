@@ -63,11 +63,12 @@
 }
 
 .form-check-input:checked {
-    background-color: #003366; /* 濃い青 */
-    border-color: #003366; /* 濃い青 */
+    background-color:rgb(38, 19, 119); /* 濃い青 */
+    border-color: rgb(38, 19, 119); /* 濃い青 */
 }
 
 .form-check-input:focus {
-    border-color: #005bb5; /* 青色のフォーカス */
+    background-color:rgb(38, 19, 119); /* 濃い青 */
+    border-color: rgb(38, 19, 119); /* 濃い青 */
     box-shadow: 0 0 0 0.2rem rgba(0, 92, 183, 0.25);
 }

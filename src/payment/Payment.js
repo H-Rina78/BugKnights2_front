@@ -97,7 +97,7 @@ const Payment = () => {
                         date: deliveryDate,
                         time: deliveryTime,
                         method: selectedMethod,
-                        total: productTotal // 小計も一緒に渡す
+                        total: productTotal
                     }
                 }
             });
@@ -107,6 +107,9 @@ const Payment = () => {
     const numberFormat = (num) => {
         return num.toLocaleString();
     };
+
+    // 今日の日付を取得してフォーマット
+    const today = new Date().toISOString().split('T')[0];
 
     const btnStyle = {
         height: '40px',
@@ -162,6 +165,7 @@ const Payment = () => {
                                 value={deliveryDate}
                                 onChange={handleDateChange}
                                 className="form-control"
+                                min={today} // 今日の日付を最小値として設定
                                 required
                             />
                             {errors.deliveryDate && <div className="text-danger">{errors.deliveryDate}</div>}

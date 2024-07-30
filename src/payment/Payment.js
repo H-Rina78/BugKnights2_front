@@ -250,9 +250,11 @@ const Payment = () => {
                 </Row>
 
                 <Row className="address-row">
-                    <Col>
+                    <Col className='col-2'>
                         <h4>金額：</h4>
-                        <span>小計: {numberFormat(productTotal)}円（税込 {numberFormat(Math.round(productTotal * 1.1))}円)</span>
+                    </Col>
+                    <Col className='col-9 h4'>
+                        {numberFormat(productTotal)}円（税込 {numberFormat(Math.round(productTotal * 1.1))}円)
                     </Col>
                 </Row>
                 <Row className='justify-content-end'>
